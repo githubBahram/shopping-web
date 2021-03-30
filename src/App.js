@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Menu from "./pages/Menu";
 import Home from "./pages/Home";
 import Brand from "./pages/Brand";
+import Categories from "./pages/Categories";
 import {Provider} from 'react-redux';
 import store from './redux/store';
 
@@ -16,9 +17,9 @@ const About = () => <span>About</span>;
 const App = () => (
     <Provider store={store}>
         <MemoryRouter>
-            <Container className="p-3 rtl">
+            <div style={{backgroundColor:'#fafafa'}}>
                 <Menu/>
-                <Jumbotron>
+
                     <Switch>
                         <Route path="/about">
                             <About/>
@@ -27,12 +28,10 @@ const App = () => (
                             <Brand/>
                         </Route>
                         <Route path="/">
-                            <Brand/>
+                            <Categories/>
                         </Route>
                     </Switch>
-
-                </Jumbotron>
-            </Container>
+            </div>
         </MemoryRouter>
     </Provider>
 );

@@ -6,9 +6,12 @@ const initialState = {
     error: null
 };
 
-export const fetchImages = createAsyncThunk('images/fetchImages', async () => {
+export const fetchImageById= createAsyncThunk('images/fetchImages', async (imageId) => {
         try {
-            const response = await fetch('http://127.0.0.1:8080/image-management/image')
+            console.log('image Id')
+            console.log(imageId)
+
+            const response = await fetch('http://127.0.0.1:8080/image-management/image/'+imageId)
             return await response.json();
         } catch (error) {
             console.log(error)
@@ -28,5 +31,5 @@ const brandsSlice = createSlice({
 });
 
 
-export const selectAllBrands = state => state.brands
+export const selectImageById = state => state.images
 export default brandsSlice.reducer;
