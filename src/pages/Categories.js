@@ -3,13 +3,9 @@ import {useDispatch, useSelector} from 'react-redux'
 import {fetchCategories, selectAllCategories} from "../redux/feature/categorySlice";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import Image from 'react-bootstrap/Image'
-import Container from 'react-bootstrap/Container'
-import FlatList from 'flatlist-react'
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
 import styled from 'styled-components'
+import Header from "./HeaderPage";
+import HeaderPage from "./HeaderPage";
 
 const axios = require("axios");
 
@@ -18,123 +14,59 @@ const Categories = () => {
     const categories = useSelector(selectAllCategories)
     const categoryStatus = useSelector(state => state.categories.status)
 
-    const [file, setFile] = useState(null)
-    const [name, setName] = useState('')
-    const [result, setResult] = useState('')
 
-    const submitForm = (e) => {
-        const formData = new FormData();
-        formData.append('image', file)
-        formData.append('name', name)
-
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        };
-        axios.post("http://localhost:8080/category-management/category", formData, config)
-            .then((response) => {
-                setResult('success')
-            }).catch((error) => {
-            alert(error)
-        });
-    }
 
     useEffect(() => {
         console.log('rerender')
         if (categoryStatus === 'idle') {
             dispatch(fetchCategories())
         }
-    }, [categoryStatus, dispatch, result])
+    }, [categoryStatus, dispatch])
+
     return (
-        <Form>
-            <Form.Row>
-                <Form.Group controlId="formBasicEmail" className="m-r-2">
-                    <Form.Label>نام دسته بندی محصول</Form.Label>
-                    <Form.Control type="input" onChange={(e) => setName(e.target.value)}
-                                  placeholder="نام دسته بندی را وارد کنید"/>
-                </Form.Group>
-
-                <Form.Group>
-                    <Form.File id="exampleFormControlFile1" onChange={(e) => setFile(e.target.files[0])}
-                               label="تصویر دسته بندی"/>
-                </Form.Group>
-            </Form.Row>
-            <Button variant="primary" type="button" onClick={submitForm}>
-                ثبت
-            </Button>
-
-            <CategorieItmes/>
-        </Form>
+        <>
+            <HeaderPage/>
+            <div className="category-container">
+                <CategoryList/>
+            </div>
+        </>
 
     )
 }
-
 
 const CategoryList = () => {
     const categories = useSelector(selectAllCategories)
     const items = categories.categories
 
-    const brandRender = items.map(item => <Col xs={12} md={2}><Card className="p-3 category-card">
-        <Card.Img className="category-image" variant="center"
-                  src={`http://localhost:8080/image-management/image/${item.id}`}/>
-        <Card.Body className="text-center">
-            <Card.Title className="category-card-body-title">{item.name}</Card.Title>
-        </Card.Body>
-    </Card></Col>)
+    const
+        brandRender = items.map((item, index) =>
+            <MainCategory index={index}>
+                <ImageWrapper index={index}>
+                    <MainCategoryImage index={index} className="main-category-image"
+                                       src={`http://localhost:8080/image-management/image/${item.imageId}`}/>
+                </ImageWrapper>
+                <MainCategoryTitle index={index}>{item.name}</MainCategoryTitle>
+                <CategoryArrow index={index} className="category-arrow">.</CategoryArrow>
+            </MainCategory>)
+
     return (<> {brandRender} </>)
 }
 
-const CategorieItmes = () => {
-    const width = window.innerWidth;
 
-    return (
-        <div className="category-container">
-
-            <FirstCategory backgroundColor="#fbf7df">
-                <ImageWrapper backgroundColor="#e6f4f9">
-                    <FirstCategoryImage className="first-category-image"
-                                        src="https://api.snapp.market/uploads/images/mobile-sliders/5f9970022e5c7.png"/>
-                </ImageWrapper>
-                <FirstCategoryTitle>دستمال و شوینده</FirstCategoryTitle>
-                <CategoryArrow className="category-arrow">.</CategoryArrow>
-            </FirstCategory>
-
-            <FirstCategory backgroundColor="#e6f4f9">
-                <ImageWrapper backgroundColor="#fbf7df">
-                    <FirstCategoryImage className="first-category-image"
-                                        src="https://api.snapp.market/uploads/images/mobile-sliders/5f9970351dc73.png"/>
-                </ImageWrapper>
-                <FirstCategoryTitle>لبنیات</FirstCategoryTitle>
-                <CategoryArrow className="category-arrow">.</CategoryArrow>
-            </FirstCategory>
-
-            <FirstCategory backgroundColor="#fceee0">
-                <ImageWrapper backgroundColor="#fceee0">
-                    <FirstCategoryImage className="first-category-image"
-                                        src="https://api.snapp.market/uploads/images/mobile-sliders/5f9970022e5c7.png"/>
-                </ImageWrapper>
-                <FirstCategoryTitle>خواربار</FirstCategoryTitle>
-                <CategoryArrow className="category-arrow">.</CategoryArrow>
-            </FirstCategory>
-
-
-        </div>
-    )
-}
-const FirstCategory = styled.div`
+const backgroundColors = ['#fbf7df', '#e6f4f9', '#fceee0']
+const MainCategory = styled.div`
   @media only screen and (min-width: 769px) {
     display: flex;
-    justify-content: space-between;
-    background-color: ${(props)=>props.backgroundColor};
+    justify-content: space-around;
+    background-color: ${(props) => props.index < 3 ? backgroundColors[props.index] : '#ffffff'};
     align-items: center;
-     border-radius: 5px;
-    border-color: ${(props)=>props.backgroundColor};
-    border-style:  solid;
+    border-radius: 5px;
+    border-color: ${(props) => props.index < 3 ? backgroundColors[props.index] : '#ffffff'};
+    border-style: solid;
     border-width: 1px;
-    margin: 1px;
-    width: 30vw;
-    padding: 20px 20px 20px 20px;
+    width: ${(props) => props.index < 3 ? '30vw' : '24%  '} ;
+    padding: ${(props) => props.index < 3 ? '20px 20px 20px 20px;' : '12px 10px 12px 10px;'} ;
+    margin-top: 20px;
   }
 
   @media only screen and (max-width: 769px) {
@@ -148,24 +80,27 @@ const FirstCategory = styled.div`
     padding: 0;
   }
 `
-const FirstCategoryImage = styled.img`
-  width: 8rem;
+const MainCategoryImage = styled.img`
+  width: ${(props) => props.index < 3 ? '8rem' : '6rem'};
   @media only screen and (max-width: 769px) {
     width: 100%;
   }
 `
 const ImageWrapper = styled.div`
   @media only screen and (max-width: 769px) {
-    background-color: ${(props)=>props.backgroundColor};
+    background-color: ${(props) => props.index < 3 ? backgroundColors[props.index] : '#ffffff'};
     width: 100%;
   }
 `
 const CategoryArrow = styled.span`
+  display: ${(props) => props.index > 2 ? 'none' : 'block'};
   @media only screen and (max-width: 769px) {
     display: none;
   }
 `
-const FirstCategoryTitle = styled.span`
+const MainCategoryTitle = styled.span`
+  flex-grow: 2;
+  text-align: right;
   @media only screen and (max-width: 769px) {
     text-align: center;
     font-size: 15px;

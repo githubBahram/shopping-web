@@ -18,7 +18,7 @@ const App = () => (
     <Provider store={store}>
         <MemoryRouter>
             <div style={{backgroundColor:'#fafafa'}}>
-                <Menu/>
+
 
                     <Switch>
                         <Route path="/about">
