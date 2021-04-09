@@ -1,20 +1,14 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {fetchCategories, selectAllCategories} from "../redux/feature/categorySlice";
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
 import styled from 'styled-components'
-import Header from "./HeaderPage";
-import HeaderPage from "./HeaderPage";
-import ScrollRendering from "./ScrollRendering";
 
 const axios = require("axios");
 
-const Categories = () => {
+const MainCategories = () => {
     const dispatch = useDispatch()
     const categories = useSelector(selectAllCategories)
     const categoryStatus = useSelector(state => state.categories.status)
-
 
 
     useEffect(() => {
@@ -26,14 +20,8 @@ const Categories = () => {
 
     return (
         <>
-            <HeaderPage/>
-            <div className="category-container">
-                <CategoryList/>
-                <CategoryList/>
-                <ScrollRendering/>
-            </div>
+            <CategoryList/>
         </>
-
     )
 }
 
@@ -44,8 +32,8 @@ const CategoryList = () => {
     const
         brandRender = items.map((item, index) =>
             <MainCategory key={index} index={index}>
-                <ImageWrapper  key={index} index={index}>
-                    <MainCategoryImage  key={index} index={index} className="main-category-image"
+                <ImageWrapper key={index} index={index}>
+                    <MainCategoryImage key={index} index={index} className="main-category-image"
                                        src={`http://localhost:8080/image-management/image/${item.imageId}`}/>
                 </ImageWrapper>
                 <MainCategoryTitle index={index}>{item.name}</MainCategoryTitle>
@@ -112,4 +100,4 @@ const MainCategoryTitle = styled.span`
 `
 
 
-export default Categories
+export default MainCategories

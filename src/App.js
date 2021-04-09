@@ -1,12 +1,12 @@
 import React from 'react';
-import {MemoryRouter, Route, Switch} from 'react-router-dom';
+import {MemoryRouter, Route, Switch,BrowserRouter} from 'react-router-dom';
 
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
 import Menu from "./pages/Menu";
 import Home from "./pages/Home";
 import Brand from "./pages/Brand";
-import Categories from "./pages/Categories";
+import MainCategories from "./pages/MainCategories";
 import {Provider} from 'react-redux';
 import store from './redux/store';
 
@@ -16,10 +16,8 @@ const About = () => <span>About</span>;
 
 const App = () => (
     <Provider store={store}>
-        <MemoryRouter>
+        <BrowserRouter>
             <div style={{backgroundColor:'#fafafa'}}>
-
-
                     <Switch>
                         <Route path="/about">
                             <About/>
@@ -28,11 +26,11 @@ const App = () => (
                             <Brand/>
                         </Route>
                         <Route path="/">
-                            <Categories/>
+                            <Home/>
                         </Route>
                     </Switch>
             </div>
-        </MemoryRouter>
+        </BrowserRouter>
     </Provider>
 );
 

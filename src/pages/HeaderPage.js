@@ -57,7 +57,6 @@ const HeaderPage = () => {
                         </ShoppingCartButton>
                     </div>
                 </Row>
-
                 <Row>sdf</Row>
                 <Row>fgd</Row>
             </Header>
