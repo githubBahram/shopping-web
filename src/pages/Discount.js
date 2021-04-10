@@ -1,22 +1,34 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useRef} from 'react'
 import styled from 'styled-components'
 import Button from "react-bootstrap/Button";
+import FlatList from 'flatlist-react';
+import categories from "../data/categories";
 
 const Discount = () => {
-    return (
-        <>
-            <Container>
-                <DiscountText>
-                    تخفیف ویژه
-                </DiscountText>
+    const arrowLeft = useRef(null)
+    const CardRender = (card, idx) => {
+        console.log('card')
+        console.log(card)
+        return (
+            <div key={idx}>
+                <img style={{
+                    marginLeft: "5px"
+                }} src={card.image}/>
+            </div>
 
-                <CardWrapper>
-                    <Card>
-                        <ImageCardWrapper>
-                            <ImageCard
-                                src="https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/5c18ba7615505.jpg"/>
-                        </ImageCardWrapper>
-                        <TitleCard >سیب زمینی ۱.۵ کیلوگرمی ± ۱۰۰ گرم (تعداد تقریبی ۶ عدد)</TitleCard>
+        )
+    }
+
+    const CardComponent = () => {
+        return (
+            <CardWrapper>
+                <Card>
+                    <ImageCardWrapper>
+                        <ImageCard
+                            src="https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/5c18ba7615505.jpg"/>
+                    </ImageCardWrapper>
+                    <TitleCard>سیب زمینی ۱.۵ کیلوگرمی ± ۱۰۰ گرم (تعداد تقریبی ۶ عدد)</TitleCard>
+                    <footer>
                         <DiscountAmountWrapper>
                             <DiscountPercent>
                                 %10
@@ -27,24 +39,156 @@ const Discount = () => {
                             <FinalAmount> 1950 تومان</FinalAmount>
                             <ProductAddButton variant="outline-success">افزودن به سبد</ProductAddButton>
                         </AddProductWrapper>
+                    </footer>
+                </Card>
+            </CardWrapper>
+        )
+    }
+
+
+    return (
+        <>
+            <Container>
+                <DiscountText>
+                    تخفیف ویژه
+                </DiscountText>
+
+                <CardWrapper ref={arrowLeft}>
+                    <Card>
+                        <ImageCardWrapper>
+                            <ImageCard
+                                src="https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/5c18ba7615505.jpg"/>
+                        </ImageCardWrapper>
+                        <TitleCard>سیب زمینی ۱.۵ کیلوگرمی ± ۱۰۰ گرم (تعداد تقریبی ۶ عدد)</TitleCard>
+                        <footer>
+                            <DiscountAmountWrapper>
+                                <DiscountPercent>
+                                    %10
+                                </DiscountPercent>
+                                <MainAmount>1331</MainAmount>
+                            </DiscountAmountWrapper>
+                            <AddProductWrapper>
+                                <FinalAmount> 1950 تومان</FinalAmount>
+                                <ProductAddButton variant="outline-success">افزودن به سبد</ProductAddButton>
+                            </AddProductWrapper>
+                        </footer>
                     </Card>
                     <Card>
                         <ImageCardWrapper>
                             <ImageCard
-                                src="https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/601e7fff7d9a2.jpg"/>
+                                src="https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/5c18ba7615505.jpg"/>
                         </ImageCardWrapper>
                         <TitleCard>سیب زمینی ۱.۵ کیلوگرمی ± ۱۰۰ گرم (تعداد تقریبی ۶ عدد)</TitleCard>
-                        <DiscountAmountWrapper>
-                            <DiscountPercent>
-                                %10
-                            </DiscountPercent>
-                            <MainAmount>15561</MainAmount>
-                        </DiscountAmountWrapper>
-                        <AddProductWrapper>
-                            <FinalAmount> 1950 تومان</FinalAmount>
-                            <ProductAddButton variant="outline-success">افزودن به سبد</ProductAddButton>
-                        </AddProductWrapper>
+                        <footer>
+                            <DiscountAmountWrapper>
+                                <DiscountPercent>
+                                    %10
+                                </DiscountPercent>
+                                <MainAmount>1331</MainAmount>
+                            </DiscountAmountWrapper>
+                            <AddProductWrapper>
+                                <FinalAmount> 1950 تومان</FinalAmount>
+                                <ProductAddButton variant="outline-success">افزودن به سبد</ProductAddButton>
+                            </AddProductWrapper>
+                        </footer>
                     </Card>
+                    <Card>
+                        <ImageCardWrapper>
+                            <ImageCard
+                                src="https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/5c18ba7615505.jpg"/>
+                        </ImageCardWrapper>
+                        <TitleCard>سیب زمینی ۱.۵ کیلوگرمی ± ۱۰۰ گرم (تعداد تقریبی ۶ عدد)</TitleCard>
+                        <footer>
+                            <DiscountAmountWrapper>
+                                <DiscountPercent>
+                                    %10
+                                </DiscountPercent>
+                                <MainAmount>1331</MainAmount>
+                            </DiscountAmountWrapper>
+                            <AddProductWrapper>
+                                <FinalAmount> 1950 تومان</FinalAmount>
+                                <ProductAddButton variant="outline-success">افزودن به سبد</ProductAddButton>
+                            </AddProductWrapper>
+                        </footer>
+                    </Card>
+                    <Card>
+                        <ImageCardWrapper>
+                            <ImageCard
+                                src="https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/5c18ba7615505.jpg"/>
+                        </ImageCardWrapper>
+                        <TitleCard>سیب زمینی ۱.۵ کیلوگرمی ± ۱۰۰ گرم (تعداد تقریبی ۶ عدد)</TitleCard>
+                        <footer>
+                            <DiscountAmountWrapper>
+                                <DiscountPercent>
+                                    %10
+                                </DiscountPercent>
+                                <MainAmount>1331</MainAmount>
+                            </DiscountAmountWrapper>
+                            <AddProductWrapper>
+                                <FinalAmount> 1950 تومان</FinalAmount>
+                                <ProductAddButton variant="outline-success">افزودن به سبد</ProductAddButton>
+                            </AddProductWrapper>
+                        </footer>
+                    </Card>
+                    <Card>
+                        <ImageCardWrapper>
+                            <ImageCard
+                                src="https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/5c18ba7615505.jpg"/>
+                        </ImageCardWrapper>
+                        <TitleCard>سیب زمینی ۱.۵ کیلوگرمی ± ۱۰۰ گرم (تعداد تقریبی ۶ عدد)</TitleCard>
+                        <footer>
+                            <DiscountAmountWrapper>
+                                <DiscountPercent>
+                                    %10
+                                </DiscountPercent>
+                                <MainAmount>1331</MainAmount>
+                            </DiscountAmountWrapper>
+                            <AddProductWrapper>
+                                <FinalAmount> 1950 تومان</FinalAmount>
+                                <ProductAddButton variant="outline-success">افزودن به سبد</ProductAddButton>
+                            </AddProductWrapper>
+                        </footer>
+                    </Card>
+                    <Card>
+                        <ImageCardWrapper>
+                            <ImageCard
+                                src="https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/5c18ba7615505.jpg"/>
+                        </ImageCardWrapper>
+                        <TitleCard>سیب زمینی ۱.۵ کیلوگرمی ± ۱۰۰ گرم (تعداد تقریبی ۶ عدد)</TitleCard>
+                        <footer>
+                            <DiscountAmountWrapper>
+                                <DiscountPercent>
+                                    %10
+                                </DiscountPercent>
+                                <MainAmount>1331</MainAmount>
+                            </DiscountAmountWrapper>
+                            <AddProductWrapper>
+                                <FinalAmount> 1950 تومان</FinalAmount>
+                                <ProductAddButton variant="outline-success">افزودن به سبد</ProductAddButton>
+                            </AddProductWrapper>
+                        </footer>
+                    </Card>
+                    <Card>
+                        <ImageCardWrapper>
+                            <ImageCard
+                                src="https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/5c18ba7615505.jpg"/>
+                        </ImageCardWrapper>
+                        <TitleCard>سیب زمینی ۱.۵ کیلوگرمی ± ۱۰۰ گرم (تعداد تقریبی ۶ عدد)</TitleCard>
+                        <footer>
+                            <DiscountAmountWrapper>
+                                <DiscountPercent>
+                                    %10
+                                </DiscountPercent>
+                                <MainAmount>1331</MainAmount>
+                            </DiscountAmountWrapper>
+                            <AddProductWrapper>
+                                <FinalAmount> 1950 تومان</FinalAmount>
+                                <ProductAddButton variant="outline-success">افزودن به سبد</ProductAddButton>
+                            </AddProductWrapper>
+                        </footer>
+                    </Card>
+
+                    <ArrowLeft onClick={() => arrowLeft.current.scrollLeft ? (arrowLeft.current.scrollLeft = -100) : console.log(arrowLeft)}/>
                 </CardWrapper>
 
             </Container>
@@ -71,6 +215,8 @@ const DiscountText = styled.span`
 const CardWrapper = styled.div`
   display: flex;
   flex: 1;
+  overflow-x: scroll;
+  overflow-y: hidden;
 `
 const Card = styled.div`
   display: flex;
@@ -79,6 +225,7 @@ const Card = styled.div`
   padding: 10px 10px 5px 10px;
   height: 100%;
   width: 20%;
+  min-width: 12rem;
   margin-right: 10px;
   border-radius: 0.5rem;
   flex-direction: column;
@@ -96,11 +243,13 @@ const TitleCard = styled.span`
   font-size: 14px;
   text-align: right;
   margin-bottom: 15px;
+  min-height: 3rem;
+
 `
 const DiscountAmountWrapper = styled.div`
   display: flex;
   flex: 1;
-  
+
 `
 
 const DiscountPercent = styled.div`
@@ -112,9 +261,14 @@ const DiscountPercent = styled.div`
   font-size: 14px;
   align-self: center;
   font-weight: bold;
+  margin-left: 5px;
+  font-family: IRANSansWeb_FaNum_Bold;
 `
 const MainAmount = styled.s`
   align-self: center;
+  font-size: 13px;
+  color: #aca4a4;
+  font-family: IRANSansWeb_FaNum_Medium;
 `
 
 const AddProductWrapper = styled.div`
@@ -123,16 +277,27 @@ const AddProductWrapper = styled.div`
   flex: 1;
   width: 100%;
   justify-content: space-between;
-   
+
 `
 
 const FinalAmount = styled.span`
   text-align: right;
   font-size: 14px;
+  font-family: IRANSansWeb_FaNum_Bold;
 `
 const ProductAddButton = styled(Button)`
   font-size: 12px;
   font-family: IRANSansWeb_Bold;
+`
+const ArrowLeft = styled.button`
+  position: absolute;
+  left: 50px;
+
+  background-color: blue;
+  width: 25px;
+  height: 25px;
+  z-index: 2;
+
 `
 
 

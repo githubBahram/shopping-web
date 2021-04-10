@@ -9,7 +9,7 @@ import Brand from "./pages/Brand";
 import MainCategories from "./pages/MainCategories";
 import {Provider} from 'react-redux';
 import store from './redux/store';
-
+import './font.css'
 import './App.css';
 
 const About = () => <span>About</span>;

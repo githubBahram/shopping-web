@@ -46,42 +46,6 @@ html {
     background-color: #fafafa;
     direction: rtl
 }
-@font-face {
-    font-family: "IRANSansWeb";
-    src: local("IRANSansWeb"),
-    url("fonts/iransans/IRANSansWeb.ttf") format("truetype");
-    font-weight: bold;
-}
-@font-face {
-    font-family: "IRANSansWeb_Black";
-    src: local("IRANSansWeb_Black"),
-    url("fonts/iransans/IRANSansWeb_Black.ttf") format("truetype");
-    font-weight: bold;
-}
-@font-face {
-    font-family: "IRANSansWeb_Bold";
-    src: local("IRANSansWeb_Bold"),
-    url("fonts/iransans/IRANSansWeb_Bold.ttf") format("truetype");
-    font-weight: bold;
-}
-@font-face {
-    font-family: "IRANSansWeb_Light";
-    src: local("IRANSansWeb_Light"),
-    url("fonts/iransans/IRANSansWeb_Light.ttf") format("truetype");
-    font-weight: bold;
-}
-@font-face {
-    font-family: "IRANSansWeb_Medium";
-    src: local("IRANSansWeb_Medium"),
-    url("fonts/iransans/IRANSansWeb_Medium.ttf") format("truetype");
-    font-weight: bold;
-}
-@font-face {
-    font-family: "IRANSansWeb_UltraLight";
-    src: local("IRANSansWeb_UltraLight"),
-    url("fonts/iransans/IRANSansWeb_UltraLight.ttf") format("truetype");
-    font-weight: bold;
-}
 
 .font-face-is {
     font-family: "IRANSansWeb";
