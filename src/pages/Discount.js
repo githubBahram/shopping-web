@@ -16,7 +16,7 @@ const Discount = () => {
                             <ImageCard
                                 src="https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/5c18ba7615505.jpg"/>
                         </ImageCardWrapper>
-                        <TitleCard>سیب زمینی ۱.۵ کیلوگرمی ± ۱۰۰ گرم (تعداد تقریبی ۶ عدد)</TitleCard>
+                        <TitleCard >سیب زمینی ۱.۵ کیلوگرمی ± ۱۰۰ گرم (تعداد تقریبی ۶ عدد)</TitleCard>
                         <DiscountAmountWrapper>
                             <DiscountPercent>
                                 %10
@@ -66,6 +66,7 @@ const DiscountText = styled.span`
   text-align: center;
   color: #fff;
   font-weight: bold;
+  font-family: IRANSansWeb_Bold;
 `
 const CardWrapper = styled.div`
   display: flex;
@@ -91,6 +92,7 @@ const ImageCardWrapper = styled.div`
   padding: 0px 1.6rem;
 `
 const TitleCard = styled.span`
+  font-family: IRANSansWeb;
   font-size: 14px;
   text-align: right;
   margin-bottom: 15px;
@@ -130,7 +132,7 @@ const FinalAmount = styled.span`
 `
 const ProductAddButton = styled(Button)`
   font-size: 12px;
-  font-weight: bold;
+  font-family: IRANSansWeb_Bold;
 `
 
 

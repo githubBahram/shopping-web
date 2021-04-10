@@ -93,6 +93,7 @@ const CategoryArrow = styled.span`
 const MainCategoryTitle = styled.span`
   flex-grow: 2;
   text-align: right;
+  font-family: IRANSansWeb_Medium;
   @media only screen and (max-width: 769px) {
     text-align: center;
     font-size: 15px;
