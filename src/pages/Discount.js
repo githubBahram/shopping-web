@@ -1,11 +1,13 @@
-import React, {useEffect, useRef} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import styled from 'styled-components'
 import Button from "react-bootstrap/Button";
 import FlatList from 'flatlist-react';
 import categories from "../data/categories";
+import ScrollContainer from 'react-indiana-drag-scroll'
 
 const Discount = () => {
-    const arrowLeft = useRef(null)
+    const scrollContainer = useRef(null)
+
     const CardRender = (card, idx) => {
         console.log('card')
         console.log(card)
@@ -19,41 +21,14 @@ const Discount = () => {
         )
     }
 
-    const CardComponent = () => {
-        return (
-            <CardWrapper>
-                <Card>
-                    <ImageCardWrapper>
-                        <ImageCard
-                            src="https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/5c18ba7615505.jpg"/>
-                    </ImageCardWrapper>
-                    <TitleCard>سیب زمینی ۱.۵ کیلوگرمی ± ۱۰۰ گرم (تعداد تقریبی ۶ عدد)</TitleCard>
-                    <footer>
-                        <DiscountAmountWrapper>
-                            <DiscountPercent>
-                                %10
-                            </DiscountPercent>
-                            <MainAmount>1331</MainAmount>
-                        </DiscountAmountWrapper>
-                        <AddProductWrapper>
-                            <FinalAmount> 1950 تومان</FinalAmount>
-                            <ProductAddButton variant="outline-success">افزودن به سبد</ProductAddButton>
-                        </AddProductWrapper>
-                    </footer>
-                </Card>
-            </CardWrapper>
-        )
-    }
-
-
     return (
         <>
             <Container>
                 <DiscountText>
                     تخفیف ویژه
                 </DiscountText>
+                <CardWrapper   hideScrollbars={true} horizontal={true}  innerRef={scrollContainer} className="scroll-container">
 
-                <CardWrapper ref={arrowLeft}>
                     <Card>
                         <ImageCardWrapper>
                             <ImageCard
@@ -183,14 +158,15 @@ const Discount = () => {
                             </DiscountAmountWrapper>
                             <AddProductWrapper>
                                 <FinalAmount> 1950 تومان</FinalAmount>
-                                <ProductAddButton variant="outline-success">افزودن به سبد</ProductAddButton>
+                                <ProductAddButton variant="outline-success">افزودن  </ProductAddButton>
                             </AddProductWrapper>
                         </footer>
                     </Card>
 
-                    <ArrowLeft onClick={() => arrowLeft.current.scrollLeft ? (arrowLeft.current.scrollLeft = -100) : console.log(arrowLeft)}/>
+                    <ArrowLeft
+                        onClick={() => scrollContainer.current.scrollLeft ? (scrollContainer.current.scrollLeft += -500 ) : console.log(scrollContainer.current.parentElement)}/>
+
                 </CardWrapper>
-
             </Container>
         </>
     )
@@ -204,6 +180,7 @@ const Container = styled.div`
   height: 22rem;
   padding: 10px 20px 10px 0;
   justify-content: space-around;
+  overflow: hidden;
 `
 const DiscountText = styled.span`
   align-self: center;
@@ -212,24 +189,33 @@ const DiscountText = styled.span`
   font-weight: bold;
   font-family: IRANSansWeb_Bold;
 `
-const CardWrapper = styled.div`
+const CardWrapper = styled(ScrollContainer)`
   display: flex;
   flex: 1;
-  overflow-x: scroll;
-  overflow-y: hidden;
+  cursor: all-scroll;
+  width: 100%;
+  height: 20rem;
+  user-select: none;
+  overflow: auto;
+  -webkit-transition-property:-webkit-scrolling;
+  -webkit-transition-duration:0.5s;
+  -webkit-transition-delay:0.1s;
+   
+
 `
 const Card = styled.div`
   display: flex;
 
   background-color: #fff;
   padding: 10px 10px 5px 10px;
-  height: 100%;
+
   width: 20%;
   min-width: 12rem;
   margin-right: 10px;
   border-radius: 0.5rem;
   flex-direction: column;
   justify-content: space-between;
+
 `
 const ImageCard = styled.img`
   width: 100%;
