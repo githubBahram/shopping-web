@@ -1,14 +1,43 @@
-import React, {useRef, useEffect} from 'react'
+import React, {useRef, useEffect, useState} from 'react'
 import styled from 'styled-components'
 import categories from "../data/categories";
 import Card from "../component/Card";
 import ScrollContainer from 'react-indiana-drag-scroll'
+import ReactDOM from "react-dom";
 
 const Discount = () => {
     const scrollContainer = useRef(null)
+    const [arrowLeftClick, isArrowLeftClick] = useState(false)
     useEffect(() => {
-    alert('component did mount')
-    })
+
+    }, [])
+    const scrollLeft = () => {
+        isArrowLeftClick(true)
+        ReactDOM.findDOMNode(scrollContainer.current).scrollLeft += -10000
+    }
+    const scrollRight = () => {
+        isArrowLeftClick(false)
+        ReactDOM.findDOMNode(scrollContainer.current).scrollLeft += +10000
+        console.log(ReactDOM.findDOMNode(scrollContainer.current).scrollLeft)
+    }
+    const ScrollRightArrow = () => {
+        useEffect(() => {
+
+        }, [arrowLeftClick])
+        return (
+            <ArrowRight visible={arrowLeftClick} onClick={scrollRight}/>
+        )
+    }
+    const onScroll = () => {
+        let scrollLeftValue = ReactDOM.findDOMNode(scrollContainer.current).scrollLeft
+        if (scrollLeftValue === 0) {
+            isArrowLeftClick(false)
+        }
+        else {
+            isArrowLeftClick(true)
+        }
+    }
+
     const CardRender = (card, idx) => {
         return (
             < >
@@ -26,16 +55,22 @@ const Discount = () => {
 
     return (
         <>
-            <CardWrapper onEndScroll={()=>alert('end scrolling')} onStartScroll={()=>console.log('start')} hideScrollbars={true} horizontal={true} innerRef={scrollContainer}
-                         className="scroll-container">
-                <DiscountText>
-                    تخفیف ویژه
-                </DiscountText>
-                <CardRender/>
-                <ArrowLeft
-                    onClick={() => scrollContainer.current.scrollLeft ? (scrollContainer.current.scrollLeft += -500) : console.log(scrollContainer.current.parentElement)}/>
+            <div>
+                <CardWrapper innerRef={scrollContainer} onEndScroll={onScroll}   hideScrollbars={true}
+                             horizontal={true}
 
-            </CardWrapper>
+                             className="scroll-container">
+                    <DiscountText>
+                        تخفیف ویژه
+                    </DiscountText>
+                    <CardRender/>
+                    <ArrowLeft
+                        onClick={scrollLeft}/>
+
+                    <ScrollRightArrow onClick={scrollRight}/>
+
+                </CardWrapper>
+            </div>
         </>
     )
 }
@@ -63,10 +98,21 @@ const CardWrapper = styled(ScrollContainer)`
 const ArrowLeft = styled.button`
   position: absolute;
   left: 50px;
+ 
   background-color: blue;
   width: 25px;
   height: 25px;
   z-index: 2;
+`
+
+const ArrowRight = styled.button`
+  position: absolute;
+  right: 50px;
+  background-color: blue;
+  width: 25px;
+  height: 25px;
+  z-index: 2;
+  display: ${(props) => props.visible ? 'block' : 'none'};;
 `
 
 export default Discount
