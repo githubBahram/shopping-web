@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React, {useRef, useEffect} from 'react'
 import styled from 'styled-components'
 import categories from "../data/categories";
 import Card from "../component/Card";
@@ -6,7 +6,9 @@ import ScrollContainer from 'react-indiana-drag-scroll'
 
 const Discount = () => {
     const scrollContainer = useRef(null)
-
+    useEffect(() => {
+    alert('component did mount')
+    })
     const CardRender = (card, idx) => {
         return (
             < >
@@ -24,7 +26,7 @@ const Discount = () => {
 
     return (
         <>
-            <CardWrapper hideScrollbars={true} horizontal={true} innerRef={scrollContainer}
+            <CardWrapper onEndScroll={()=>alert('end scrolling')} onStartScroll={()=>console.log('start')} hideScrollbars={true} horizontal={true} innerRef={scrollContainer}
                          className="scroll-container">
                 <DiscountText>
                     تخفیف ویژه

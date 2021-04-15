@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {fetchCategories, selectAllCategories} from "../redux/feature/categorySlice";
 import styled from 'styled-components'
+import mainCategory from "../data/mainCategory";
 
 const axios = require("axios");
 
@@ -30,13 +31,13 @@ const CategoryList = () => {
     const items = categories.categories
 
     const
-        brandRender = items.map((item, index) =>
+        brandRender = mainCategory.map((item, index) =>
             <MainCategory key={index} index={index}>
                 <ImageWrapper key={index} index={index}>
                     <MainCategoryImage key={index} index={index} className="main-category-image"
-                                       src={`http://localhost:8080/image-management/image/${item.imageId}`}/>
+                                       src={item.image}/>
                 </ImageWrapper>
-                <MainCategoryTitle index={index}>{item.name}</MainCategoryTitle>
+                <MainCategoryTitle index={index}>{item.title}</MainCategoryTitle>
                 <CategoryArrow index={index} className="category-arrow">.</CategoryArrow>
             </MainCategory>)
 

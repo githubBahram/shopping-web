@@ -15,7 +15,7 @@ const Card = (props) => {
                 <footer>
                     <DiscountAmountWrapper>
                         <DiscountPercent>
-                            {discountPercent}
+                            %{discountPercent}
                         </DiscountPercent>
                         <MainAmount>{mainAmount}</MainAmount>
                     </DiscountAmountWrapper>

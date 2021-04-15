@@ -2,8 +2,23 @@ import React from 'react';
 import HeaderPage from "./HeaderPage";
 import MainCategories from "./MainCategories";
 import Discount from "./Discount";
+import ScrollRendering from "./ScrollRendering";
 
 const Home = () => {
+    const ScrollRenderingComponent = () => {
+
+        return (
+            <>
+                <div style={{
+                    display: "flex",
+                    flex: 1,
+                    backgroundColor: "red",
+                    marginTop: "25px"
+                }}> scroll rendering
+                </div>
+            </>
+        )
+    }
     return (
         <>
             <HeaderPage/>
@@ -11,7 +26,12 @@ const Home = () => {
                 <div className="category-container">
                     <MainCategories/>
                 </div>
-                <Discount/>
+                <ScrollRendering>
+                    <Discount/>
+                </ScrollRendering>
+                <ScrollRendering>
+                    <ScrollRenderingComponent/>
+                </ScrollRendering>
             </div>
 
         </>
