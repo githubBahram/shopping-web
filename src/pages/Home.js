@@ -3,22 +3,10 @@ import HeaderPage from "./HeaderPage";
 import MainCategories from "./MainCategories";
 import Discount from "./Discount";
 import ScrollRendering from "./ScrollRendering";
+import SubCategory from "./SubCategory";
 
 const Home = () => {
-    const ScrollRenderingComponent = () => {
 
-        return (
-            <>
-                <div style={{
-                    display: "flex",
-                    flex: 1,
-                    backgroundColor: "red",
-                    marginTop: "25px"
-                }}> scroll rendering
-                </div>
-            </>
-        )
-    }
     return (
         <>
             <HeaderPage/>
@@ -30,7 +18,7 @@ const Home = () => {
                     <Discount/>
                 </ScrollRendering>
                 <ScrollRendering>
-                    <ScrollRenderingComponent/>
+                    <SubCategory title="لبنیات"/>
                 </ScrollRendering>
             </div>
 
