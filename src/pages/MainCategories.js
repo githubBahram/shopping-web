@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {fetchCategories, selectAllCategories} from "../redux/feature/categorySlice";
 import styled from 'styled-components'
 import mainCategory from "../data/mainCategory";
+import SearchComponent from "../component/SearchComponent";
 
 const axios = require("axios");
 
@@ -41,7 +42,7 @@ const CategoryList = () => {
                 <CategoryArrow index={index} className="category-arrow">.</CategoryArrow>
             </MainCategory>)
 
-    return (<> {brandRender} </>)
+    return (<> {brandRender}      </>)
 }
 
 

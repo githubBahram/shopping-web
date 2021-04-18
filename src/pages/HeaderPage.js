@@ -1,7 +1,9 @@
 import styled from 'styled-components'
-import Button from 'react-bootstrap/Button'
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {debounce} from "../helper/helper";
+import ShoppingCartButton from "../component/ShoppingCartButton";
+import HeaderFixed from "../component/HeaderFixed";
+import LoginLink from "../component/LoginLink";
 
 const HeaderPage = () => {
     const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -21,24 +23,7 @@ const HeaderPage = () => {
 
     return (
         <>
-            <div style={{
-                position: "fixed",
-                width: '100%',
-                height: '5rem',
-                top: visible ? '-60px' : '0',
-                zIndex:2,
-                transition: 'top 0.4s',
-                backgroundColor: 'rgb(0, 0, 0)',
-                backgroundImage: 'url(https://snapp.market/v2/static/images/14e6e31c9a6afc2ca301f6bcd2f9cf74.jpg)',
-                backgroundRepeat: 'no-repeat',
-                backgroundSize:' cover',
-                backgroundPosition:' 0% 66%',
-                padding:'20px'
-            }}>
-                <ShoppingCartButton variant="light">سبد خرید
-                    <PurchasesCount>0</PurchasesCount>
-                </ShoppingCartButton>
-            </div>
+            <HeaderFixed scrollVisible={visible}/>
 
             <Header visible={visible}>
                 <Row borderStyle>
@@ -51,10 +36,8 @@ const HeaderPage = () => {
                         justifyContent: "space-between",
                         width: "18%"
                     }}>
-                        <Login>ورود / عضویت</Login>
-                        <ShoppingCartButton variant="light">سبد خرید
-                            <PurchasesCount>0</PurchasesCount>
-                        </ShoppingCartButton>
+                        <LoginLink/>
+                        <ShoppingCartButton/>
                     </div>
                 </Row>
                 <Row>sdf</Row>
@@ -93,20 +76,6 @@ const Address = styled.span`
   color: #fff;
   align-self: center
 `
-
-const ShoppingCartButton = styled(Button)`
-  color: rgb(36, 70, 245);
-  background-color: #fff
-`
-const PurchasesCount = styled.span`
-  background-color: #f2f7ff;
-  font-size: 10px;
-  padding: 10px;
-  width: 2.3rem;
-  height: 2.3rem;
-  border-radius: 40px;
-`
-
 const Login = styled.a`
   align-self: center;
   color: #fff;
@@ -133,6 +102,6 @@ const Header = styled.div`
   align-items: center;
   display: block;
   direction: rtl;
- 
+
 `
 export default HeaderPage
