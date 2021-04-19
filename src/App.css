@@ -27,6 +27,16 @@
     font-weight: bold;
 }
 
+.item-sticky {
+    position: sticky;
+    top: 6rem;
+}
+
+.item-sticky2 {
+    position: sticky;
+    top: 8rem;
+}
+
 .body-container {
     padding: 25px;
 }
@@ -48,7 +58,18 @@ html {
 }
 
 .font-face-is {
-    font-family: "IRANSansWeb";
+    font-family: "IRANSansWeb_Medium";
+    font-size: 14px;
+    color: rgb(163, 163, 163);
+}
+
+.font-face-is:hover {
+    background-color: azure;
+    border-radius: 5px;
+}
+
+.font-face-md {
+    font-family: "IRANSansWeb_Medium";
 }
 
 
