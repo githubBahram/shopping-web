@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import categories from "../data/categories";
 import Card from "../component/Card";
 import ScrollContainer from "react-indiana-drag-scroll";
+import {Link} from "react-router-dom";
 
 
 const SubCategory = (props) => {
@@ -29,7 +30,7 @@ const SubCategory = (props) => {
         <>
             <Container>
                 <Header>
-                    <HeaderTitle>{title}</HeaderTitle>
+                    <HeaderTitleLink to="/category">{title}</HeaderTitleLink>
                     <ShowMore> مشاهده بیشتر </ShowMore>
                 </Header>
                 <CardContainer>
@@ -61,7 +62,7 @@ const Header = styled.div`
   border-bottom: 0.1rem solid rgb(238, 238, 238);
   padding: 10px 15px 10px 15px;
 `
-const HeaderTitle = styled.a`
+const HeaderTitleLink = styled(Link)`
   font-family: IRANSansWeb_Medium;
   font-size: 1rem;
   color: rgb(163, 163, 163);

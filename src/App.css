@@ -72,6 +72,14 @@ html {
     font-family: "IRANSansWeb_Medium";
 }
 
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0 !important;
+    border-radius: 30px !important;
+    text-align: center;
+}
+
 
 
 

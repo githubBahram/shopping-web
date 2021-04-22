@@ -8,6 +8,10 @@ import './font.css'
 import './App.css';
 import SubCategoryPage from "./pages/SubCategoryPage";
 
+
+
+
+
 const About = () => <span>About</span>;
 
 const App = () => (

@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react'
 import styled from 'styled-components'
 import Button from "react-bootstrap/Button";
+import AddProduct from "./AddProduct";
 
 const Card = (props) => {
     const {id, title, discountPercent, mainAmount, finalAmount, image} = props
@@ -21,7 +22,7 @@ const Card = (props) => {
                     </DiscountAmountWrapper>
                     <AddProductWrapper>
                         <FinalAmount> {finalAmount} تومان</FinalAmount>
-                        <ProductAddButton variant="outline-success">افزودن به سبد</ProductAddButton>
+                        <AddProduct id={id} name={title} amount={finalAmount} >افزودن به سبد</AddProduct>
                     </AddProductWrapper>
                 </footer>
             </CardContainer>

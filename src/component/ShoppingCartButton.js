@@ -1,13 +1,19 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Button from "react-bootstrap/Button";
+import {useSelector} from "react-redux";
 
 
 const ShoppingCartButton = () => {
-    return(
+    const order = useSelector(state => state.orders);
+    console.log('orders')
+    console.log(order)
+    let count = 0
+    order.map(item => count = count + item.count)
+    return (
         <>
             <CartButton variant="light">سبد خرید
-                <PurchasesCount>0</PurchasesCount>
+                <PurchasesCount>{count}</PurchasesCount>
             </CartButton>
         </>
     )
@@ -20,11 +26,13 @@ const CartButton = styled(Button)`
 `
 const PurchasesCount = styled.span`
   background-color: #f2f7ff;
+  width: 50px;
+  height: 50px;
   font-size: 10px;
   padding: 10px;
   width: 2.3rem;
   height: 2.3rem;
-  border-radius: 40px;
-  font-family: IRANSansWeb_FaNum;
+  border-radius: 70px;
+  font-family: IRANSansWeb_FaNum_Black;
 `
 export default ShoppingCartButton
