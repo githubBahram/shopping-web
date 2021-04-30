@@ -89,6 +89,26 @@ html {
     font-family: "IRANSansWeb_Medium";
 }
 
+.font-face-la {
+    font-family: "IRANSansWeb_Light";
+}
+
+.font-face-wb {
+    font-family: "IRANSansWeb";
+}
+
+.navbar-brand {
+
+    font-family: "IRANSansWeb_Medium";
+    font-size: 1rem !important;
+    color: #a3a3a3;
+}
+
+.sort-product {
+    font-family: "IRANSansWeb";
+    font-size: 14px;
+}
+
 .btn-circle {
     width: 30px;
     height: 30px;
@@ -97,6 +117,28 @@ html {
     text-align: center;
 }
 
+a.nav-link.active {
+    background-color: blue;
+    color: #fff;
+    border-radius: 20px;
+}
+
+a.nav-link.active span {
+    color: #fff;
+}
+
+nav a:hover {
+    background: rgb(222, 222, 226);
+    transition: all ease-in-out 0.2s;
+    border-radius: 20px;
+}
+
+nav .active {
+    background: #556ff7;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+}
 
 
 

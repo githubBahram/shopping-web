@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import HeaderFixed from "../component/HeaderFixed";
 import SubCategory from "./SubCategory";
@@ -6,6 +6,7 @@ import ScrollRendering from "./ScrollRendering";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Navigator from "../component/Navigator";
 
 const SubCategoryPage = () => {
 
@@ -27,10 +28,10 @@ const SubCategoryPage = () => {
                             <Row className="p1" ><Col className="p-2 ml-3 mr-3 font-face-is">کشک</Col></Row>
                         </Filter>
                     </Col>
-                    <Col md={9}>
-                        <CategoryHeader>
+                    <Col md={10}>
+                        <Navigator>
                             لبنیات
-                        </CategoryHeader>
+                        </Navigator>
                         <CategoryBody>
                             <ScrollRendering>
                                 <SubCategory title="شیر"/>
@@ -56,44 +57,14 @@ const SubCategoryPage = () => {
 
     )
 }
-const ContainerRoot = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  direction: rtl;
-`
-const Body = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  margin-top: 5.5rem;
-  text-align: right;
-  padding: 15px;
 
-`
 const Filter = styled.div`
-
   background-color: #fff;
   padding: 10px;
   text-align: right;
-
 `
-const CategoryWrapper = styled.div`
 
-
-  margin-right: 15px;
-`
-const CategoryHeader = styled.div`
-  background-color: #fff;
-  text-align: right;
-  border-radius: .4rem;
-  padding: 10px;
-  margin-bottom: 10px;
-  font-family: IRANSansWeb;
-`
 const CategoryBody = styled.div`
 `
-const CategoryItem = styled(Col)`
 
-`
 export default SubCategoryPage

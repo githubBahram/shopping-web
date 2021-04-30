@@ -8,6 +8,8 @@ import './font.css'
 import './App.css';
 import SubCategoryPage from "./pages/SubCategoryPage";
 import AddProductPage from "./pages/AddProductPage";
+import ProductListPage from "./pages/ProductListPage";
+
 
 
 const About = () => <span>About</span>;
@@ -28,6 +30,13 @@ const App = () => (
                     </Route>
                     <Route path="/addProductPage">
                         <AddProductPage/>
+                    </Route>
+
+                    <Route exact path="/productList">
+                        <ProductListPage/>
+                    </Route>
+                    <Route path="/productList/:sort">
+                        <ProductListPage/>
                     </Route>
                     <Route path="/">
                         <Home/>
