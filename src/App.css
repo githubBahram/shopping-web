@@ -41,6 +41,23 @@
     padding: 25px;
 }
 
+.text-align-right {
+    text-align: right;
+}
+
+.col {
+    text-align: right;
+}
+
+.card-header {
+    text-align: right;
+    font-family: IRANSansWeb_Bold;
+}
+
+.form-file-label {
+    font-family: IRANSansWeb_Medium;
+}
+
 .category-container {
     display: flex;
     flex: 1;
@@ -49,12 +66,12 @@
     margin-top: 5px;
     margin-bottom: 15px;
     flex-wrap: wrap;
-
 }
 
 html {
     background-color: #fafafa;
-    direction: rtl
+    direction: rtl;
+    font-family: IRANSansWeb;
 }
 
 .font-face-is {

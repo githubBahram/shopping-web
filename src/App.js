@@ -7,9 +7,7 @@ import store from './redux/store';
 import './font.css'
 import './App.css';
 import SubCategoryPage from "./pages/SubCategoryPage";
-
-
-
+import AddProductPage from "./pages/AddProductPage";
 
 
 const About = () => <span>About</span>;
@@ -28,9 +26,13 @@ const App = () => (
                     <Route path="/category">
                         <SubCategoryPage/>
                     </Route>
+                    <Route path="/addProductPage">
+                        <AddProductPage/>
+                    </Route>
                     <Route path="/">
                         <Home/>
                     </Route>
+
                 </Switch>
             </div>
         </BrowserRouter>

@@ -1,4 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {addBrand} from "../../api/brandApi";
 
 const initialState = {
     brands: [],
@@ -15,6 +16,14 @@ export const fetchBrands = createAsyncThunk('brands/fetchBrands', async () => {
         }
     }
 )
+export const saveBrand = createAsyncThunk('brands/addBrand', async (brand, {rejectWithValue}) => {
+    try {
+        return await addBrand(brand);
+    } catch (err) {
+        return rejectWithValue([], err);
+    }
+})
+
 const brandsSlice = createSlice({
     name: 'brands',
     initialState,

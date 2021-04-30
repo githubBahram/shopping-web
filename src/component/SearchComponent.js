@@ -1,25 +1,31 @@
 import React, {useState, Fragment} from 'react'
 import styled from 'styled-components'
+import instance from "../config/axiosConfig";
 import AsyncTypeahead from "react-bootstrap-typeahead/lib/components/AsyncTypeahead";
 
-const SEARCH_URI = 'http://127.0.0.1:8080/category-management/categories';
 
-const SearchComponent = () => {
+const SearchComponent = (props) => {
+    const {urlPath, params} = props
     const [isLoading, setIsLoading] = useState(false);
     const [options, setOptions] = useState([]);
+
+    const url = urlPath
+
+    const getList = async (url) => {
+        const {data} = await instance.get(url);
+        return data;
+    };
+
     const handleSearch = (query) => {
         setIsLoading(true);
+        const data = getList(url)
+        const options = data.map((item) => ({
+            id: item.id,
+            name: item.name,
+        }))
 
-        fetch(`${SEARCH_URI}`)
-            .then((resp) => resp.json())
-            .then((items) => {
-                const options = items.map((i) => ({
-                    id: i.id,
-                    name: i.name,
-                }));
-                setOptions(options);
-                setIsLoading(false);
-            })
+        setOptions(options);
+        setIsLoading(false);
 
     };
     const filterBy = () => true;
@@ -28,12 +34,12 @@ const SearchComponent = () => {
             filterBy={filterBy}
             id="async-example"
             isLoading={isLoading}
-            placeholder="جستجو محصول یا برند ..."
+
             labelKey="name"
             minLength={3}
             onSearch={handleSearch}
             options={options}
-            style={{fontFamily:"IRANSansWeb",width:"70%"}}
+            style={{fontFamily: "IRANSansWeb", width: "70%"}}
             renderMenuItemChildren={(option, props) => (
                 <Fragment>
                     <div style={{display: "flex", flex: 1, justifyContent: "space-between"}}>
