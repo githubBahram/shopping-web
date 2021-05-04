@@ -8,8 +8,8 @@ import './font.css'
 import './App.css';
 import SubCategoryPage from "./pages/SubCategoryPage";
 import AddProductPage from "./pages/AddProductPage";
-import ProductListPage from "./pages/ProductListPage";
-
+import ProductListPage from "./pages/productList/ProductListPage";
+import Footer from "./pages/footer/Footer";
 
 
 const About = () => <span>About</span>;
@@ -17,7 +17,7 @@ const About = () => <span>About</span>;
 const App = () => (
     <Provider store={store}>
         <BrowserRouter>
-            <div style={{backgroundColor: '#fafafa'}}>
+            <div dir="rtl" style={{backgroundColor: '#fafafa'}}>
                 <Switch>
                     <Route path="/about">
                         <About/>
@@ -31,7 +31,6 @@ const App = () => (
                     <Route path="/addProductPage">
                         <AddProductPage/>
                     </Route>
-
                     <Route exact path="/productList">
                         <ProductListPage/>
                     </Route>
@@ -41,8 +40,9 @@ const App = () => (
                     <Route path="/">
                         <Home/>
                     </Route>
-
                 </Switch>
+
+                <Footer/>
             </div>
         </BrowserRouter>
     </Provider>

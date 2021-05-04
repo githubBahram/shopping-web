@@ -1,7 +1,4 @@
 import React from "react"
-import Form from 'react-bootstrap/Form'
-import Accordion from 'react-bootstrap/Accordion'
-import Card from 'react-bootstrap/Card'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import styled from 'styled-components'

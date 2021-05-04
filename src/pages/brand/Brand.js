@@ -45,9 +45,14 @@ const Brand = () => {
                                                       placeholder="نام برند را وارد کنید"/>
                                     </Col>
                                     <Col>
-                                        <Form.File id="exampleFormControlFile1"
+                                        <Form.Label className="text-align-right">تصویر برند</Form.Label>
+                                        <Form.File style={{direction:"rtl"}} id="exampleFormControlFile1"
                                                    onChange={(e) => setFile(e.target.files[0])}
-                                                   label="تصویر بزرگ برند"/>
+                                                   label="تصویر بزرگ برند"
+                                                   data-browse="انتخاب فایل"
+                                                   lang="ar"
+                                                   custom
+                                        />
                                     </Col>
                                     <Col>
                                         <Form.File id="exampleFormControlFile1"

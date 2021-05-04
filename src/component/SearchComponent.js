@@ -5,7 +5,7 @@ import AsyncTypeahead from "react-bootstrap-typeahead/lib/components/AsyncTypeah
 
 
 const SearchComponent = (props) => {
-    const {urlPath, params} = props
+    const {urlPath, params, placeholder} = props
     const [isLoading, setIsLoading] = useState(false);
     const [options, setOptions] = useState([]);
 
@@ -34,12 +34,12 @@ const SearchComponent = (props) => {
             filterBy={filterBy}
             id="async-example"
             isLoading={isLoading}
-
+            placeholder={placeholder}
             labelKey="name"
             minLength={3}
             onSearch={handleSearch}
             options={options}
-            style={{fontFamily: "IRANSansWeb", width: "70%"}}
+            style={{fontFamily: "IRANSansWeb", width: "100%"}}
             renderMenuItemChildren={(option, props) => (
                 <Fragment>
                     <div style={{display: "flex", flex: 1, justifyContent: "space-between"}}>

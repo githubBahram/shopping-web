@@ -20,5 +20,21 @@ import './fonts/iransans/FarsiNumber/IRANSansWeb(FaNum)_Light.ttf'
 import './fonts/iransans/FarsiNumber/IRANSansWeb(FaNum)_Medium.ttf'
 import './fonts/iransans/FarsiNumber/IRANSansWeb(FaNum)_UltraLight.ttf'
 import 'bootstrap-v4-rtl/dist/css/bootstrap-rtl.min.css'
+import ReactBreakpoints from "react-breakpoints/es";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const breakpoints = {
+    mobile: 320,
+    mobileLandscape: 480,
+    tablet: 768,
+    tabletLandscape: 1024,
+    desktop: 1200,
+    desktopLarge: 1500,
+    desktopWide: 1920,
+}
+
+ReactDOM.render(
+    <ReactBreakpoints breakpoints={breakpoints}>
+        <App />
+    </ReactBreakpoints>,
+    document.getElementById('root'),
+)

@@ -1,17 +1,16 @@
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {fetchCategories, selectAllCategories} from "../redux/feature/categorySlice";
+import {fetchCategories, selectAllCategories} from "../../redux/feature/categorySlice";
 import styled from 'styled-components'
-import mainCategory from "../data/mainCategory";
-import SearchComponent from "../component/SearchComponent";
+import mainCategory from "../../data/mainCategory";
+import useBreakpoints from "../../component/useBreakpoints";
 
-const axios = require("axios");
-
-const MainCategories = () => {
+const MainCategoriesDesktop = () => {
     const dispatch = useDispatch()
     const categories = useSelector(selectAllCategories)
     const categoryStatus = useSelector(state => state.categories.status)
-
+    const breakPoint = useBreakpoints()
+    let marginTop = breakPoint.isXs ? '5.2rem' : 0
 
     useEffect(() => {
         console.log('rerender')
@@ -21,9 +20,9 @@ const MainCategories = () => {
     }, [categoryStatus, dispatch])
 
     return (
-        <>
+        <div style={{marginTop: marginTop,display:"flex",flexWrap:"wrap",justifyContent:"space-between"}}>
             <CategoryList/>
-        </>
+        </div>
     )
 }
 
@@ -103,4 +102,4 @@ const MainCategoryTitle = styled.span`
 `
 
 
-export default MainCategories
+export default MainCategoriesDesktop

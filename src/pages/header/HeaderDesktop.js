@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 import React, {useEffect, useState} from 'react';
-import {debounce} from "../helper/helper";
-import ShoppingCartButton from "../component/ShoppingCartButton";
-import HeaderFixed from "../component/HeaderFixed";
-import LoginLink from "../component/LoginLink";
+import {debounce} from "../../helper/helper";
+import ShoppingCartButton from "../../component/ShoppingCartButton";
+import HeaderFixed from "../../component/HeaderFixed";
+import LoginLink from "../../component/LoginLink";
+import {Header} from "./HeaderStyle"
 
-const HeaderPage = () => {
+const HeaderDesktop = () => {
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [visible, setVisible] = useState(true);
 
@@ -25,7 +26,7 @@ const HeaderPage = () => {
         <>
             <HeaderFixed scrollVisible={visible}/>
 
-            <Header visible={visible}>
+            <Header height="15rem" visible={visible}>
                 <Row borderStyle>
                     <AddressWrapper>
                         <CircleWave/>
@@ -80,28 +81,4 @@ const Login = styled.a`
   align-self: center;
   color: #fff;
 `
-
-const Header = styled.div`
-
-  background-color: rgb(0, 0, 0);
-  background-image: url(https://snapp.market/v2/static/images/14e6e31c9a6afc2ca301f6bcd2f9cf74.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 0% 66%;
-  width: 100%;
-  position: relative;
-  padding: 0.8rem;
-  transform: translateY(0px);
-  z-index: 995;
-  opacity: 1;
-  border-bottom: 0.1rem solid rgba(255, 255, 255, 0.16);
-  top: ${(props) => props.visible ? '0' : '-100px'};
-  left: 0;
-  right: 0;
-  height: 15rem;
-  align-items: center;
-  display: block;
-  direction: rtl;
-
-`
-export default HeaderPage
+export default HeaderDesktop

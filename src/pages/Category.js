@@ -63,7 +63,8 @@ const Brand = () => {
                                 <Row>
                                     <Col style={{display:"flex"}} md={3}>
 
-                                        <Form.Check type="checkbox" label="دسته بندی اصلی" />
+                                        <Form.Check type="checkbox" />
+                                        <Form.Label style={{marginRight:"5px"}} >دسته بندی اصلی </Form.Label>
 
                                     </Col>
                                     <Col md={3}>

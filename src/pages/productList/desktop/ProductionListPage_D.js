@@ -4,16 +4,19 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import {useParams} from 'react-router-dom';
-import HeaderFixed from "../component/HeaderFixed";
-import Navigator from "../component/Navigator";
-import SortProduct from "./SortProduct";
-import Card from "../component/Card";
+import HeaderFixed from "../../../component/HeaderFixed";
+import Navigator from "../../../component/Navigator";
+import SortProduct from "../../SortProduct";
+import Card from "../../../component/Card";
 import ScrollContainer from "react-indiana-drag-scroll";
 import {useDispatch, useSelector} from "react-redux";
-import {addProducts} from "../redux/feature/productSlice";
+import {addProducts} from "../../../redux/feature/productSlice";
 import Pagination from "react-bootstrap/Pagination";
+import Form from "react-bootstrap/Form";
+import Accordion from "react-bootstrap/Accordion";
+import CategoryFilter from "./CategoryFilter";
 
-const ProductListPage = () => {
+const ProductListPage_D = () => {
     const {sort} = useParams();
 
     const products = useSelector(state => state.products.productList);
@@ -89,16 +92,11 @@ const ProductListPage = () => {
     return (
         <>
             <HeaderFixed/>
-            <Container fluid className="pl-4 pr-4" style={{marginTop: '6rem',}}>
+            <Container fluid style={{marginTop: '6rem',}}>
                 <Row>
                     <Col>
                         <Filtering>
-                            <Category>
-                                <span>دسته بندی</span>
-                                <div style={{backgroundColor: "rgb(238, 238, 238)",
-                                    width:"100%", height:"1px",margin:"7px 0 7px 0"}}/>
-                                <span>sdf</span>
-                            </Category>
+                            <CategoryFilter/>
                         </Filtering>
                     </Col>
                     <Col md={9}>
@@ -183,4 +181,4 @@ const PaginationWrapper = styled.div`
   border: 0.1rem solid rgb(238, 238, 238);
 `
 
-export default ProductListPage
+export default ProductListPage_D

@@ -30,7 +30,7 @@ const Container = styled.div`
   position: fixed;
   width: 100%;
   height: 5rem;
-  top: ${(props => props.scrollVisible ? '-60px' : 0)};
+  top: ${(props => props.scrollVisible ? '-100px' : 0)};
   z-index: 2;
   transition: top 0.4s;
   background-color: rgb(0, 0, 0);
