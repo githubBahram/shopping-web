@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import store from './redux/store';
 import './font.css'
 import './App.css';
-import SubCategoryPage from "./pages/SubCategoryPage";
+import SubCategoryPage from "./pages/subCategoryPage/SubCategoryPage";
 import AddProductPage from "./pages/AddProductPage";
 import ProductListPage from "./pages/productList/ProductListPage";
 import Footer from "./pages/footer/Footer";
@@ -25,7 +25,7 @@ const App = () => (
                     <Route path="/brands">
                         <Brand/>
                     </Route>
-                    <Route path="/category">
+                    <Route exact path="/category">
                         <SubCategoryPage/>
                     </Route>
                     <Route path="/addProductPage">

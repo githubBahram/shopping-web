@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import HeaderFixed from "../component/HeaderFixed";
-import SubCategory from "./SubCategory";
-import ScrollRendering from "./ScrollRendering";
+import HeaderFixed from "../../component/HeaderFixed";
+import SubCategory from "../SubCategory";
+import ScrollRendering from "../ScrollRendering";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Navigator from "../component/Navigator";
+import Navigator from "../../component/Navigator";
 
-const SubCategoryPage = () => {
+const SubCategoryDesktop = () => {
 
     return (
         <>
@@ -67,4 +67,4 @@ const Filter = styled.div`
 const CategoryBody = styled.div`
 `
 
-export default SubCategoryPage
+export default SubCategoryDesktop

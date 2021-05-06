@@ -118,13 +118,17 @@ html {
 }
 
 a.nav-link.active {
-    background-color: blue;
-    color: #fff;
+
+    color: #007bff;
     border-radius: 20px;
 }
 
+a.nav-link {
+    color: black;
+}
+
 a.nav-link.active span {
-    color: #fff;
+
 }
 
 nav a:hover {
@@ -134,10 +138,7 @@ nav a:hover {
 }
 
 nav .active {
-    background: #556ff7;
-    padding: 10px 20px;
-    border-radius: 5px;
-    color: #fff;
+
 }
 
 
