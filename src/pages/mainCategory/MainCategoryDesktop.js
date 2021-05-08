@@ -4,6 +4,8 @@ import {fetchCategories, selectAllCategories} from "../../redux/feature/category
 import styled from 'styled-components'
 import mainCategory from "../../data/mainCategory";
 import useBreakpoints from "../../component/useBreakpoints";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faChevronLeft, faHome} from "@fortawesome/free-solid-svg-icons"
 
 const MainCategoriesDesktop = () => {
     const dispatch = useDispatch()
@@ -38,7 +40,9 @@ const CategoryList = () => {
                                        src={item.image}/>
                 </ImageWrapper>
                 <MainCategoryTitle index={index}>{item.title}</MainCategoryTitle>
-                <CategoryArrow index={index} className="category-arrow">.</CategoryArrow>
+                <CategoryArrow index={index} className="category-arrow">
+                    <FontAwesomeIcon icon={faChevronLeft}/>
+                </CategoryArrow>
             </MainCategory>)
 
     return (<> {brandRender}      </>)

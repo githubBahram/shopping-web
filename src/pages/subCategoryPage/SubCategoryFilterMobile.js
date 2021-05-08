@@ -45,6 +45,7 @@ const Container = styled.div`
   padding: 10px;
   border-bottom: #a3a3a3 solid;
   border-width: 1px;
+  
 `
 const FilterWrapper = styled.div`
   display: flex;

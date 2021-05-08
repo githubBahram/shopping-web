@@ -25,9 +25,7 @@ const ScrollRendering = (props) => {
     return (
         <>
             {visible && (
-                <div style={{
-                    marginBottom:"1rem"
-                }}>
+                <div>
                     {visibleComponent}
                 </div>
             )}
