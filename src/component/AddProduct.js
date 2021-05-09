@@ -86,6 +86,7 @@ const ProductAddWrapper = styled.div`
   border: #007bff solid 1px;
   border-radius: 15px;
   margin-top: 5px;
+  background-color: #fff;
 `
 const ProductAddButton = styled(Button)`
   font-size: 12px;

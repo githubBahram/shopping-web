@@ -2,27 +2,21 @@ import React from 'react'
 import styled from 'styled-components'
 import AddProduct from "./AddProduct";
 
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-
 const CardMobile = (props) => {
     const {id, title, discountPercent, mainAmount, finalAmount, image} = props
     return (
         <Container>
-
             <ImageWrapper>
                 <CardIcon>
-                    <AddProduct/>
+                    <AddProduct id={id} name={title} image={image} amount={finalAmount}/>
                 </CardIcon>
                 <ImageCard
                     src={image}/>
                 <DiscountPercent>{discountPercent} ٪ تخفیف</DiscountPercent>
             </ImageWrapper>
             <Price>
-
                 <span> {finalAmount} تومان</span>
                 <span> <s>{mainAmount}</s></span>
-
             </Price>
             <Title>
                 {title}
@@ -56,8 +50,9 @@ const DiscountPercent = styled.span`
 const CardIcon = styled.div`
   position: absolute;
   left: 2px;
-  width: 30%;
+  width: 100%;
   text-align: left;
+ 
 
 `
 
