@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import categories from "../data/categories";
-import Card from "../component/Card";
+import Card from "./card/Card";
 import ScrollContainer from "react-indiana-drag-scroll";
 import {Link} from "react-router-dom";
 

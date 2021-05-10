@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import Button from "react-bootstrap/Button";
-import AddProduct from "./AddProduct";
+import AddProduct from "../../component/AddProduct";
 
-const Card = (props) => {
+const CardDesktop = (props) => {
     const {id, title, discountPercent, mainAmount, finalAmount, image} = props
     return (
         <>
@@ -96,4 +96,4 @@ const ProductAddButton = styled(Button)`
   font-size: 12px;
   font-family: IRANSansWeb_Bold;
 `
-export default Card
+export default CardDesktop

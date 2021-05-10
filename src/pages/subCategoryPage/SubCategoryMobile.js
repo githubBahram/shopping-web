@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import SubCategoryFilterMobile from "./SubCategoryFilterMobile";
-import CardMobile from "../../component/CardMobile";
+import CardMobile from "../card/CardMobile";
 import ScrollContainer from "react-indiana-drag-scroll";
 import categories from "../../data/categories";
 
@@ -21,7 +21,7 @@ const SubCategoryMobile = () => {
                         <div style={{
                             flex: "0 0 auto",
                             width: "calc(40%)",
-                             marginLeft:"8px",
+                            marginLeft: "8px",
                             padding: "5px",
                             height: "14rem"
 
@@ -56,44 +56,45 @@ const SubCategoryMobile = () => {
                     <SubCategoryFilterMobile/>
                 </div>
                 <div style={{marginTop: "7rem"}}></div>
-
-                <CardContainer>
-                    <CategoryTitleWrapper>
-                        <span>شیر</span>
-                        <Link>بیشتر</Link>
-                    </CategoryTitleWrapper>
-                    <CategoryBody>
-                        <CardRender/>
-                    </CategoryBody>
-                </CardContainer>
-                <div style={{borderBottom: " rgb(238, 238, 238) solid 1px",}}/>
-                <CardContainer>
-                    <CategoryTitleWrapper>
-                        <span>ماست</span>
-                        <Link>بیشتر</Link>
-                    </CategoryTitleWrapper>
-                    <CategoryBody>
-                        <CardRender/>
-                    </CategoryBody>
-                </CardContainer>
-                <div style={{borderBottom: " rgb(238, 238, 238) solid 1px",}}/>
-                <CardContainer>
-                    <CategoryTitleWrapper>
-                        <span>ماست</span>
-                        <Link>بیشتر</Link>
-                    </CategoryTitleWrapper>
-                    <CategoryBody>
-                        <CardRender/>
-                    </CategoryBody>
-                </CardContainer>
-                <div style={{borderBottom: " rgb(238, 238, 238) solid 1px",}}/>
+                <ScrollContainer>
+                    <CardContainer>
+                        <CategoryTitleWrapper>
+                            <span>شیر</span>
+                            <Link>بیشتر</Link>
+                        </CategoryTitleWrapper>
+                        <CategoryBody>
+                            <CardRender/>
+                        </CategoryBody>
+                    </CardContainer>
+                    <div style={{borderBottom: " rgb(238, 238, 238) solid 1px",}}/>
+                    <CardContainer>
+                        <CategoryTitleWrapper>
+                            <span>ماست</span>
+                            <Link>بیشتر</Link>
+                        </CategoryTitleWrapper>
+                        <CategoryBody>
+                            <CardRender/>
+                        </CategoryBody>
+                    </CardContainer>
+                    <div style={{borderBottom: " rgb(238, 238, 238) solid 1px", marginTop: "5px"}}/>
+                    <CardContainer>
+                        <CategoryTitleWrapper>
+                            <span>ماست</span>
+                            <Link>بیشتر</Link>
+                        </CategoryTitleWrapper>
+                        <CategoryBody>
+                            <CardRender/>
+                        </CategoryBody>
+                    </CardContainer>
+                    <div style={{borderBottom: " rgb(238, 238, 238) solid 1px",}}/>
+                </ScrollContainer>
             </Container>
         </>
     )
 }
 const Container = styled.div`
   background-color: #fff;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 `
 const Header = styled.div`
   padding: 10px;

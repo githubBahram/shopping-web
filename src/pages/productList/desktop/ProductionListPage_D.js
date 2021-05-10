@@ -7,7 +7,7 @@ import {useParams} from 'react-router-dom';
 import HeaderFixed from "../../../component/HeaderFixed";
 import Navigator from "../../../component/Navigator";
 import SortProduct from "../../SortProduct";
-import Card from "../../../component/Card";
+import Card from "../../card/Card";
 import ScrollContainer from "react-indiana-drag-scroll";
 import {useDispatch, useSelector} from "react-redux";
 import {addProducts} from "../../../redux/feature/productSlice";

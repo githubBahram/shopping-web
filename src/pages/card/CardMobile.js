@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import AddProduct from "./AddProduct";
+import AddProduct from "../../component/AddProduct";
 
 const CardMobile = (props) => {
     const {id, title, discountPercent, mainAmount, finalAmount, image} = props
