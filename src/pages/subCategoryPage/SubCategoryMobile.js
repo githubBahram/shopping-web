@@ -21,9 +21,10 @@ const SubCategoryMobile = () => {
                         <div style={{
                             flex: "0 0 auto",
                             width: "calc(40%)",
-                            borderLeft: " rgb(238, 238, 238) solid 1px",
+                             marginLeft:"8px",
                             padding: "5px",
-                            height:"14rem"
+                            height: "14rem"
+
                         }}>
                             <CardMobile id={card.id}
                                         title={card.title}
@@ -54,8 +55,8 @@ const SubCategoryMobile = () => {
                     </Header>
                     <SubCategoryFilterMobile/>
                 </div>
-                <div style={{marginTop:"7rem"}}></div>
-                <ScrollContainer>
+                <div style={{marginTop: "7rem"}}></div>
+
                 <CardContainer>
                     <CategoryTitleWrapper>
                         <span>شیر</span>
@@ -65,7 +66,7 @@ const SubCategoryMobile = () => {
                         <CardRender/>
                     </CategoryBody>
                 </CardContainer>
-
+                <div style={{borderBottom: " rgb(238, 238, 238) solid 1px",}}/>
                 <CardContainer>
                     <CategoryTitleWrapper>
                         <span>ماست</span>
@@ -75,7 +76,7 @@ const SubCategoryMobile = () => {
                         <CardRender/>
                     </CategoryBody>
                 </CardContainer>
-
+                <div style={{borderBottom: " rgb(238, 238, 238) solid 1px",}}/>
                 <CardContainer>
                     <CategoryTitleWrapper>
                         <span>ماست</span>
@@ -85,13 +86,14 @@ const SubCategoryMobile = () => {
                         <CardRender/>
                     </CategoryBody>
                 </CardContainer>
-                </ScrollContainer>
+                <div style={{borderBottom: " rgb(238, 238, 238) solid 1px",}}/>
             </Container>
         </>
     )
 }
 const Container = styled.div`
   background-color: #fff;
+  margin-bottom: 3rem;
 `
 const Header = styled.div`
   padding: 10px;
@@ -110,7 +112,8 @@ const CardContainer = styled.div`
   cursor: all-scroll;
   width: 100%;
   padding: 0 20px 0 0;
-  margin-bottom: 2rem;
+  overflow-y: hidden;
+
 `
 const CategoryTitleWrapper = styled.div`
   font-family: IRANSansWeb_FaNum_Medium;

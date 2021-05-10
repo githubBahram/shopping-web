@@ -52,8 +52,6 @@ const CardIcon = styled.div`
   left: 2px;
   width: 100%;
   text-align: left;
- 
-
 `
 
 const ImageCard = styled.img`
@@ -66,7 +64,6 @@ const Title = styled.span`
   padding: 5px;
   max-height: 32px;
   font-size: .8rem;
- 
 `
 const Price = styled.span`
   margin-top: 8px;
