@@ -22,6 +22,7 @@ const Home = () => {
                 <ScrollRendering>
                     <Discount/>
                 </ScrollRendering>
+                <div style={{marginBottom:"8px"}}/>
                 <ScrollRendering>
                     <SubCategory title="لبنیات"/>
                 </ScrollRendering>

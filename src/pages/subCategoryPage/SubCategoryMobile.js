@@ -62,7 +62,7 @@ const SubCategoryMobile = () => {
                             <span>شیر</span>
                             <Link>بیشتر</Link>
                         </CategoryTitleWrapper>
-                        <CategoryBody>
+                        <CategoryBody vertical={false}>
                             <CardRender/>
                         </CategoryBody>
                     </CardContainer>
@@ -72,7 +72,7 @@ const SubCategoryMobile = () => {
                             <span>ماست</span>
                             <Link>بیشتر</Link>
                         </CategoryTitleWrapper>
-                        <CategoryBody>
+                        <CategoryBody vertical={false}>
                             <CardRender/>
                         </CategoryBody>
                     </CardContainer>
@@ -82,7 +82,7 @@ const SubCategoryMobile = () => {
                             <span>ماست</span>
                             <Link>بیشتر</Link>
                         </CategoryTitleWrapper>
-                        <CategoryBody>
+                        <CategoryBody vertical={false}>
                             <CardRender/>
                         </CategoryBody>
                     </CardContainer>
@@ -130,5 +130,6 @@ const CategoryBody = styled(ScrollContainer)`
   cursor: all-scroll;
   width: 100%;
   overflow: auto;
+  overflow-y: hidden;
 `
 export default SubCategoryMobile

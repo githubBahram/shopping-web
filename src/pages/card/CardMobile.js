@@ -30,6 +30,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  border-radius: 5px;
+  height: 13rem;
 `
 const ImageWrapper = styled.div`
   position: relative;

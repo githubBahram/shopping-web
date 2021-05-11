@@ -48,9 +48,7 @@ const Discount = () => {
                             flex: "0 0 auto",
                             width: "calc(40%)",
                             marginLeft: "8px",
-
-                            height: "14rem",
-
+                            height: "13.5rem",
 
                         }}>
                             <Card id={card.id}
@@ -100,7 +98,7 @@ const CardWrapper = styled(ScrollContainer)`
   flex: 1;
   cursor: all-scroll;
   width: 100%;
-  height: 12rem;
+  height: 14rem;
   user-select: none;
  
   background: url('https://snapp.market/v2/static/images/ff6cfe6688bee991b0de30bebfbe09fd.png') 0 0 / cover,
