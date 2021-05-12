@@ -1,14 +1,15 @@
 import React, {useRef, useEffect, useState} from 'react'
 import styled from 'styled-components'
-import categories from "../data/categories";
-import Card from "./card/Card";
+import categories from "../../data/categories";
+import Card from "../card/Card";
 import ScrollContainer from 'react-indiana-drag-scroll'
 import ReactDOM from "react-dom";
-import useBreakpoints from "../component/useBreakpoints";
+import useBreakpoints from "../../component/useBreakpoints";
 
-const Discount = () => {
+const DiscountDesktop = () => {
     const scrollContainer = useRef(null)
-    const mobileRender=useBreakpoints().isXs
+    const mobileRender = useBreakpoints().isXs
+    const height = mobileRender ? "14rem" : "17.5rem"
     const [arrowLeftClick, isArrowLeftClick] = useState(false)
     useEffect(() => {
 
@@ -45,8 +46,7 @@ const Discount = () => {
                 {
                     categories.map((card) => (
                         <div style={{
-                            flex: "0 0 auto",
-                            width: "calc(40%)",
+
                             marginLeft: "8px",
                             height: "13.5rem",
 
@@ -65,7 +65,7 @@ const Discount = () => {
     return (
         <>
             <div>
-                <CardWrapper innerRef={scrollContainer} onEndScroll={onScroll} hideScrollbars={true}
+                <CardWrapper height={height} innerRef={scrollContainer} onEndScroll={onScroll} hideScrollbars={true}
                              horizontal={true}
 
                              className="scroll-container">
@@ -73,8 +73,8 @@ const Discount = () => {
                         تخفیف ویژه
                     </DiscountText>
                     <CardRender/>
-                    {!mobileRender &&   <ArrowLeft
-                        onClick={scrollLeft}/> }
+                    {!mobileRender && <ArrowLeft
+                        onClick={scrollLeft}/>}
 
                     {!mobileRender &&
                     <ScrollRightArrow onClick={scrollRight}/>
@@ -98,9 +98,9 @@ const CardWrapper = styled(ScrollContainer)`
   flex: 1;
   cursor: all-scroll;
   width: 100%;
-  height: 14rem;
+  height: ${(props) => props.height};
   user-select: none;
- 
+
   background: url('https://snapp.market/v2/static/images/ff6cfe6688bee991b0de30bebfbe09fd.png') 0 0 / cover,
   linear-gradient(-45deg, rgb(251, 75, 84), rgb(251, 75, 84));
   padding: 10px 20px 10px 0;
@@ -127,4 +127,4 @@ const ArrowRight = styled.button`
   display: ${(props) => props.visible ? 'block' : 'none'};;
 `
 
-export default Discount
+export default DiscountDesktop

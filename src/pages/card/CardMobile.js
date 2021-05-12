@@ -32,10 +32,12 @@ const Container = styled.div`
   flex-wrap: nowrap;
   border-radius: 5px;
   height: 13rem;
+  padding: 2px;
 `
 const ImageWrapper = styled.div`
   position: relative;
   height: 100%;
+  margin-top: 1px;
 `
 const DiscountPercent = styled.span`
   position: absolute;
@@ -64,7 +66,6 @@ const ImageCard = styled.img`
 const Title = styled.span`
   font-family: IRANSansWeb_FaNum;
   padding: 5px;
-  max-height: 32px;
   font-size: .8rem;
 `
 const Price = styled.span`
