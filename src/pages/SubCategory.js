@@ -14,13 +14,19 @@ const SubCategory = (props) => {
             < >
                 {
                     categories.map((card) => (
-                        <CardWrapper>
-                            <Card id={card.id}
-                                  title={card.title}
-                                  discountPercent={card.discountPercent}
-                                  mainAmount={card.mainAmount} finalAmount={card.finalAmount} image={card.image}
-                            />
-                        </CardWrapper>
+                        <div style={{
+                            width: "calc(40%)",
+                            flex: "0 0 8rem",
+                            marginLeft: "8px",
+                        }}>
+                            <CardWrapper>
+                                <Card id={card.id}
+                                      title={card.title}
+                                      discountPercent={card.discountPercent}
+                                      mainAmount={card.mainAmount} finalAmount={card.finalAmount} image={card.image}
+                                />
+                            </CardWrapper>
+                        </div>
                     ))}
             </>
         )
@@ -33,7 +39,7 @@ const SubCategory = (props) => {
                     <HeaderTitleLink to="/category">{title}</HeaderTitleLink>
                     <ShowMore> مشاهده بیشتر </ShowMore>
                 </Header>
-                <CardContainer>
+                <CardContainer vertical={false} >
                     <CardRender/>
                 </CardContainer>
             </Container>
@@ -81,7 +87,8 @@ const CardContainer = styled(ScrollContainer)`
   height: 20rem;
   user-select: none;
   overflow: auto;
-  padding: 0px 20px 0px 0;
+  padding: 0 20px 0 0;
+  overflow-y: hidden;
 `
 const CardWrapper = styled.div`
   border-left: 0.1rem solid rgb(238, 238, 238);

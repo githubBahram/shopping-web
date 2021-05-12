@@ -53,6 +53,7 @@ const Container = styled.div`
 
   border-color: gray;
   border-width: 0 0 1px 0;
+  border-top: rgb(238, 238, 238) solid 1px;
 `
 const Tabs = styled(Row)`
   padding-top: 10px;

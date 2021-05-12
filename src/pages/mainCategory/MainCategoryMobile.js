@@ -42,7 +42,7 @@ const Container = styled.div`
   margin-top: 5.2rem;
 `
 const ContainerItem = styled.div`
-  text-align: right;
+  text-align: center;
 `
 const backgroundColors = ['#fbf7df', '#e6f4f9', '#fceee0']
 

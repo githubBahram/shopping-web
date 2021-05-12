@@ -10,7 +10,7 @@ import useBreakpoints from "../component/useBreakpoints";
 
 const Home = () => {
     const padding = useBreakpoints().isXs ? "10px" : "25px"
-    const marginBottom = useBreakpoints().isXs ? "2rem" : 0
+    const marginBottom = useBreakpoints().isXs ? "3rem" : 0
 
     return (
         <>

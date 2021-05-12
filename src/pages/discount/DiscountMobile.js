@@ -35,7 +35,7 @@ const DiscountMobile = () => {
                     <DiscountText>
                         تخفیف ویژه
                     </DiscountText>
-                    <ScrollContainer vertical={false} style={{display:"flex",flexDirection:"row"}}>
+                    <ScrollContainer vertical={false} style={{display:"flex",flexDirection:"row",overflowY:"hidden"}}>
                     <CardRender/>
                     </ScrollContainer>
                 </CardWrapper>
