@@ -13,7 +13,7 @@ const DiscountMobile = () => {
                     categories.map((card) => (
                         <div style={{
                             width: "calc(40%)",
-                            flex: "0 0 auto",
+                            flex: "0 0 8rem",
                             marginLeft: "8px",
                         }}>
                             <CardMobile id={card.id}
