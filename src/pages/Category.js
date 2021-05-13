@@ -6,9 +6,9 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styled from 'styled-components'
-import {saveBrand} from "../redux/feature/brandSlice";
 import {useDispatch} from "react-redux";
 import SearchComponent from "../component/SearchComponent";
+import {saveCategory} from "../redux/feature/categorySlice";
 
 const Brand = () => {
     const [file, setFile] = useState(null)
@@ -24,7 +24,7 @@ const Brand = () => {
         formData.append('name', name)
         console.log('form data before dispath')
         console.log(formData)
-        dispatch(saveBrand(formData))
+        dispatch(saveCategory(formData))
 
     }
 
@@ -57,7 +57,7 @@ const Brand = () => {
                                     </Col>
                                     <Col>
                                         <Form.Label className="text-align-right">دسته بندی پدر </Form.Label>
-                                        <SearchComponent urlPath="/category-management"/>
+                                        <SearchComponent urlPath="/brandManager/brands" onclickItem={(e)=>alert('salam')} />
                                     </Col>
                                 </Row>
                                 <Row>

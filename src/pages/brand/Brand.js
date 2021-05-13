@@ -8,7 +8,7 @@ import Col from "react-bootstrap/Col";
 import styled from 'styled-components'
 import { saveBrand  } from "../../redux/feature/brandSlice";
 import {useDispatch} from "react-redux";
-
+const FormData = require('form-data');
 const Brand = () => {
     const [file, setFile] = useState(null)
     const [thumbnail, setThumbnail] = useState(null)

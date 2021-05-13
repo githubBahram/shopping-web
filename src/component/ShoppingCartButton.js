@@ -7,8 +7,6 @@ import {Link} from "react-router-dom";
 
 const ShoppingCartButton = () => {
     const order = useSelector(state => state.orders);
-    console.log('orders')
-    console.log(order)
     let count = 0
     order.map(item => count = count + item.count)
     return (

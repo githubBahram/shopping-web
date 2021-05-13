@@ -6,22 +6,20 @@ import Col from "react-bootstrap/Col";
 import {useSelector} from "react-redux";
 import {selectAllCategories} from "../../redux/feature/categorySlice";
 
-const MainCategoryMobile = () => {
-
-    const CategoryList = () => {
-        const categories = useSelector(selectAllCategories)
-        const items = categories.categories
-
+const MainCategoryMobile = (props) => {
+    const {data} = props
+    const CategoryList = (props) => {
+        const {data} = props
         const
-            brandRender = mainCategory.map((item, index) =>
+            brandRender = data.categories.map((item, index) =>
 
                 <Col xs={4} sm={4}>
                     <ContainerItem>
                         <ImageWrapper key={index} index={index}>
                             <MainCategoryImage key={index} index={index} className="main-category-image"
-                                               src={item.image}/>
+                                               src={`https://testshop.s3.ir-thr-at1.arvanstorage.com/${item.image.name}`}/>
                         </ImageWrapper>
-                        <MainCategoryItem>{item.title}</MainCategoryItem>
+                        <MainCategoryItem>{item.name}</MainCategoryItem>
                     </ContainerItem>
                 </Col>
             )
@@ -32,7 +30,7 @@ const MainCategoryMobile = () => {
         <>
             <Container>
                 <Row>
-                    <CategoryList/>
+                    <CategoryList data={data}/>
                 </Row>
             </Container>
         </>

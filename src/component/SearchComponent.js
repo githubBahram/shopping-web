@@ -12,20 +12,22 @@ const SearchComponent = (props) => {
     const url = urlPath
 
     const getList = async (url) => {
-        const {data} = await instance.get(url);
+        const data = await instance.get(url);
         return data;
     };
 
     const handleSearch = (query) => {
         setIsLoading(true);
         const data = getList(url)
-        const options = data.map((item) => ({
-            id: item.id,
-            name: item.name,
-        }))
-
-        setOptions(options);
-        setIsLoading(false);
+        console.log('data fetch')
+        console.log(data.data)
+        // const options = data.map((item) => ({
+        //     id: item.id,
+        //     name: item.name,
+        // }))
+        //
+        // setOptions(options);
+        // setIsLoading(false);
 
     };
     const filterBy = () => true;
