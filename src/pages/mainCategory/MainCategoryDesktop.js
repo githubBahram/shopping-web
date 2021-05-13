@@ -1,45 +1,37 @@
-import React, {useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import {fetchCategories, selectAllCategories} from "../../redux/feature/categorySlice";
+import React from 'react'
 import styled from 'styled-components'
 import mainCategory from "../../data/mainCategory";
 import useBreakpoints from "../../component/useBreakpoints";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faChevronLeft, faHome} from "@fortawesome/free-solid-svg-icons"
+import {faChevronLeft} from "@fortawesome/free-solid-svg-icons"
 
-const MainCategoriesDesktop = () => {
-    const dispatch = useDispatch()
-    const categories = useSelector(selectAllCategories)
-    const categoryStatus = useSelector(state => state.categories.status)
+const MainCategoriesDesktop = (props) => {
+    const {data} = props
+    console.log('props data...  ')
+    console.log(data.categories)
     const breakPoint = useBreakpoints()
     let marginTop = breakPoint.isXs ? '5.2rem' : 0
 
-    useEffect(() => {
-        console.log('rerender')
-        if (categoryStatus === 'idle') {
-            dispatch(fetchCategories())
-        }
-    }, [categoryStatus, dispatch])
 
     return (
-        <div style={{marginTop: marginTop,display:"flex",flexWrap:"wrap",justifyContent:"space-between"}}>
-            <CategoryList/>
+        <div style={{marginTop: marginTop, display: "flex", flexWrap: "wrap", justifyContent: "space-between"}}>
+            <CategoryList data={data}/>
         </div>
     )
 }
 
-const CategoryList = () => {
-    const categories = useSelector(selectAllCategories)
-    const items = categories.categories
-
+const CategoryList = (props) => {
+    const {data} = props
+    console.log("category list data")
+    console.log(data)
     const
-        brandRender = mainCategory.map((item, index) =>
+        brandRender = data.categories.map((item, index) =>
             <MainCategory key={index} index={index}>
                 <ImageWrapper key={index} index={index}>
                     <MainCategoryImage key={index} index={index} className="main-category-image"
-                                       src={item.image}/>
+                                       src={`https://testshop.s3.ir-thr-at1.arvanstorage.com/${item.image.name}`}/>
                 </ImageWrapper>
-                <MainCategoryTitle index={index}>{item.title}</MainCategoryTitle>
+                <MainCategoryTitle index={index}>{item.name}</MainCategoryTitle>
                 <CategoryArrow index={index} className="category-arrow">
                     <FontAwesomeIcon icon={faChevronLeft}/>
                 </CategoryArrow>

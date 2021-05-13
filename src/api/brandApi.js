@@ -1,12 +1,11 @@
 import instance from "../config/axiosConfig";
 
-const config = {
-    headers: {
-        'content-type': 'multipart/form-data'
-    }
-};
-
 export const addBrand = async (brand) => {
-    const {data} = await instance.post("/brand", {brand}, config);
+    const {data} = await instance.post("/brandManager/brand", brand, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    });
+
     return data
 }
