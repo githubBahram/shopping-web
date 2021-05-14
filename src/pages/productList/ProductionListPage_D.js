@@ -4,13 +4,13 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import {useParams} from 'react-router-dom';
-import HeaderFixed from "../../../component/HeaderFixed";
-import Navigator from "../../../component/Navigator";
-import SortProduct from "../../SortProduct";
-import Card from "../../card/Card";
+import HeaderFixed from "../../component/HeaderFixed";
+import Navigator from "../../component/Navigator";
+import SortProduct from "../SortProduct";
+import Card from "../card/Card";
 import ScrollContainer from "react-indiana-drag-scroll";
 import {useDispatch, useSelector} from "react-redux";
-import {addProducts} from "../../../redux/feature/productSlice";
+import {addProducts} from "../../redux/feature/productSlice";
 import Pagination from "react-bootstrap/Pagination";
 import Form from "react-bootstrap/Form";
 import Accordion from "react-bootstrap/Accordion";

@@ -23,8 +23,6 @@ const CardMobile = (props) => {
                 <span> {finalAmount} تومان</span>
                 <span> <s>{mainAmount}</s></span>
             </Price>
-
-
             <Title>
                 {title}
             </Title>
@@ -40,7 +38,7 @@ const Container = styled.div`
   flex-wrap: nowrap;
   border-radius: 5px;
   height: 13rem;
-  padding: 2px;
+  padding: .05rem;
 `
 const ImageWrapper = styled.div`
   position: relative;
@@ -73,7 +71,6 @@ const ImageCard = styled.img`
 `
 const Title = styled.span`
   font-family: IRANSansWeb_FaNum;
-  padding: 5px;
   font-size: .8rem;
 `
 const Price = styled.span`
