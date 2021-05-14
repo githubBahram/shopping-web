@@ -46,6 +46,7 @@ const ProductListMobile = () => {
                                         discountPercent={item.discountPercent}
                                         mainAmount={item.mainAmount} finalAmount={item.finalAmount} image={item.image}
                             />
+
                         </Col>
                     ))
                 }
@@ -53,9 +54,10 @@ const ProductListMobile = () => {
         )
     }
     useEffect(() => {
-        console.log('visible:')
-        console.log(visible)
+
         if (bottomBoundaryRef.current) {
+            console.log('visible:')
+            console.log(visible)
             scrollObserver(bottomBoundaryRef.current);
         }
 
@@ -151,6 +153,7 @@ const Body = styled.div`
   background-color: #fff;
   padding: .5rem;
   margin-bottom: 4rem;
+   
 `
 const CardContainer = styled(Row)`
 `

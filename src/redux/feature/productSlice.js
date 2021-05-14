@@ -6,7 +6,7 @@ const initialState = {
     prev: 0,
     next: 3,
     isEndPage: false,
-    productList: categories.slice(0, 6)
+    productList: categories.slice(0, 12)
 };
 const productSlice = createSlice({
     name: 'products',
