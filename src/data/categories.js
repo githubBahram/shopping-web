@@ -5,7 +5,7 @@ export default [
         title: 'نودالیت مرغ آماده لذیذ ۷۵ گرمی',
         discountPercent: 10,
         mainAmount: 120160,
-        finalAmount: 100000,
+        finalAmount: 10000,
         image: 'https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/263596.jpg',
     },
     {

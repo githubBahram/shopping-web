@@ -4,17 +4,17 @@ import categories from "../../data/categories";
 const initialState = {
     page: 1,
     prev: 0,
-    next: 4,
+    next: 3,
     isEndPage: false,
-    productList: categories.slice(0, 4)
+    productList: categories.slice(0, 6)
 };
 const productSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {
         addProducts(state, action) {
-            state.prev = state.prev + state.page * 4
-            state.next = state.prev + 4
+            state.prev = state.prev + state.page * 3
+            state.next = state.prev + 3
             console.log('product slicer:')
             console.log(state.prev)
             console.log(state.next)
