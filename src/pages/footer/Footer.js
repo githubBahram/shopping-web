@@ -7,6 +7,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faHome, faList, faShoppingCart} from "@fortawesome/free-solid-svg-icons"
 import Nav from "react-bootstrap/Nav";
 import {NavLink} from "react-router-dom";
+import ShoppingCartMobileButton from "../../component/ShoppingCartMobileButton";
 
 const Footer = () => {
     return (
@@ -33,8 +34,7 @@ const Footer = () => {
                         <Tab>
                             <Nav.Link as={NavLink} to="/shoppingCart">
                                 <TabItem>
-                                    <FontAwesomeIcon icon={faShoppingCart}/>
-                                    <TabTitle>سبد خرید</TabTitle>
+                                    <ShoppingCartMobileButton/>
                                 </TabItem>
                             </Nav.Link>
                         </Tab>
@@ -49,14 +49,14 @@ const Container = styled.div`
   width: 100%;
   position: fixed;
   bottom: 0;
-  height: 3.3rem;
-
+  height: 3.5rem;
   border-color: gray;
   border-width: 0 0 1px 0;
   border-top: rgb(238, 238, 238) solid 1px;
+  padding-top: .4rem;
 `
 const Tabs = styled(Row)`
-  padding-top: 10px;
+ 
 `
 const Tab = styled(Col)`
 

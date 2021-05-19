@@ -97,6 +97,10 @@ const ProductAddButton = styled(Button)`
 const ButtonCount = styled(Button)`
   background-color: #007bff;
   border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  padding: 0 !important;
+  font-family: IRANSansWeb_FaNum_Bold;
 `
 
 const Increase = styled(Button)`

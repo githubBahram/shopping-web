@@ -12,12 +12,12 @@ export default [
     {
         id:3,
         title:'خواربار',
-        image:'https://api.snapp.market/uploads/images/mobile-sliders/5f9ffeb58d354.png'
+        image:'https://api.snapp.market/uploads/images/mobile-sliders/6083c6b5eef9b.png'
     },
     {
         id:4,
         title:'بهداشت و سلامت',
-        image:'https://api.snapp.market/uploads/images/mobile-sliders/5f8f238a78c6e.jpg'
+        image:'https://api.snapp.market/uploads/images/mobile-sliders/6083d46b8a5b0.jpg'
     },
     {
         id:5,
@@ -37,24 +37,18 @@ export default [
     {
         id:8,
         title:'تنقلات',
-        image:'https://api.snapp.market/uploads/images/mobile-sliders/5f38be87074f3.jpg'
+        image:'https://api.snapp.market/uploads/images/mobile-sliders/6083c5ae15192.jpg'
     },
     {
         id:9,
         title:'چاشنی و افزودنی',
-        image:'https://api.snapp.market/uploads/images/mobile-sliders/5f37e3be4ca1b.jpg'
+        image:'https://api.snapp.market/uploads/images/mobile-sliders/6083c5fa21cda.jpg'
     },
     {
         id:10,
         title:'محصولات غذایی منجمد',
-        image:'https://api.snapp.market/uploads/images/mobile-sliders/5fead21dab7ce.jpg'
+        image:'https://api.snapp.market/uploads/images/mobile-sliders/6081c11ecda9a.jpg'
     }
     ,
-    {
-        id:11,
-        title:'کنسرو غذای آماده',
-        image:'https://api.snapp.market/uploads/images/mobile-sliders/5f3beedfcf7f2.jpg'
-    }
-
 
 ]
