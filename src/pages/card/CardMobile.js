@@ -1,17 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import AddProduct from "../../component/AddProduct";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
-const CardMobile = (props) => {
+const  CardMobile = (props) => {
     const {id, title, discountPercent, mainAmount, finalAmount, image} = props
     return (
         <Container>
 
                 <ImageWrapper>
                     <CardIcon>
-                        <AddProduct id={id} name={title} image={image} amount={finalAmount}/>
+                        <AddProduct id={id} name={title} discountPercent={discountPercent} mainAmount={mainAmount} image={image} finalAmount={finalAmount} amount={finalAmount}/>
                     </CardIcon>
                     <ImageCard
                         src={image}/>
@@ -37,8 +35,9 @@ const Container = styled.div`
   flex-direction: column;
   flex-wrap: nowrap;
   border-radius: 5px;
-  height: 13rem;
-  padding: .05rem;
+  height: 100%;
+  padding: .2rem;
+  
 `
 const ImageWrapper = styled.div`
   position: relative;

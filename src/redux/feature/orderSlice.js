@@ -7,11 +7,12 @@ const ordersSlice = createSlice({
     reducers: {
         orderAdded(state, action) {
             const {id, name, amount, count} = action.payload;
-
+            console.log("order add ")
+            console.log(id)
             const existOrder = state.find(order => order.id === id);
 
             if (existOrder) {
-                existOrder.count = count + 1;
+                existOrder.count = count;
                 console.log('order count')
                 console.log(existOrder.count)
             } else {

@@ -48,10 +48,5 @@ const CountOrder = styled.span`
   top: -.4rem;
   left: 3rem;
   border: #fff solid .05rem;
-
-
-
-
-
 `
 export default ShoppingCartMobileButton

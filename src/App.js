@@ -10,6 +10,7 @@ import SubCategoryPage from "./pages/subCategoryPage/SubCategoryPage";
 import AddProductPage from "./pages/AddProductPage";
 import ProductListPage from "./pages/productList/ProductListPage";
 import Footer from "./pages/footer/Footer";
+import ShoppingCartPage from "./pages/shoppingCart/ShoppingCartPage";
 
 
 const About = () => <span>About</span>;
@@ -36,6 +37,9 @@ const App = () => (
                     </Route>
                     <Route path="/productList/:sort">
                         <ProductListPage/>
+                    </Route>
+                    <Route exact path="/shoppingCart">
+                        <ShoppingCartPage/>
                     </Route>
                     <Route path="/">
                         <Home/>

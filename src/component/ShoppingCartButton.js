@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Button from "react-bootstrap/Button";
 import {useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 
 
 const ShoppingCartButton = () => {
@@ -12,9 +13,11 @@ const ShoppingCartButton = () => {
     order.map(item => count = count + item.count)
     return (
         <>
+            <Link to="/shoppingCart">
             <CartButton variant="light">سبد خرید
                 <PurchasesCount>{count}</PurchasesCount>
             </CartButton>
+            </Link>
         </>
     )
 }

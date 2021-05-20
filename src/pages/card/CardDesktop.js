@@ -22,7 +22,7 @@ const CardDesktop = (props) => {
                     </DiscountAmountWrapper>
                     <AddProductWrapper>
                         <FinalAmount> {finalAmount} تومان</FinalAmount>
-                        <AddProduct id={id} name={title} amount={finalAmount} >افزودن به سبد</AddProduct>
+                        <AddProduct id={id} name={title} discountPercent={discountPercent} mainAmount={mainAmount} image={image} finalAmount={finalAmount} amount={finalAmount}/>
                     </AddProductWrapper>
                 </footer>
             </CardContainer>

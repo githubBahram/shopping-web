@@ -3,13 +3,16 @@ import styled from 'styled-components'
 import {useDispatch, useSelector} from 'react-redux';
 import {orderAdded, orderRemoved} from "../redux/feature/orderSlice";
 import Button from "react-bootstrap/Button";
-import {faHome, faPlus, faMinus, faMoneyBill} from "@fortawesome/free-solid-svg-icons";
+import {faMinus, faPlus} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Breakpoint from "./Breakpoint";
+import useBreakpoints from "./useBreakpoints";
 
 
 const AddProduct = (props) => {
-    const {id, name, image, amount} = props;
+    const xsScreen = useBreakpoints().isXs;
+
+    const {id, name,discountPercent,mainAmount,finalAmount, image, amount} = props;
     const [showComp, setShowComp] = useState(false)
     const order = useSelector(state => state.orders.find(order => order.id === id));
     let orderCount = 0;
@@ -19,65 +22,87 @@ const AddProduct = (props) => {
     const [count, setCount] = useState(orderCount);
 
     const showComponent = () => {
+        if (count === 0) {
+            onIncreaseOrder()
+        }
         setShowComp(true)
         setTimeout(() => {
             setShowComp(false)
         }, 5000)
+
 
     }
 
     const onIncreaseOrder = () => {
         let orderCount = count + 1
         setCount(orderCount)
-        dispatch(orderAdded({id, name, image, amount, count: orderCount}))
+        dispatch(orderAdded({id, name, image, amount,discountPercent,mainAmount,finalAmount, count: orderCount}))
     }
     const onDecrease = () => {
         setCount(count - 1)
-        dispatch(orderRemoved({id, name, image, amount, count: count}))
+        dispatch(orderRemoved({id, name, image, amount,discountPercent,mainAmount,finalAmount, count: count}))
     }
     const dispatch = useDispatch();
 
-    return (
-        <>
-            <Breakpoint at="xs">
-                {
-                    count === 0 &&
-                    <ProductAddButton onClick={onIncreaseOrder} variant="outline-success" className="btn-circle">
-                        <FontAwesomeIcon icon={faPlus} size="sm" style={{fontSize: "10px"}}/>
-                    </ProductAddButton>
-                }
-                {
-                    count !== 0 && !showComp &&
-                    <ButtonCount onClick={showComponent}>
-                    <PurchaseCount>{count}</PurchaseCount>
-                    </ButtonCount>
-                }
-
-                {
-                    count !== 0 && showComp &&
-                    <ProductAddWrapper>
-                        <ProductAddButton onClick={onDecrease} variant="outline-success" className="btn-circle">
-                            <FontAwesomeIcon icon={faMinus} size="sm" style={{fontSize: "10px"}}/>
-                        </ProductAddButton>
-                        <PurchaseCount>{count}</PurchaseCount>
-                        <ProductAddButton onClick={onIncreaseOrder} variant="outline-success" className="btn-circle">
+    if (xsScreen) {
+        return (
+            <>
+                <Breakpoint at="xs">
+                    {
+                        count === 0 && !showComp &&
+                        <ProductAddButton onClick={showComponent} variant="outline-success" className="btn-circle">
                             <FontAwesomeIcon icon={faPlus} size="sm" style={{fontSize: "10px"}}/>
                         </ProductAddButton>
-                    </ProductAddWrapper>
-                }
-            </Breakpoint>
+                    }
+                    {
+                        count !== 0 && !showComp &&
+                        <ButtonCount onClick={showComponent}>
+                            <PurchaseCount>{count}</PurchaseCount>
+                        </ButtonCount>
+                    }
 
-            <Breakpoint at="lg">
-                <ProductAddButton onClick={onDecrease} variant="outline-success" className="btn-circle">
-                    <FontAwesomeIcon icon={faMinus} size="sm" style={{fontSize: "10px"}}/>
-                </ProductAddButton>
-                <PurchaseCount>{count}</PurchaseCount>
-                <ProductAddButton onClick={onIncreaseOrder} variant="outline-success" className="btn-circle">
-                    <FontAwesomeIcon icon={faPlus} size="sm" style={{fontSize: "10px"}}/>
-                </ProductAddButton>
-            </Breakpoint>
+                    {
+                        showComp &&
+                        <ProductAddWrapper>
+                            <ProductAddButton onClick={onIncreaseOrder} variant="outline-success"
+                                              className="btn-circle">
+                                <FontAwesomeIcon icon={faPlus} size="sm" style={{fontSize: "10px"}}/>
+                            </ProductAddButton>
+                            <PurchaseCount>{count}</PurchaseCount>
+                            <ProductAddButton onClick={onDecrease} variant="outline-success" className="btn-circle">
+                                <FontAwesomeIcon icon={faMinus} size="sm" style={{fontSize: "10px"}}/>
+                            </ProductAddButton>
+                        </ProductAddWrapper>
+                    }
+                </Breakpoint>
+            </>
+        )
+    }
+
+    return (
+        <>
+            < ProductAddButton
+                onClick={onDecrease}
+                variant="outline-success"
+                className="btn-circle">
+                <FontAwesomeIcon
+                    icon={faMinus}
+                    size="sm"
+                    style={
+                        {
+                            fontSize: "10px"
+                        }
+                    }
+                />
+            </ProductAddButton>
+            <PurchaseCount>{count}</PurchaseCount>
+            <ProductAddButton onClick={onIncreaseOrder} variant="outline-success" className="btn-circle">
+                <FontAwesomeIcon icon={faPlus} size="sm" style={{fontSize: "10px"}}/>
+            </ProductAddButton>
+
         </>
     )
+
 }
 
 const ProductAddWrapper = styled.div`
