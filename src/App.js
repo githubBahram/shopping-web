@@ -46,7 +46,7 @@ const App = () => (
                     </Route>
                 </Switch>
 
-                <Footer/>
+
             </div>
         </BrowserRouter>
     </Provider>

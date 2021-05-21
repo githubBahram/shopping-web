@@ -6,6 +6,7 @@ import ScrollRendering from "./ScrollRendering";
 import SubCategory from "./SubCategory";
 import styled from 'styled-components'
 import useBreakpoints from "../component/useBreakpoints";
+import Footer from "./footer/Footer";
 
 
 const Home = () => {
@@ -27,6 +28,8 @@ const Home = () => {
                     <SubCategory title="لبنیات"/>
                 </ScrollRendering>
             </Container>
+            <Footer/>
+
 
         </>
     )

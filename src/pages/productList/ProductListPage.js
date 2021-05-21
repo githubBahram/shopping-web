@@ -2,6 +2,7 @@ import React from 'react'
 import Breakpoint from "../../component/Breakpoint";
 import ProductListPage_D from "./ProductionListPage_D";
 import ProductionListMobile from "./ProductionListMobile";
+import Footer from "../footer/Footer";
 
 const ProductListPage = () => {
     return (
@@ -16,6 +17,7 @@ const ProductListPage = () => {
             <Breakpoint at="xs">
                 <ProductionListMobile/>
             </Breakpoint>
+            <Footer/>
         </>
     )
 

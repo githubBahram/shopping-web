@@ -129,7 +129,28 @@ export const NotOrderFound = styled.span`
   vertical-align: center;
 `
 export const AlertRemoveAll = styled.div`
-font-family: IRANSansWeb;
+  font-family: IRANSansWeb;
   margin-top: 2.8rem;
   font-size: 14px;
+`
+export const NextShopContainer = styled.div`
+  background-color: green;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  height: 3.5rem;
+  border-color: gray;
+  border-width: 0 0 1px 0;
+  border-top: rgb(238, 238, 238) solid 1px;
+  color: #fff;
+`
+export const NextShopWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-around;
+  font-family: IRANSansWeb_FaNum_Medium;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 `

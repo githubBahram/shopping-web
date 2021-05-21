@@ -2,6 +2,7 @@ import React from 'react'
 import Breakpoint from "../../component/Breakpoint";
 import SubCategoryDesktop from "./SubCategoryDesktop";
 import SubCategoryMobile from "./SubCategoryMobile";
+import Footer from "../footer/Footer";
 
 const SubCategoryPage = () => {
 
@@ -16,6 +17,8 @@ const SubCategoryPage = () => {
             <Breakpoint at="xs">
                 <SubCategoryMobile/>
             </Breakpoint>
+
+            <Footer/>
         </>
 
     )
