@@ -4,7 +4,14 @@ import Button from "react-bootstrap/Button";
 
 
 export const ShoppingCartListContainer = styled.div`
-margin-bottom: 3.5rem;
+  margin-bottom: 3.5rem;
+  margin-top: 2.8rem;
+  height: 100%;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
 `
 
 export const Container = styled.div`
@@ -93,4 +100,36 @@ export const ProductAddButton = styled(Button)`
 export const PurchaseCount = styled.span`
   font-family: IRANSansWeb_FaNum_Medium;
   align-self: center;
+`
+export const Header = styled.div`
+  position: fixed;
+  top: 0;
+  background-color: #fff;
+  z-index: 9999;
+  width: 100%;
+  padding: .7rem;
+  border-bottom: rgb(238, 238, 238) solid 1px
+`
+export const HeaderWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+`
+export const HeaderTitle = styled.span`
+  font-family: IRANSansWeb_Bold;
+  text-align: center;
+  width: 100%;
+`
+export const NotOrderFound = styled.span`
+  font-family: IRANSansWeb_Medium;
+  color: red;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  vertical-align: center;
+`
+export const AlertRemoveAll = styled.div`
+font-family: IRANSansWeb;
+  margin-top: 2.8rem;
+  font-size: 14px;
 `

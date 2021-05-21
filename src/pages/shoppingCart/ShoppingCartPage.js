@@ -1,42 +1,85 @@
 import React, {useState} from 'react'
-import styled from 'styled-components'
 import {useDispatch, useSelector} from 'react-redux';
-import {orderAdded, orderRemoved} from "../../redux/feature/orderSlice";
+import {orderAdded, orderRemoved,orderRemovedAll} from "../../redux/feature/orderSlice";
 import {
-    ContainerWrapper,
-    ImageCartShopp,
+    AddProductContainer, AlertRemoveAll,
     Container,
-    TitleCartShop,
-    ItemWrapper,
-    DiscountWrapper,
+    ContainerWrapper,
     DiscountAmount,
+    DiscountWrapper,
     FinalAmount,
     FinalAmountWrapper,
-    PriceWrapper,
-    AddProductContainer,
+    Header,
+    HeaderTitle,
+    HeaderWrapper,
+    ImageCartShopp,
+    ItemWrapper, NotOrderFound,
     PriceAddWrapper,
-    ShoppingCartListContainer, ProductAddWrapper, ProductAddButton, PurchaseCount
+    PriceWrapper,
+    ProductAddButton,
+    ProductAddWrapper,
+    PurchaseCount,
+    ShoppingCartListContainer,
+    TitleCartShop
 } from "./ShoppingCartStyle"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faMinus, faPlus} from "@fortawesome/free-solid-svg-icons";
+import {faHome, faMinus, faPlus, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {Link} from "react-router-dom";
 
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 const ShoppingCartPage = () => {
     const orders = useSelector(state => state.orders);
     const dispatch = useDispatch();
+    const [showRemoveAlert, setShowRemoveAlert] = useState(false)
+
     const onIncreaseOrder = (item) => {
-        console.log('onIncreaseOrder')
-        console.log(item)
-        let ItemCount=item.count+1
+        let ItemCount = item.count + 1
         const {id, name, image, amount, discountPercent, mainAmount, finalAmount} = item
-        console.log(id)
         dispatch(orderAdded({id, name, image, amount, discountPercent, mainAmount, finalAmount, count: ItemCount}))
     }
+
     const onDecrease = (item) => {
-        let ItemCount=item.count
+        let ItemCount = item.count
         const {id, name, image, amount, discountPercent, mainAmount, finalAmount} = item
         dispatch(orderRemoved({id, name, image, amount, discountPercent, mainAmount, finalAmount, count: ItemCount}))
     }
+
+    const AlertRemoveAllOrders = () => {
+
+        const [show, setShow] = useState(showRemoveAlert);
+
+        const handleClose = () => {
+            console.log("handle close called")
+            setShowRemoveAlert(false);
+            orderRemovedAll({id:1})
+
+        }
+        const handleShow = () => setShow(true);
+
+        return (
+
+            <AlertRemoveAll>
+
+                <Modal centered show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>حذف اقلام</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>آیا از حذف تمامی اقلام سبد اطمینان دارید!</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            خیر
+                        </Button>
+                        <Button variant="primary" onClick={handleClose}>
+                            بله
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </AlertRemoveAll>
+        );
+    }
+
     const CartShoppingList = () => {
         return (
             <>
@@ -66,7 +109,8 @@ const ShoppingCartPage = () => {
                                                                      style={{fontSize: "10px"}}/>
                                                 </ProductAddButton>
                                                 <PurchaseCount>{item.count}</PurchaseCount>
-                                                <ProductAddButton onClick={()=>onDecrease(item)} variant="outline-success"
+                                                <ProductAddButton onClick={() => onDecrease(item)}
+                                                                  variant="outline-success"
                                                                   className="btn-circle">
                                                     <FontAwesomeIcon icon={faMinus} size="sm"
                                                                      style={{fontSize: "10px"}}/>
@@ -84,7 +128,24 @@ const ShoppingCartPage = () => {
     }
     return (
         <>
+            <AlertRemoveAllOrders/>
+            <Header>
+                <HeaderWrapper>
+                    <Link to="/home">
+                        <FontAwesomeIcon icon={faHome}/>
+                    </Link>
+                    <HeaderTitle>سبد خرید</HeaderTitle>
+                    {orders.length > 0 &&
+                    <FontAwesomeIcon icon={faTrash} color="red" onClick={() => setShowRemoveAlert(true)}/>
+                    }
+                </HeaderWrapper>
+            </Header>
             <ShoppingCartListContainer>
+                {orders.length === 0 &&
+                <NotOrderFound>
+                    سبد خرید شما خالی می باشد
+                </NotOrderFound>
+                }
                 <CartShoppingList/>
             </ShoppingCartListContainer>
         </>

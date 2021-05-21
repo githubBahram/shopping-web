@@ -6,15 +6,13 @@ const ordersSlice = createSlice({
     initialState,
     reducers: {
         orderAdded(state, action) {
-            const {id, name, amount, count} = action.payload;
-            console.log("order add ")
-            console.log(id)
+            const {id, count} = action.payload;
+
             const existOrder = state.find(order => order.id === id);
 
             if (existOrder) {
                 existOrder.count = count;
-                console.log('order count')
-                console.log(existOrder.count)
+
             } else {
                 state.push(action.payload);
             }
@@ -26,7 +24,7 @@ const ordersSlice = createSlice({
 
             if (existOrderRemove) {
                 if (count === 1) {
-                    var index = state.indexOf(existOrderRemove);
+                    let index = state.indexOf(existOrderRemove);
                     if (index > -1) {
                         state.splice(index, 1);
                     }
@@ -34,7 +32,12 @@ const ordersSlice = createSlice({
                     existOrderRemove.count = count - 1;
                 }
             }
+
         },
+        orderRemovedAll(state) {
+            console.log('removeAll')
+            state = undefined
+        }
     },
     prepare(id, name, image, amount, count) {
         return {
@@ -48,6 +51,6 @@ const ordersSlice = createSlice({
         };
     },
 });
-export const {orderAdded, orderRemoved} = ordersSlice.actions;
+export const {orderAdded, orderRemoved, orderRemovedAll} = ordersSlice.actions;
 export default ordersSlice.reducer;
 
