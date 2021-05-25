@@ -11,6 +11,8 @@ import AddProductPage from "./pages/AddProductPage";
 import ProductListPage from "./pages/productList/ProductListPage";
 import Footer from "./pages/footer/Footer";
 import ShoppingCartPage from "./pages/shoppingCart/ShoppingCartPage";
+import Category from "./pages/Category";
+import CategoryFilter from "./pages/productList/CategoryFilter";
 
 
 const About = () => <span>About</span>;
@@ -29,15 +31,18 @@ const App = () => (
                     <Route exact path="/category">
                         <SubCategoryPage/>
                     </Route>
-                    <Route path="/addProductPage">
-                        <AddProductPage/>
+                    <Route exact path="/productFilter">
+                        <CategoryFilter/>
                     </Route>
+
+
                     <Route exact path="/productList">
                         <ProductListPage/>
                     </Route>
                     <Route path="/productList/:sort">
                         <ProductListPage/>
                     </Route>
+
                     <Route exact path="/shoppingCart">
                         <ShoppingCartPage/>
                     </Route>

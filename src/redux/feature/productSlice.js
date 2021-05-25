@@ -6,6 +6,13 @@ const initialState = {
     prev: 0,
     next: 3,
     isEndPage: false,
+    filter: {
+        category: [],
+        brands: [],
+        price: {from: undefined, to: undefined},
+        availability: false,
+        discount_having: false
+    },
     productList: categories.slice(0, 12)
 };
 const productSlice = createSlice({
@@ -31,8 +38,11 @@ const productSlice = createSlice({
                 console.log(state.isEndPage)
             }
 
+        },
+        addBrandFilter(state, action) {
+            state.brands.push(action.payload)
         }
     }
 })
-export const {addProducts} = productSlice.actions;
+export const {addProducts, addBrandFilter} = productSlice.actions;
 export default productSlice.reducer;

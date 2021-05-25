@@ -16,10 +16,7 @@ export const saveCategory = createAsyncThunk('categories/addCategory', async (ca
 
 export const fetchMainCategories = createAsyncThunk('categories/getAllMainCategory', async () => {
     try {
-        const data = await getAllMainCategory()
-        console.log('fetch Main Category date ')
-        console.log(data)
-        return data
+        return await getAllMainCategory()
     } catch (err) {
         console.log(err)
     }
@@ -32,8 +29,6 @@ const categoriesSlice = createSlice({
     reducers: {},
     extraReducers: {
         [fetchMainCategories.fulfilled]: (state, action) => {
-            console.log('action payload')
-            console.log(action.payload)
             state.status = 'succeeded'
             state.categories = state.categories.concat(action.payload.content)
         }

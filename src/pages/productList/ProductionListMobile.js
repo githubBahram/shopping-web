@@ -9,7 +9,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {addProducts} from "../../redux/feature/productSlice";
 import CardMobile from "../card/CardMobile";
 
-const ProductListMobile = () => {
+const ProductListMobile = (props) => {
+
     const products = useSelector(state => state.products.productList);
     const isEndPage = useSelector(state => state.products.isEndPage)
     let bottomBoundaryRef = useRef(null);
@@ -89,7 +90,7 @@ const ProductListMobile = () => {
                                     </FilterItem>
                                 </Col>
                                 <Col>
-                                    <FilterItem>
+                                    <FilterItem to="/productFilter">
                                         <FontAwesomeIcon icon={faFilter}/>
                                         <span>فیلتر</span>
                                     </FilterItem>

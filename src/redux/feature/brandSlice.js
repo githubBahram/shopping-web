@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {addBrand} from "../../api/brandApi";
 
 const initialState = {
-    brands: [],
+    brands: [{id: 1, name: 'کوکا'}, {id: 2, name: ' کاله'}, {id: 3, name: 'میرندا'}],
     status: 'idle',
     error: null
 };
@@ -16,6 +16,14 @@ export const fetchBrands = createAsyncThunk('brands/fetchBrands', async () => {
         }
     }
 )
+export const fetchBrandByCategory = createAsyncThunk('brands/fetchBrandByCategory', async () => {
+    try {
+        const brands = [1, 2, 3]
+        return brands
+    } catch (err) {
+        console.log(err)
+    }
+})
 export const saveBrand = createAsyncThunk('brands/addBrand', async (brand, {rejectWithValue}) => {
     try {
         return await addBrand(brand);
@@ -32,6 +40,9 @@ const brandsSlice = createSlice({
         [fetchBrands.fulfilled]: (state, action) => {
             state.status = 'succeeded'
             state.brands = state.brands.concat(action.payload)
+        },
+        [fetchBrandByCategory.fulfilled]: (state, action) => {
+            state.status = 'succeeded'
         }
     }
 });
