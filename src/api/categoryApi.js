@@ -11,7 +11,7 @@ export const addCategory = async (category) => {
 
 export const getAllMainCategory = async () => {
     const {data} = await instance.get("/categoryManager/categories")
-    console.log("mainCategory data ")
-    console.log(data.content)
+
+
     return data
 }

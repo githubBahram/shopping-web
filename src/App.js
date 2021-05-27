@@ -28,15 +28,14 @@ const App = () => (
                     <Route path="/brands">
                         <Brand/>
                     </Route>
-                    <Route exact path="/category">
+                    <Route exact path="/category/:categoryId">
                         <SubCategoryPage/>
                     </Route>
                     <Route exact path="/productFilter">
                         <CategoryFilter/>
                     </Route>
 
-
-                    <Route exact path="/productList">
+                    <Route exact path="/productList/:productId">
                         <ProductListPage/>
                     </Route>
                     <Route path="/productList/:sort">

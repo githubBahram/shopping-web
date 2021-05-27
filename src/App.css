@@ -140,6 +140,10 @@ nav a:hover {
 nav .active {
 
 }
+.slide-pane__content{
+    padding: 0!important;
+
+}
 
 
 

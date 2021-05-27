@@ -36,7 +36,7 @@ const SubCategory = (props) => {
         <>
             <Container>
                 <Header>
-                    <HeaderTitleLink to="/category">{title}</HeaderTitleLink>
+                    <HeaderTitleLink to="/category/465465">{title}</HeaderTitleLink>
                     <ShowMore> مشاهده بیشتر </ShowMore>
                 </Header>
                 <CardContainer vertical={false} >

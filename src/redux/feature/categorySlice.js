@@ -18,7 +18,7 @@ export const fetchMainCategories = createAsyncThunk('categories/getAllMainCatego
     try {
         return await getAllMainCategory()
     } catch (err) {
-        console.log(err)
+        throw 'network error'
     }
 })
 
@@ -31,6 +31,10 @@ const categoriesSlice = createSlice({
         [fetchMainCategories.fulfilled]: (state, action) => {
             state.status = 'succeeded'
             state.categories = state.categories.concat(action.payload.content)
+        },
+        [fetchMainCategories.rejected]: (state, action) => {
+            state.status = 'reject'
+            console.log('reject')
         }
     }
 });

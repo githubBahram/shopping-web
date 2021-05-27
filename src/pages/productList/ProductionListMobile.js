@@ -1,13 +1,14 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import styled from 'styled-components'
-import {Link} from "react-router-dom";
+import {Link, useRouteMatch, useLocation} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowRight, faSort, faFilter} from "@fortawesome/free-solid-svg-icons";
+import {faArrowRight, faSort, faFilter, faTimes} from "@fortawesome/free-solid-svg-icons";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import {useDispatch, useSelector} from "react-redux";
 import {addProducts} from "../../redux/feature/productSlice";
 import CardMobile from "../card/CardMobile";
+import CategoryFilter from "./CategoryFilter";
 
 const ProductListMobile = (props) => {
 
@@ -16,6 +17,13 @@ const ProductListMobile = (props) => {
     let bottomBoundaryRef = useRef(null);
     const [visible, setVisible] = useState(false)
     const dispatch = useDispatch();
+    let {path, url} = useRouteMatch();
+    const [openFilterPanel, setOpenFilterPanel] = useState(false);
+    let query = useQuery();
+
+    function useQuery() {
+        return new URLSearchParams(useLocation().search);
+    }
 
     const scrollObserver = useCallback(
         node => {
@@ -61,12 +69,26 @@ const ProductListMobile = (props) => {
             console.log(visible)
             scrollObserver(bottomBoundaryRef.current);
         }
+        if (query && query.get("brand")) {
+            alert(query.get("brand"))
+        }
 
-    }, [bottomBoundaryRef, scrollObserver, isEndPage])
+    }, [bottomBoundaryRef, scrollObserver, isEndPage, openFilterPanel])
 
     return (
         <>
-            <Container>
+
+            <CategoryFilterPanel show={openFilterPanel}>
+                <CategoryFilterPanelHeaderWrapper>
+                    <CategoryFilterPanelHeader>
+                        <CategoryFilterPanelHeaderTitle>فیلترها</CategoryFilterPanelHeaderTitle>
+                        <FontAwesomeIcon icon={faTimes} onClick={() => setOpenFilterPanel(false)}/>
+                    </CategoryFilterPanelHeader>
+                </CategoryFilterPanelHeaderWrapper>
+                <CategoryFilter setOpenFilterPanel={setOpenFilterPanel}/>
+            </CategoryFilterPanel>
+            <Container opacityApply={openFilterPanel}>
+
                 <Header>
                     <HeaderWrapper>
                         <CategoryWrapper>
@@ -90,7 +112,7 @@ const ProductListMobile = (props) => {
                                     </FilterItem>
                                 </Col>
                                 <Col>
-                                    <FilterItem to="/productFilter">
+                                    <FilterItem onClick={() => setOpenFilterPanel(!openFilterPanel)}>
                                         <FontAwesomeIcon icon={faFilter}/>
                                         <span>فیلتر</span>
                                     </FilterItem>
@@ -112,6 +134,7 @@ const ProductListMobile = (props) => {
 
 
 const Container = styled.div`
+  opacity: ${(props) => props.opacityApply ? '.1' : 'none'};
 `
 const Header = styled.div`
   position: fixed;
@@ -138,7 +161,7 @@ const FilterWrapper = styled.div`
   background-color: #fff;
   border-bottom: rgb(238, 238, 238) solid 1px
 `
-const FilterItem = styled(Link)`
+const FilterItem = styled.div`
   font-family: IRANSansWeb_FaNum;
   display: flex;
   justify-content: space-around;
@@ -154,7 +177,41 @@ const Body = styled.div`
   background-color: #fff;
   padding: .5rem;
   margin-bottom: 4rem;
-   
+`
+
+const CategoryFilterPanel = styled.div`
+  position: fixed;
+  bottom: ${(props) => props.show ? '0px' : '-85%'};
+  width: 100%;
+  height: 85%;
+  background: #fafafa;
+  transition: .5s;
+  z-index: 9999999;
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+`
+const CategoryFilterPanelHeaderWrapper = styled.div`
+  position: relative;
+  margin-bottom: 2rem;
+`
+
+const CategoryFilterPanelHeader = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 1rem;
+  height: 2rem;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: space-between;
+`
+const CategoryFilterPanelHeaderTitle = styled.span`
+  font-family: IRANSansWeb_Bold;
+`
+
+const CategoryFilterWrapper = styled.div`
+  padding: 1rem;
 `
 const CardContainer = styled(Row)`
 `

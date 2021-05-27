@@ -10,7 +10,7 @@ const SubCategoryFilterMobile = () => {
                 <ScrollContainer>
                     <FilterWrapper>
                         <FilterItemWrapper>
-                            <FilterItem to="/productList"><span> مصحولات آرایشی</span>
+                            <FilterItem to="/productList/1245"><span> مصحولات آرایشی</span>
                             </FilterItem>
                         </FilterItemWrapper>
                         <FilterItemWrapper>
