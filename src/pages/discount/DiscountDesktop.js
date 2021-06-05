@@ -96,10 +96,10 @@ const DiscountText = styled.span`
 const CardWrapper = styled(ScrollContainer)`
   display: flex;
   flex: 1;
-  cursor: all-scroll;
+ 
   width: 100%;
   height: ${(props) => props.height};
-  user-select: none;
+ 
 
   background: url('https://snapp.market/v2/static/images/ff6cfe6688bee991b0de30bebfbe09fd.png') 0 0 / cover,
   linear-gradient(-45deg, rgb(251, 75, 84), rgb(251, 75, 84));

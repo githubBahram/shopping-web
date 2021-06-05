@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import Button from "react-bootstrap/Button";
+import {Link} from "react-router-dom";
 
 
 export const ShoppingCartListContainer = styled.div`
   margin-bottom: 3.5rem;
   margin-top: 2.8rem;
-  height: 100%;
+ 
   display: flex;
   flex: 1;
   justify-content: center;
@@ -19,13 +20,15 @@ export const Container = styled.div`
   flex: 1;
   flex-direction: column;
   font-size: 14px;
-
+  overflow-y: auto;
+  
 `
 
 export const ContainerWrapper = styled.div`
   display: flex;
   flex: 1;
   flex-direction: row;
+  flex-wrap: nowrap;
   padding: .5rem;
   background-color: #fff;
   border-bottom: rgb(238, 238, 238) solid 1px
@@ -101,25 +104,7 @@ export const PurchaseCount = styled.span`
   font-family: IRANSansWeb_FaNum_Medium;
   align-self: center;
 `
-export const Header = styled.div`
-  position: fixed;
-  top: 0;
-  background-color: #fff;
-  z-index: 9999;
-  width: 100%;
-  padding: .7rem;
-  border-bottom: rgb(238, 238, 238) solid 1px
-`
-export const HeaderWrapper = styled.div`
-  display: flex;
-  flex: 1;
-  justify-content: space-between;
-`
-export const HeaderTitle = styled.span`
-  font-family: IRANSansWeb_Bold;
-  text-align: center;
-  width: 100%;
-`
+
 export const NotOrderFound = styled.span`
   font-family: IRANSansWeb_Medium;
   color: red;
@@ -144,7 +129,7 @@ export const NextShopContainer = styled.div`
   border-top: rgb(238, 238, 238) solid 1px;
   color: #fff;
 `
-export const NextShopWrapper = styled.div`
+export const NextShopWrapper = styled(Link)`
   display: flex;
   flex: 1;
   flex-direction: row;
@@ -153,4 +138,5 @@ export const NextShopWrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+  color: #fff;
 `

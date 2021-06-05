@@ -40,7 +40,12 @@
 .body-container {
     padding: 25px;
 }
+body{
+    height: 100%;
+}
+#root{
 
+}
 .text-align-right {
     text-align: right;
 }
@@ -71,7 +76,16 @@
 html {
     background-color: #fafafa;
     font-family: IRANSansWeb;
-    font-size: 16px;
+    font-size: 18px;
+    height: 100%;
+}
+@media only screen and (max-width: 640px){
+    html{
+        background-color: #fafafa;
+        font-family: IRANSansWeb;
+        font-size: 16px;
+        height: 100%;
+    }
 }
 
 .font-face-is {

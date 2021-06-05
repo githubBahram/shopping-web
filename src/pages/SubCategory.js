@@ -53,8 +53,7 @@ const Container = styled.div`
   flex-direction: column;
   cursor: all-scroll;
   width: 100%;
-
-  user-select: none;
+ 
   overflow: auto;
   background-color: #fff;
   border-radius: 5px;
@@ -85,7 +84,7 @@ const CardContainer = styled(ScrollContainer)`
   cursor: all-scroll;
   width: 100%;
   height: 20rem;
-  user-select: none;
+ 
   overflow: auto;
   padding: 0 20px 0 0;
   overflow-y: hidden;

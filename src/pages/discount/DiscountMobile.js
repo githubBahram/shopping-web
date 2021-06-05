@@ -57,7 +57,7 @@ const CardWrapper = styled.div`
   cursor: all-scroll;
   width: 100%;
   height: 16rem;
-  user-select: none;
+ 
   overflow-y: hidden;
 
   background: url('https://snapp.market/v2/static/images/ff6cfe6688bee991b0de30bebfbe09fd.png') 0 0 / cover,

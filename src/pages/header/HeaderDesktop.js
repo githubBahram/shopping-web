@@ -4,7 +4,8 @@ import {debounce} from "../../helper/helper";
 import ShoppingCartButton from "../../component/ShoppingCartButton";
 import HeaderFixed from "../../component/HeaderFixed";
 import LoginLink from "../../component/LoginLink";
-import {Header} from "./HeaderStyle"
+import {Header, Logo} from "./HeaderStyle"
+import Col from "react-bootstrap/Col";
 
 const HeaderDesktop = () => {
     const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -27,42 +28,46 @@ const HeaderDesktop = () => {
             <HeaderFixed scrollVisible={visible}/>
 
             <Header height="15rem" visible={visible}>
-                <Row borderStyle>
-                    <AddressWrapper>
-                        <CircleWave/>
-                        <Address>ابتدا آدرس خود را انتخاب کنید</Address>
-                    </AddressWrapper>
-                    <div style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        width: "18%"
-                    }}>
-                        <LoginLink/>
-                        <ShoppingCartButton/>
-                    </div>
-                </Row>
-                <Row>sdf</Row>
-                <Row>fgd</Row>
+                <ItemWrapper>
+                    <Item>
+                        <Logo className="align-self-center">شهروند</Logo>
+                        <AddressWrapper>
+                            <CircleWave className="mr-1"/>
+                            <Address>ابتدا آدرس خود را انتخاب کنید</Address>
+                        </AddressWrapper>
+
+                    </Item>
+                    <Item>
+                        <LoginWrapper>
+                            <LoginLink/>
+                        </LoginWrapper>
+                        <ShoppingCartButton className="ml-2"/>
+                    </Item>
+                </ItemWrapper>
             </Header>
         </>
     )
 }
 
-const Row = styled.div`
+const ItemWrapper = styled.div`
   display: flex;
-  flex: 1;
   flex-direction: row;
   justify-content: space-between;
-  border-style: ${(props) => props.borderStyle !== undefined ? 'groove' : 'none'};
-  border-color: gray;
-  border-width: 0 0 1px 0;
-  padding: 10px 20px 10px 20px;
+`
+const Item = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
+const LoginWrapper = styled.div`
+  margin-left: 2rem;
+  align-self: center;
 `
 
 const CircleWave = styled.div`
   width: 0.6rem;
   height: 0.6rem;
-  margin: 0 1.4rem;
+
   border-radius: 50%;
   background: rgb(7, 188, 32) none repeat scroll 0 0;
   animation: 1.4s ease 0s infinite normal none running fade-circle-wave;
@@ -72,10 +77,13 @@ const CircleWave = styled.div`
 `
 const AddressWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
+  margin-right: 2rem;
 `
 const Address = styled.span`
   color: #fff;
-  align-self: center
+  align-self: center;
+  font-family: IRANSansWeb;
 `
 const Login = styled.a`
   align-self: center;

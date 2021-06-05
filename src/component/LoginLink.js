@@ -11,12 +11,12 @@ const LoginLink = () => {
     )
 }
 
-const Container = styled.a`
+const Container = styled.div`
   align-self: center;
   color: #fff;
   font-family: IRANSansWeb;
-  text-align: left;
-  width: 14rem;
+  cursor: pointer;
+ 
 `
 
 export default LoginLink

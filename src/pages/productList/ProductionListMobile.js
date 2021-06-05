@@ -69,15 +69,14 @@ const ProductListMobile = (props) => {
             console.log(visible)
             scrollObserver(bottomBoundaryRef.current);
         }
-        if (query && query.get("brand")) {
-            alert(query.get("brand"))
-        }
+
 
     }, [bottomBoundaryRef, scrollObserver, isEndPage, openFilterPanel])
 
+
+
     return (
         <>
-
             <CategoryFilterPanel show={openFilterPanel}>
                 <CategoryFilterPanelHeaderWrapper>
                     <CategoryFilterPanelHeader>

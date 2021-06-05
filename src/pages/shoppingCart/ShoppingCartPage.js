@@ -1,20 +1,18 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
-import {orderAdded, orderRemoved, orderRemovedAll} from "../../redux/feature/orderSlice";
+import {orderAdded, orderRemoved} from "../../redux/feature/orderSlice";
 import {
     AddProductContainer,
-    AlertRemoveAll,
     Container,
     ContainerWrapper,
     DiscountAmount,
     DiscountWrapper,
     FinalAmount,
     FinalAmountWrapper,
-    Header,
-    HeaderTitle,
-    HeaderWrapper,
     ImageCartShopp,
-    ItemWrapper, NextShopContainer, NextShopWrapper,
+    ItemWrapper,
+    NextShopContainer,
+    NextShopWrapper,
     NotOrderFound,
     PriceAddWrapper,
     PriceWrapper,
@@ -25,28 +23,17 @@ import {
     TitleCartShop
 } from "./ShoppingCartStyle"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHome, faMinus, faPlus, faTrash} from "@fortawesome/free-solid-svg-icons";
-import {Link} from "react-router-dom";
+import {faMinus, faPlus} from "@fortawesome/free-solid-svg-icons";
 
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 import Footer from "../footer/Footer";
+import HeaderShoppingCart from "./HeaderShoppingCart";
+import NextShopButton from "./NextShopButton";
 
 const ShoppingCartPage = () => {
     const orders = useSelector(state => state.orders);
-    let finalAmountTotalVar = 0
-    const [finalAmountTotal, setFinalAmountTotal] = useState(finalAmountTotalVar)
-    if (orders) {
-        orders.forEach((item) => (
-            finalAmountTotalVar = item.finalAmount * item.count + finalAmountTotalVar
-        ))
-    }
 
 
     const dispatch = useDispatch();
-    const [showRemoveAlert, setShowRemoveAlert] = useState(false)
-
-
     const onIncreaseOrder = (item) => {
         let ItemCount = item.count + 1
         const {id, name, image, amount, discountPercent, mainAmount, finalAmount} = item
@@ -59,36 +46,6 @@ const ShoppingCartPage = () => {
         dispatch(orderRemoved({id, name, image, amount, discountPercent, mainAmount, finalAmount, count: ItemCount}))
     }
 
-    const AlertRemoveAllOrders = () => {
-        const [show, setShow] = useState(showRemoveAlert);
-        const handleClose = () => {
-            console.log("handle close called")
-            setShowRemoveAlert(false);
-            orderRemovedAll({id: 1})
-
-        }
-        const handleShow = () => setShow(true);
-        return (
-
-            <AlertRemoveAll>
-
-                <Modal centered show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>حذف اقلام</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>آیا از حذف تمامی اقلام سبد اطمینان دارید!</Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            خیر
-                        </Button>
-                        <Button variant="primary" onClick={handleClose}>
-                            بله
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            </AlertRemoveAll>
-        );
-    }
 
     const CartShoppingList = () => {
         return (
@@ -137,23 +94,12 @@ const ShoppingCartPage = () => {
         )
     }
     useEffect(() => {
-        setFinalAmountTotal(finalAmountTotalVar)
+
     }, [orders, dispatch])
     return (
         <>
-            <AlertRemoveAllOrders/>
-            <Header>
-                <HeaderWrapper>
-                    <Link to="/home">
-                        <FontAwesomeIcon icon={faHome}/>
-                    </Link>
-                    <HeaderTitle>سبد خرید</HeaderTitle>
-                    {orders.length > 0 &&
-                    <FontAwesomeIcon icon={faTrash} color="red" onClick={() => setShowRemoveAlert(true)}/>
-                    }
-                </HeaderWrapper>
-            </Header>
             <ShoppingCartListContainer>
+                <HeaderShoppingCart/>
                 {orders.length === 0 &&
                 <>
                     <NotOrderFound>
@@ -165,19 +111,7 @@ const ShoppingCartPage = () => {
                 <CartShoppingList/>
             </ShoppingCartListContainer>
             {orders.length > 0 &&
-            <NextShopContainer>
-                <NextShopWrapper>
-                    <span>
-                        ثبت و ادامه خرید
-                    </span>
-                    <span>
-                        {
-                            finalAmountTotal
-
-                        } تومان
-                    </span>
-                </NextShopWrapper>
-            </NextShopContainer>
+        <NextShopButton/>
             }
         </>
     )

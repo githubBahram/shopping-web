@@ -3,7 +3,7 @@ export default [
     {
         id: '1',
         title: 'نودالیت مرغ آماده لذیذ ۷۵ گرمی',
-        discountPercent: 10,
+        discountPercent: 2,
         mainAmount: 120160,
         finalAmount: 10000,
         image: 'https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/263596.jpg',
@@ -11,7 +11,7 @@ export default [
     {
         id: '2',
         title: 'آرد سفید زر ماکارون ۵۰۰ گرمی',
-        discountPercent: 10,
+        discountPercent: 1,
         mainAmount: 12016,
         finalAmount: 1000,
         image: 'https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/hph-170648-a.jpg',
@@ -53,7 +53,7 @@ export default [
     {
         id: '7',
         title: 'پک ۶ عددی آب معدنی پیورلایف نستله ۱.۵ لیتری',
-        discountPercent: 10,
+        discountPercent: 7,
         mainAmount: 12016,
         finalAmount: 1000,
         image: 'https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/hph-312284-a.jpg',
@@ -61,27 +61,19 @@ export default [
     {
         id: '8',
         title: 'سفیدکننده سبز دامستوس ۷۵۰ میلی لیتری',
-        discountPercent: 10,
+        discountPercent: 5,
         mainAmount: 12016,
         finalAmount: 1000,
         image: 'https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/hph-312284-a.jpg',
     },
 
     {
-        id: '8',
+        id: '9',
         title: 'ماءالشعیر لیمویی بطری دلستر ۱.۵ لیتری',
-        discountPercent: 10,
+        discountPercent: 12,
         mainAmount: 12016,
         finalAmount: 1000,
         image: 'https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/hph-49087-a.jpg',
-    },
-    {
-        id: '9',
-        title: 'قهوه فوری نسکافه ۳ در ۱ کلاسیک نستله ۲۰+۴ عددی',
-        discountPercent: 10,
-        mainAmount: 12016,
-        finalAmount: 1000,
-        image: 'https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/hph-66182-a.jpg',
     },
     {
         id: '10',
@@ -94,7 +86,7 @@ export default [
     {
         id: '11',
         title: 'قهوه فوری نسکافه ۳ در ۱ کلاسیک نستله ۲۰+۴ عددی',
-        discountPercent: 10,
+        discountPercent: 25,
         mainAmount: 12016,
         finalAmount: 1000,
         image: 'https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/hph-66182-a.jpg',
@@ -102,13 +94,21 @@ export default [
     {
         id: '12',
         title: 'قهوه فوری نسکافه ۳ در ۱ کلاسیک نستله ۲۰+۴ عددی',
-        discountPercent: 10,
+        discountPercent: 20,
         mainAmount: 12016,
         finalAmount: 1000,
         image: 'https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/hph-66182-a.jpg',
     },
     {
         id: '13',
+        title: 'قهوه فوری نسکافه ۳ در ۱ کلاسیک نستله ۲۰+۴ عددی',
+        discountPercent: 10,
+        mainAmount: 12016,
+        finalAmount: 1000,
+        image: 'https://api.snapp.market/media/cache/product-variation_image_thumbnail/uploads/images/vendors/users/app/hph-66182-a.jpg',
+    },
+    {
+        id: '18',
         title: 'قهوه فوری نسکافه ۳ در ۱ کلاسیک نستله ۲۰+۴ عددی',
         discountPercent: 10,
         mainAmount: 12016,

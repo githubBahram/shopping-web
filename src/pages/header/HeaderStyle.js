@@ -24,4 +24,8 @@ export const Header = styled.div`
   display: block;
   direction: rtl;
 `
+export   const Logo = styled.span`
+  font-family: IRANSansWeb_FaNum_Black;
+  color: #fff;
+`
 

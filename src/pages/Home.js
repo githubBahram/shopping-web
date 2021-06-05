@@ -14,7 +14,7 @@ const Home = () => {
     const marginBottom = useBreakpoints().isXs ? "3rem" : 0
 
     return (
-        <>
+        <div id="home">
             <HeaderPage/>
             <Container padding={padding} marginBottom={marginBottom}>
                 <div className="category-container">
@@ -29,9 +29,7 @@ const Home = () => {
                 </ScrollRendering>
             </Container>
             <Footer/>
-
-
-        </>
+        </div>
     )
 }
 

@@ -69,7 +69,7 @@ const AddProduct = (props) => {
 
                     {
                         order && showComp &&
-                        <ProductAddWrapper>
+                        <ProductAddWrapperMobile>
                             <ProductAddButton onClick={onIncreaseOrder} variant="outline-success"
                                               className="btn-circle">
                                 <FontAwesomeIcon icon={faPlus} size="sm" style={{fontSize: "10px"}}/>
@@ -78,7 +78,7 @@ const AddProduct = (props) => {
                             <ProductAddButton onClick={onDecrease} variant="outline-success" className="btn-circle">
                                 <FontAwesomeIcon icon={faMinus} size="sm" style={{fontSize: "10px"}}/>
                             </ProductAddButton>
-                        </ProductAddWrapper>
+                        </ProductAddWrapperMobile>
                     }
                 </Breakpoint>
             </>
@@ -87,54 +87,69 @@ const AddProduct = (props) => {
 
     return (
         <>
-            < ProductAddButton
-                onClick={onDecrease}
-                variant="outline-success"
-                className="btn-circle">
-                <FontAwesomeIcon
-                    icon={faMinus}
-                    size="sm"
-                    style={
-                        {
-                            fontSize: "10px"
+            {order &&
+            <ProductAddWrapper>
+                <ProductAddButton
+                    onClick={onIncreaseOrder}
+                    variant="outline-success"
+                    className="btn-circle">
+                    <FontAwesomeIcon
+                        icon={faPlus}
+                        size="sm"
+                        style={
+                            {
+                                fontSize: "10px"
+                            }
                         }
-                    }
-                />
-            </ProductAddButton>
-            <PurchaseCount>{count}</PurchaseCount>
-            <ProductAddButton onClick={onIncreaseOrder} variant="outline-success" className="btn-circle">
-                <FontAwesomeIcon icon={faPlus} size="sm" style={{fontSize: "10px"}}/>
-            </ProductAddButton>
+                    />
+                </ProductAddButton>
+                <PurchaseCount>{order.count}</PurchaseCount>
+                <ProductAddButton onClick={onDecrease} variant="outline-success" className="btn-circle">
+                    <FontAwesomeIcon icon={faMinus} size="sm" style={{fontSize: "10px"}}/>
+                </ProductAddButton>
+            </ProductAddWrapper>
+            }
+            {
+                !order &&
+                <Button  onClick={onIncreaseOrder} size="sm" variant="outline-primary">
+                    <span style={{fontFamily: "IRANSansWeb_Medium"}}>  افزودن به سبد</span>
+                </Button>
+            }
 
         </>
     )
 
 }
 
-const ProductAddWrapper = styled.div`
+const ProductAddWrapperMobile = styled.div`
+display: flex;
+justify-content: space-between;
+border: #007bff solid 1px;
+border-radius: 15px;
+margin-top: 5px;
+background-color: #fff;
+`
+
+const ProductAddWrapper=styled.div`
   display: flex;
   justify-content: space-between;
-  border: #007bff solid 1px;
-  border-radius: 15px;
-  margin-top: 5px;
-  background-color: #fff;
 `
 const ProductAddButton = styled(Button)`
-  font-size: 12px;
-  font-family: IRANSansWeb_Bold;
-  color: #007bff;
-  border-color: #007bff;
+font-size: 12px;
+font-family: IRANSansWeb_Bold;
+color: #007bff;
+border-color: #007bff;
 `
 const ButtonCount = styled(Button)`
-  background-color: #007bff;
-  border-radius: 50%;
-  height: 2rem;
-  width: 2rem;
-  padding: 0 !important;
-  font-family: IRANSansWeb_FaNum_Bold;
+background-color: #007bff;
+border-radius: 50%;
+height: 2rem;
+width: 2rem;
+padding: 0 !important;
+font-family: IRANSansWeb_FaNum_Bold;
 `
 const PurchaseCount = styled.span`
-  font-family: IRANSansWeb_FaNum_Medium;
-  align-self: center;
+font-family: IRANSansWeb_FaNum_Medium;
+align-self: center;
 `
 export default AddProduct

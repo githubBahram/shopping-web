@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import React, {useEffect, useState} from 'react';
-import {Header} from "./HeaderStyle"
+import {Header, Logo} from "./HeaderStyle"
 import {debounce} from "../../helper/helper";
 import HeaderFixed from "../../component/HeaderFixed";
 import Row from "react-bootstrap/Row";
@@ -41,10 +41,7 @@ const HeaderMobile = () => {
         </>
     )
 }
-const Logo = styled.span`
-  font-family: IRANSansWeb_FaNum_Black;
-  color: #fff;
-`
+
 
 const Address = styled.span`
   color: #fff;

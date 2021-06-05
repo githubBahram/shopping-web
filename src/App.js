@@ -7,12 +7,11 @@ import store from './redux/store';
 import './font.css'
 import './App.css';
 import SubCategoryPage from "./pages/subCategoryPage/SubCategoryPage";
-import AddProductPage from "./pages/AddProductPage";
 import ProductListPage from "./pages/productList/ProductListPage";
-import Footer from "./pages/footer/Footer";
 import ShoppingCartPage from "./pages/shoppingCart/ShoppingCartPage";
-import Category from "./pages/Category";
 import CategoryFilter from "./pages/productList/CategoryFilter";
+import LoginMobile from "./pages/login/LoginMobile";
+import ConfirmSendCode from "./pages/login/ConfirmSendCode";
 
 
 const About = () => <span>About</span>;
@@ -20,7 +19,7 @@ const About = () => <span>About</span>;
 const App = () => (
     <Provider store={store}>
         <BrowserRouter>
-            <div dir="rtl" style={{backgroundColor: '#fafafa'}}>
+            <div dir="rtl" style={{backgroundColor: '#fafafa',height:"100%"}}>
                 <Switch>
                     <Route path="/about">
                         <About/>
@@ -41,7 +40,12 @@ const App = () => (
                     <Route path="/productList/:sort">
                         <ProductListPage/>
                     </Route>
-
+                    <Route exact path="/authentication/login">
+                        <LoginMobile/>
+                    </Route>
+                    <Route exact path="/authentication/verification">
+                        <ConfirmSendCode/>
+                    </Route>
                     <Route exact path="/shoppingCart">
                         <ShoppingCartPage/>
                     </Route>
@@ -49,8 +53,6 @@ const App = () => (
                         <Home/>
                     </Route>
                 </Switch>
-
-
             </div>
         </BrowserRouter>
     </Provider>
