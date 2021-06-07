@@ -15,7 +15,6 @@ const ShoppingCartButton = () => {
 
     const showShoppingCartPanel = () => {
         setShowShoppingCart(!showShoppingCart)
-        document.body.style.overflow = "hidden"
     }
 
     useEffect(() => {
@@ -23,7 +22,7 @@ const ShoppingCartButton = () => {
 
     return (
         <>
-            <DrawerLeftPanel   showEvent={setShowShoppingCart} show={showShoppingCart}>
+            <DrawerLeftPanel  showEvent={setShowShoppingCart} show={showShoppingCart}>
                 <ShoppingCartPage/>
             </DrawerLeftPanel>
 

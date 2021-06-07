@@ -13,7 +13,7 @@ const SubCategoryDesktop = () => {
     return (
         <>
             <HeaderFixed/>
-            <Container fluid className="pl-4 pr-4" style={{marginTop: '6rem'}}>
+            <Container fluid style={{marginTop: '6rem'}}>
                 <Row>
                     <Col>
                         <Filter className=" item-sticky pr-3">
@@ -36,15 +36,19 @@ const SubCategoryDesktop = () => {
                             <ScrollRendering>
                                 <SubCategory title="شیر"/>
                             </ScrollRendering>
+                            <div style={{marginTop: "1rem"}}></div>
                             <ScrollRendering>
                                 <SubCategory title="ماست"/>
                             </ScrollRendering>
+                            <div style={{marginTop: "1rem"}}></div>
                             <ScrollRendering>
                                 <SubCategory title="کره"/>
                             </ScrollRendering>
+                            <div style={{marginTop: "1rem"}}></div>
                             <ScrollRendering>
                                 <SubCategory title="خامه"/>
                             </ScrollRendering>
+                            <div style={{marginTop: "1rem"}}></div>
                             <ScrollRendering>
                                 <SubCategory title="پنیر"/>
                             </ScrollRendering>

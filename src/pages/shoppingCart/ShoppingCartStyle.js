@@ -5,8 +5,8 @@ import {Link} from "react-router-dom";
 
 
 export const ShoppingCartListContainer = styled.div`
-  margin-bottom: 3.5rem;
-  margin-top: 2.8rem;
+  margin-bottom: 3.6rem;
+  margin-top: 3rem;
  
   display: flex;
   flex: 1;
