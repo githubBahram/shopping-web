@@ -136,7 +136,7 @@ export const NextShopWrapper = styled(Link)`
   justify-content: space-around;
   font-family: IRANSansWeb_FaNum_Medium;
   align-items: center;
-  width: 100%;
+  width:${(props => props.width)};
   height: 100%;
   color: #fff;
 `

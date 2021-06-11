@@ -5,8 +5,10 @@ import SubCategoryMobile from "../subCategoryPage/SubCategoryMobile";
 import CardDesktop from "./CardDesktop";
 import CardMobile from "./CardMobile";
 
+
 const Card = (props) => {
     const {id, title, discountPercent, mainAmount, finalAmount, image} = props
+
     return (
         <>
             <Breakpoint at="lg">

@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import Button from "react-bootstrap/Button";
 import AddProduct from "../../component/AddProduct";
+import ImageLazyLoading from "../../component/ImageLazyLoading";
+
 
 const CardDesktop = (props) => {
     const {id, title, discountPercent, mainAmount, finalAmount, image} = props
@@ -9,10 +11,10 @@ const CardDesktop = (props) => {
         <>
             <CardContainer>
                 <ImageCardWrapper>
-                    <picture>
-                        <ImageCard
+                    <div style={{width:"100%"}}>
+                        <ImageLazyLoading
                             src={image}/>
-                    </picture>
+                    </div>
                 </ImageCardWrapper>
 
                 <TitleCard> {title}</TitleCard>
@@ -52,16 +54,14 @@ const CardContainer = styled.div`
 const AddProductWrapper = styled.div`
   flex-grow: 1;
 `
-const TitleWrapper = styled.div`
-  display: flex;
-  align-items: baseline;
-`
+
 const ImageCard = styled.img`
   width: 100%;
   align-self: center;
 `
 const ImageCardWrapper = styled.div`
   padding: 0 1.6rem;
+  min-height: 7rem;
 `
 const TitleCard = styled.span`
   font-family: IRANSansWeb;

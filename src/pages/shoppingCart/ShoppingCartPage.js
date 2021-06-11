@@ -111,7 +111,7 @@ const ShoppingCartPage = () => {
                 <CartShoppingList/>
             </ShoppingCartListContainer>
             {orders.length > 0 &&
-        <NextShopButton/>
+            <NextShopButton/>
             }
         </>
     )

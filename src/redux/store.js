@@ -4,6 +4,7 @@ import categorySlice from "./feature/categorySlice";
 import orderSlice from "./feature/orderSlice";
 import productSlice from "./feature/productSlice";
 import userSlice from "./feature/userSlice";
+import drawPanelSlice from "./feature/drawPanelSlice";
 
 export default configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export default configureStore({
         categories: categorySlice,
         orders: orderSlice,
         products: productSlice,
-        user: userSlice
+        user: userSlice,
+        drawPanel:drawPanelSlice
     },
 });

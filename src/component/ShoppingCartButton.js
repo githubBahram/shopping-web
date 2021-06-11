@@ -1,20 +1,21 @@
 import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import Button from "react-bootstrap/Button";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import DrawerLeftPanel from "./DrawerLeftPanel";
 import ShoppingCartPage from "../pages/shoppingCart/ShoppingCartPage";
+import {openDrawPanel} from "../redux/feature/drawPanelSlice";
 
 
 const ShoppingCartButton = () => {
     const order = useSelector(state => state.orders);
     let count = 0
     order.map(item => count = count + item.count)
-
+    const dispatch = useDispatch();
     const [showShoppingCart, setShowShoppingCart] = useState(false)
 
     const showShoppingCartPanel = () => {
-        setShowShoppingCart(!showShoppingCart)
+       dispatch(openDrawPanel())
     }
 
     useEffect(() => {
@@ -22,9 +23,7 @@ const ShoppingCartButton = () => {
 
     return (
         <>
-            <DrawerLeftPanel  showEvent={setShowShoppingCart} show={showShoppingCart}>
-                <ShoppingCartPage/>
-            </DrawerLeftPanel>
+
 
             <CartButton onClick={showShoppingCartPanel} variant="light">سبد خرید
                 <PurchasesCount>{count}</PurchasesCount>

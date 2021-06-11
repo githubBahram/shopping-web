@@ -40,12 +40,15 @@
 .body-container {
     padding: 25px;
 }
-body{
+
+body {
     height: 100%;
 }
-#root{
+
+#root {
 
 }
+
 .text-align-right {
     text-align: right;
 }
@@ -79,8 +82,9 @@ html {
     font-size: 18px;
     height: 100%;
 }
-@media only screen and (max-width: 640px){
-    html{
+
+@media only screen and (max-width: 640px) {
+    html {
         background-color: #fafafa;
         font-family: IRANSansWeb;
         font-size: 16px;
@@ -154,11 +158,34 @@ nav a:hover {
 nav .active {
 
 }
-.slide-pane__content{
-    padding: 0!important;
+
+.slide-pane__content {
+    padding: 0 !important;
 
 }
 
+.register-modal-title {
+    flex-grow: 1;
+    text-align: center;
+    font-family: IRANSansWeb_Bold;
+    font-size: .85rem;
+}
+.register-modal-body{
+    font-family: IRANSansWeb;
+    font-size: .9rem;
+    color: rgb(117, 117, 117);
+    direction: rtl;
+    text-align: center;
+    padding: 2rem 3rem !important;
+}
+.register-dialog{
+    direction: rtl;
+}
+.register-modal-phone-number{
+    text-align: right;
+    margin-top: 1.5rem;
+    color: rgb(163, 163, 163);
+}
 
 
 

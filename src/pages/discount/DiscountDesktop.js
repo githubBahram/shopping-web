@@ -6,14 +6,16 @@ import ScrollContainer from 'react-indiana-drag-scroll'
 import ReactDOM from "react-dom";
 import useBreakpoints from "../../component/useBreakpoints";
 
+
 const DiscountDesktop = () => {
     const scrollContainer = useRef(null)
     const mobileRender = useBreakpoints().isXs
     const height = mobileRender ? "14rem" : "17.5rem"
     const [arrowLeftClick, isArrowLeftClick] = useState(false)
+
     useEffect(() => {
 
-    }, [])
+    }, [height])
     const scrollLeft = () => {
         isArrowLeftClick(true)
         ReactDOM.findDOMNode(scrollContainer.current).scrollLeft += -10000
@@ -99,8 +101,6 @@ const CardWrapper = styled(ScrollContainer)`
  
   width: 100%;
   height: ${(props) => props.height};
- 
-
   background: url('https://snapp.market/v2/static/images/ff6cfe6688bee991b0de30bebfbe09fd.png') 0 0 / cover,
   linear-gradient(-45deg, rgb(251, 75, 84), rgb(251, 75, 84));
   padding: 10px 20px 10px 0;
@@ -110,7 +110,6 @@ const CardWrapper = styled(ScrollContainer)`
 const ArrowLeft = styled.button`
   position: absolute;
   left: 50px;
-
   background-color: blue;
   width: 25px;
   height: 25px;

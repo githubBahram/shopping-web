@@ -16,7 +16,7 @@ import Form from "react-bootstrap/Form";
 import Accordion from "react-bootstrap/Accordion";
 import CategoryFilter from "./CategoryFilter";
 
-const ProductListPage_D = () => {
+const  ProductListPage_D = () => {
     const {sort} = useParams();
 
     const products = useSelector(state => state.products.productList);

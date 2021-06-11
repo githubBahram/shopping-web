@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {fetchBrandByCategory, fetchBrands} from "./brandSlice";
 
 const initialState = {
     user: {name: '', family: '', phoneNumber: '', token: ''},

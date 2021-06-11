@@ -3,25 +3,27 @@ import styled from 'styled-components'
 import Collapse from "react-bootstrap/Collapse";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes, faTrash} from "@fortawesome/free-solid-svg-icons";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Button from "react-bootstrap/Button";
+import {closeDrawPanel, selectShowState} from "../redux/feature/drawPanelSlice";
 
-const DrawerLeftPanel = (props) => {
-    let {show, showEvent} = props
+const DrawerLeftPanel = () => {
 
+    const dispatch = useDispatch();
+    const drawPanel=useSelector(selectShowState)
     const order = useSelector(state => state.orders);
     let count = 0
     order.map(item => count = count + item.count)
 
     const globalClickListener = (e) => {
-        showEvent(false)
+      dispatch(closeDrawPanel())
     }
 
     useEffect(() => {
         return () => {
             document.removeEventListener('click', globalClickListener)
         }
-    }, [show])
+    }, [drawPanel])
 
     const handleBodyClick = (syntheticEvent) => {
         syntheticEvent.stopPropagation()
@@ -37,8 +39,8 @@ const DrawerLeftPanel = (props) => {
 
     return (
         <>
-            <ContainerHighlight show={show}/>
-        <Collapse  timeout={1000} in={show} dimension="width"
+            <ContainerHighlight show={drawPanel.drawPanel.show}/>
+        <Collapse  timeout={1000} in={drawPanel.drawPanel.show} dimension="width"
                   onExit={onExit}
                   onEntered={onEnter}>
 
@@ -68,7 +70,7 @@ const DrawerLeftPanel = (props) => {
 
 const ContainerHighlight = styled.div`
   position: fixed;
-  height: 100%;
+  height: 100vh;
   inset: 0;
   text-align: right;
   overflow-y: auto;
@@ -76,7 +78,7 @@ const ContainerHighlight = styled.div`
   display: ${(props => props.show?'block':'none')};
   width: 100%;
   background: rgba(0, 0, 0, 0.2);
-  z-index: 1002;
+  z-index: 99999999;
 `
 const ContainerWrapper = styled.div`
   position: fixed;

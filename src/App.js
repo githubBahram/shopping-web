@@ -12,6 +12,7 @@ import ShoppingCartPage from "./pages/shoppingCart/ShoppingCartPage";
 import CategoryFilter from "./pages/productList/CategoryFilter";
 import LoginMobile from "./pages/login/LoginMobile";
 import ConfirmSendCode from "./pages/login/ConfirmSendCode";
+import DrawerLeftPanel from "./component/DrawerLeftPanel";
 
 
 const About = () => <span>About</span>;
@@ -20,6 +21,9 @@ const App = () => (
     <Provider store={store}>
         <BrowserRouter>
             <div dir="rtl" style={{backgroundColor: '#fafafa',height:"100%"}}>
+                <DrawerLeftPanel>
+                    <ShoppingCartPage/>
+                </DrawerLeftPanel>
                 <Switch>
                     <Route path="/about">
                         <About/>
