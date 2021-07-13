@@ -17,7 +17,7 @@ const MainCategoryMobile = (props) => {
                     <ContainerItem>
                         <ImageWrapper key={index} index={index}>
                             <MainCategoryImage key={index} index={index} className="main-category-image"
-                                               src={`https://testshop.s3.ir-thr-at1.arvanstorage.com/${item.image.name}`}/>
+                                               src={`https://image-product-thumbnail.s3.ir-thr-at1.arvanstorage.com/${item.imageLocation}`}/>
                         </ImageWrapper>
                         <MainCategoryItem>{item.name}</MainCategoryItem>
                     </ContainerItem>

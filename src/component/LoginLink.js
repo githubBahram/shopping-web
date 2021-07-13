@@ -1,15 +1,14 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTimes} from "@fortawesome/free-solid-svg-icons";
-import Form from "react-bootstrap/Form";
 import RegisterModal from "../pages/RegisterModal";
 
 const LoginLink = () => {
     const [show, setShow] = useState(false);
-    const onHide=()=>setShow(false)
+    const onHide=()=>{
+        setShow(false)
+        document.body.style.overflow='scroll'
+    }
 
     return (
         <>

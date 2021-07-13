@@ -2,22 +2,15 @@ import React, {useEffect} from 'react'
 import Breakpoint from "../../component/Breakpoint";
 import MainCategoriesDesktop from "./MainCategoryDesktop";
 import MainCategoryMobile from "./MainCategoryMobile";
-import {fetchMainCategories, selectAllCategories} from "../../redux/feature/categorySlice";
-import {useDispatch, useSelector} from 'react-redux';
 import Spinner from "react-bootstrap/Spinner";
 import styled from 'styled-components'
 
-const MainCategories = () => {
-    const categoryStatus = useSelector(state => state.categories.status)
-    const categories = useSelector(selectAllCategories)
-    const dispatch = useDispatch();
+const MainCategories = (props) => {
+    const {categoryStatus, categories} = props
 
     useEffect(() => {
-        console.log('rerender')
-        if (categoryStatus === 'idle') {
-            dispatch(fetchMainCategories())
-        }
-    }, [categoryStatus, dispatch])
+
+    }, [categoryStatus])
 
     if (categoryStatus === 'idle') {
         return (<>
@@ -56,6 +49,6 @@ const SpinnerContainer = styled.div`
 `
 const SpinnerCostume = styled(Spinner)`
   animation: ${(props) => props.delay}s linear infinite spinner-grow;
-  
+
 `
 export default MainCategories

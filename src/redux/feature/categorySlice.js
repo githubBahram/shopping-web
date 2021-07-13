@@ -16,6 +16,7 @@ export const saveCategory = createAsyncThunk('categories/addCategory', async (ca
 
 export const fetchMainCategories = createAsyncThunk('categories/getAllMainCategory', async () => {
     try {
+        console.log("fetch All Main category")
         return await getAllMainCategory()
     } catch (err) {
         throw 'network error'
@@ -30,7 +31,9 @@ const categoriesSlice = createSlice({
     extraReducers: {
         [fetchMainCategories.fulfilled]: (state, action) => {
             state.status = 'succeeded'
-            state.categories = state.categories.concat(action.payload.content)
+            console.log('fulfilled categories')
+            console.log(action.payload)
+            state.categories = state.categories.concat(action.payload)
         },
         [fetchMainCategories.rejected]: (state, action) => {
             state.status = 'reject'

@@ -10,8 +10,8 @@ export const addCategory = async (category) => {
 }
 
 export const getAllMainCategory = async () => {
-    const {data} = await instance.get("/categoryManager/categories")
-
-
+    const {data} = await instance.get("/categoryManager/categories/isRoot/companies/1")
+    console.log('root categories...')
+    console.log(data)
     return data
 }

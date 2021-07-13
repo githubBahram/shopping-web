@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Button from "react-bootstrap/Button";
 import {closeDrawPanel, selectShowState} from "../redux/feature/drawPanelSlice";
 
-const DrawerLeftPanel = () => {
+const DrawerLeftPanel = (props) => {
 
     const dispatch = useDispatch();
     const drawPanel=useSelector(selectShowState)
@@ -30,9 +30,11 @@ const DrawerLeftPanel = () => {
     }
     const onExit = () => {
         document.removeEventListener('click', globalClickListener)
+        alert("exit")
         document.body.style.overflow='scroll'
     }
     const onEnter = () => {
+
         document.addEventListener('click', globalClickListener)
         document.body.style.overflow='hidden'
     }
@@ -44,7 +46,7 @@ const DrawerLeftPanel = () => {
                   onExit={onExit}
                   onEntered={onEnter}>
 
-                <ContainerWrapper showPanel={show} onClick={handleBodyClick}>
+                <ContainerWrapper   onClick={handleBodyClick}>
                     <Container>
 
                         <HeaderWrapper>
@@ -57,7 +59,7 @@ const DrawerLeftPanel = () => {
                                             icon={faTrash} color="red"/></Button>
                                 </HeaderTitle>
                                 <FontAwesomeIcon icon={faTimes} size="sm"
-                                                 style={{fontSize: "1rem"}} onClick={() => showEvent(false)}/>
+                                                 style={{fontSize: "1rem"}} onClick={() =>  dispatch(closeDrawPanel())}/>
                             </Header>
                         </HeaderWrapper>
                         {props.children}
