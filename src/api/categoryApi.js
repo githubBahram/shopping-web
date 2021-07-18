@@ -15,3 +15,10 @@ export const getAllMainCategory = async () => {
     console.log(data)
     return data
 }
+export const getCategoryById = async (categoryId) => {
+    let url = "/categoryManager/categories/"
+   url= url.concat(categoryId)
+
+    const {data} = await instance.get(url)
+    return data
+}

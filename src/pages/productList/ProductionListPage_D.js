@@ -15,12 +15,25 @@ import Pagination from "react-bootstrap/Pagination";
 import Form from "react-bootstrap/Form";
 import Accordion from "react-bootstrap/Accordion";
 import CategoryFilter from "./CategoryFilter";
+import {getProducts} from "../../api/productApi";
 
-const  ProductListPage_D = () => {
-    const {sort} = useParams();
+const ProductListPage_D = (props) => {
 
-    const products = useSelector(state => state.products.productList);
-    const isEndPage = useSelector(state => state.products.isEndPage)
+    const {categoryId} = props
+
+
+    let productFilter = {
+        brandId: '',
+        categoryId: categoryId,
+        companyId: 1,
+        pageNumber: 1,
+        pageSize: 12,
+        isRootCategory: false
+    }
+
+    const [products, setProducts] = useState([])
+    const isEndPage = false
+
     let bottomBoundaryRef = useRef(null);
     const [visible, setVisible] = useState(false)
     const dispatch = useDispatch();
@@ -70,9 +83,9 @@ const  ProductListPage_D = () => {
                     products.map((card) => (
                         <CardWrapper id={card.id}>
                             <Card id={card.id}
-                                  title={card.title}
-                                  discountPercent={card.discountPercent}
-                                  mainAmount={card.mainAmount} finalAmount={card.finalAmount} image={card.image}
+                                  title={card.name}
+                                  discountPercent={card.discountValue}
+                                  mainAmount={card.price} finalAmount={card.price} image={card.imageLocation}
                             />
                         </CardWrapper>
                     ))}
@@ -81,8 +94,12 @@ const  ProductListPage_D = () => {
     }
 
     useEffect(() => {
-        console.log('visible:')
-        console.log(visible)
+
+        let result = getProducts(productFilter)
+        result.then((respnse) => {
+            setProducts(respnse.data.content)
+        })
+
         if (bottomBoundaryRef.current) {
             scrollObserver(bottomBoundaryRef.current);
         }
@@ -139,14 +156,7 @@ const  ProductListPage_D = () => {
 
 const Filtering = styled(Col)`
 `
-const Category = styled.div`
-  padding: 1rem;
-  background-color: #fff;
-  text-align: right;
-  font-family: IRANSansWeb_FaNum_Medium;
-  border-radius: 4px;
 
-`
 const SortWrapper = styled(Col)`
   background-color: #fff;
   border: 0.1rem solid rgb(238, 238, 238);

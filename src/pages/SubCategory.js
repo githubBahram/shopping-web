@@ -1,34 +1,36 @@
 import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
-import categories from "../data/categories";
+
 import Card from "./card/Card";
 import ScrollContainer from "react-indiana-drag-scroll";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {getProducts} from "../api/productApi";
 
 
 const SubCategory = (props) => {
-    const {title, categoryId} = props
+    const {title, categoryId, isRootCategory} = props
 
     let productFilter = {
         brandId: '',
         categoryId: categoryId,
         companyId: 1,
         pageNumber: 1,
-        pageSize: 6
+        pageSize: 6,
+        isRootCategory: isRootCategory
     }
-
 
     const [products, setProducts] = useState([])
 
 
     useEffect(() => {
+
         let result = getProducts(productFilter)
         result.then((respnse) => {
             setProducts(respnse.data.content)
         })
 
-    }, [title])
+
+    }, [])
 
     const CardRender = (card, idx) => {
         return (
@@ -58,8 +60,8 @@ const SubCategory = (props) => {
             {products &&
             <Container>
                 <Header>
-                    <HeaderTitleLink to="/category/465465">{title}</HeaderTitleLink>
-                    <ShowMore> مشاهده بیشتر </ShowMore>
+                    <HeaderTitleLink to={`/categories/${categoryId}`}>{title}</HeaderTitleLink>
+                    <ShowMore to={`/categories/${categoryId}`}> مشاهده بیشتر </ShowMore>
                 </Header>
                 <CardContainer vertical={false}>
                     <CardRender/>
@@ -96,7 +98,7 @@ const HeaderTitleLink = styled(Link)`
   color: rgb(163, 163, 163);
   text-decoration: none;
 `
-const ShowMore = styled.a`
+const ShowMore = styled(Link)`
   font-family: IRANSansWeb_Medium;
   font-size: 1rem;
 `

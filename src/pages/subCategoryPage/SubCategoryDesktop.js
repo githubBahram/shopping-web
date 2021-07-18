@@ -7,8 +7,39 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Navigator from "../../component/Navigator";
+import {Link} from "react-router-dom";
 
-const SubCategoryDesktop = () => {
+const SubCategoryDesktop = (props) => {
+    const {categories} = props
+    const FilterItem = () => {
+        return (
+            <>
+                {
+                    categories.map((item) => (
+                        <Row  className="p1"><Col className="p-2 ml-3 mr-3 font-face-is"><Link
+                            to={`/categories/${item.id}`}>{item.name}</Link></Col></Row>
+                    ))
+                }
+            </>
+        )
+    }
+
+    const CategoryList = (props) => {
+        const {data} = props
+        return (
+            <>
+                {
+                    data.map((item) => (
+                        <div>
+                            <ScrollRendering>
+                                <SubCategory title={item.name} categoryId={item.id}/>
+                            </ScrollRendering>
+                        </div>
+                    ))
+                }
+            </>
+        )
+    }
 
     return (
         <>
@@ -19,13 +50,7 @@ const SubCategoryDesktop = () => {
                         <Filter className=" item-sticky pr-3">
                             <h4 className="font-face-md " style={{marginBottom: '1rem', fontSize: "16px"}}>دسته بندی
                                 ها:</h4>
-                            <Row className="p1" ><Col className="p-2 ml-3 mr-3 font-face-is">شیر</Col></Row>
-                            <Row className="p1" ><Col className="p-2 ml-3 mr-3 font-face-is">پنیر</Col></Row>
-                            <Row className="p1" ><Col className="p-2 ml-3 mr-3 font-face-is">ماست</Col></Row>
-                            <Row className="p1" ><Col className="p-2 ml-3 mr-3 font-face-is">دوغ</Col></Row>
-                            <Row className="p1" ><Col className="p-2 ml-3 mr-3 font-face-is">کره</Col></Row>
-                            <Row className="p1" ><Col className="p-2 ml-3 mr-3 font-face-is">خامه</Col></Row>
-                            <Row className="p1" ><Col className="p-2 ml-3 mr-3 font-face-is">کشک</Col></Row>
+                            <FilterItem/>
                         </Filter>
                     </Col>
                     <Col md={10}>
@@ -33,25 +58,7 @@ const SubCategoryDesktop = () => {
                             لبنیات
                         </Navigator>
                         <CategoryBody>
-                            <ScrollRendering>
-                                <SubCategory title="شیر"/>
-                            </ScrollRendering>
-                            <div style={{marginTop: "1rem"}}></div>
-                            <ScrollRendering>
-                                <SubCategory title="ماست"/>
-                            </ScrollRendering>
-                            <div style={{marginTop: "1rem"}}></div>
-                            <ScrollRendering>
-                                <SubCategory title="کره"/>
-                            </ScrollRendering>
-                            <div style={{marginTop: "1rem"}}></div>
-                            <ScrollRendering>
-                                <SubCategory title="خامه"/>
-                            </ScrollRendering>
-                            <div style={{marginTop: "1rem"}}></div>
-                            <ScrollRendering>
-                                <SubCategory title="پنیر"/>
-                            </ScrollRendering>
+                            <CategoryList data={categories}/>
                         </CategoryBody>
                     </Col>
                 </Row>

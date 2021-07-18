@@ -6,18 +6,21 @@ import Footer from "../footer/Footer";
 import {Route, Switch, useRouteMatch} from "react-router-dom";
 import CategoryFilter from "./CategoryFilter";
 
-const ProductListPage = () => {
-    let { path, url } = useRouteMatch();
+const ProductListPage = (props) => {
+    let {path, url} = useRouteMatch();
+    const {categoryId} = props
+
+
     return (
         <>
 
             <Switch>
                 <Route exact path={path}>
                     <Breakpoint at="lg">
-                        <ProductListPage_D/>
+                        <ProductListPage_D categoryId={categoryId}/>
                     </Breakpoint>
                     <Breakpoint at="md">
-                        <ProductListPage_D/>
+                        <ProductListPage_D categoryId={categoryId}/>
                     </Breakpoint>
 
                     <Breakpoint at="xs">
@@ -25,7 +28,7 @@ const ProductListPage = () => {
                     </Breakpoint>
                     <Footer/>
                 </Route>
-                <Route path={`${path}/productFilter`} >
+                <Route path={`${path}/productFilter`}>
                     <CategoryFilter/>
                 </Route>
             </Switch>

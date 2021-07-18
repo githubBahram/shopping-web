@@ -32,7 +32,7 @@ const Home = () => {
                     data.categories.map((item, index) =>
                         <div>
                             <ScrollRendering>
-                                <SubCategory categoryId={item.id} title={item.name}/>
+                                <SubCategory isRootCategory={true} categoryId={item.id} title={item.name}/>
                             </ScrollRendering>
                             <div style={{marginBottom: "8px"}}/>
                         </div>

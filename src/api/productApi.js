@@ -7,6 +7,10 @@ export const getProducts = async (productFilter) => {
         params = params.concat('brandId=', productFilter.barnds, "&")
     }
 
+    if (productFilter.isRootCategory) {
+        params = params.concat('rootCategory=', productFilter.isRootCategory, "&")
+    }
+
     console.log('product filter....')
     console.log(productFilter)
 
