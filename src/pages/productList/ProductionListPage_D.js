@@ -104,7 +104,7 @@ const ProductListPage_D = (props) => {
             scrollObserver(bottomBoundaryRef.current);
         }
 
-    }, [sort, bottomBoundaryRef, scrollObserver, isEndPage])
+    }, [   bottomBoundaryRef, scrollObserver, isEndPage])
 
     return (
         <>
@@ -113,7 +113,7 @@ const ProductListPage_D = (props) => {
                 <Row>
                     <Col>
                         <Filtering>
-                            <CategoryFilter/>
+                            <CategoryFilter categoryId={categoryId}/>
                         </Filtering>
                     </Col>
                     <Col md={9}>

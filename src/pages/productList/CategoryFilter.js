@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
-import {Link, useParams, useHistory} from "react-router-dom";
+import {Link, useParams, useHistory, useLocation} from "react-router-dom";
 import Breakpoint from "../../component/Breakpoint";
 import {useDispatch, useSelector} from "react-redux";
 import styled from "styled-components";
@@ -10,37 +10,66 @@ import 'react-sliding-side-panel/lib/index.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretUp, faFilter, faCaretDown} from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
+import {getBrandsByCategoryAndCompany} from "../../api/brandApi";
+import {selectCurrentCompany} from "../../redux/feature/companySlice";
+import {text} from "@fortawesome/fontawesome-svg-core";
 
 const CategoryFilter = (props) => {
-    const {setOpenFilterPanel} = props
+    const {setOpenFilterPanel, categoryId} = props
     const history = useHistory();
+    let location = useLocation();
     const removeFiltering = () => {
         setOpenFilterPanel(false)
         history.push('/productList/132?brand=132')
     }
     const [collapse, isCollapse] = useState(true)
-    const brands = useSelector(state => state.brands.brands);
     const brandsFiltering = useSelector(state => state.products.filter.brands);
-    const dispatch = useDispatch();
     const [brandChecked, setBrandChecked] = useState([])
     let {productId} = useParams();
 
     const setBrand = (id) => {
+
         let index = brandChecked.indexOf(id);
         if (index > -1) {
             brandChecked.splice(index, 1);
         } else {
             setBrandChecked([...brandChecked, id])
         }
+
+        let url = location.pathname
+        let brands = ''
+        console.log('brandChecked')
+        console.log(brandChecked)
+        brandChecked.map((item, index) => (
+            brands.concat(item, ",")
+
+        ))
+
+        if (location.pathname.indexOf("?") > -1) {
+            url = url.concat("&brands=", brands)
+        } else {
+            url = url.concat("?", "brands=", brands)
+        }
+
+
+        history.push(url)
     }
 
 
     const BrandItemList = (props) => {
-        const {brandsFilter} = props
+
+        const [brands, setBrands] = useState([])
+        const data = useSelector(selectCurrentCompany)
+        const brandsData = getBrandsByCategoryAndCompany(categoryId, data.currentCompany.id)
+
+        brandsData.then((res) => {
+            setBrands(res)
+        })
+
         return brands.map((item, idx) => (
-            <Form.Check id={idx} onClick={() => {
+            <Form.Check defaultChecked={brandChecked.indexOf(item.id) > -1} id={idx} onClick={() => {
                 setBrand(item.id)
-            }} defaultChecked={brandsFilter.indexOf(item.id) > -1} type="checkbox"
+            }} type="checkbox"
                         label={item.name}/>
         ))
     }
@@ -51,7 +80,7 @@ const CategoryFilter = (props) => {
         brandsFiltering.forEach((item) => {
             brandChecked.push(item)
         })
-    }, [])
+    }, [location])
     return (
         <div>
             <Accordion className="p-3" defaultActiveKey="0">
@@ -91,7 +120,8 @@ const CategoryFilter = (props) => {
                 <ConfirmContainer>
                     <Confirm>
 
-                        <Button onClick={removeFiltering} style={{width: '45%'}} variant="outline-dark">حذف فیلتر</Button>
+                        <Button onClick={removeFiltering} style={{width: '45%'}} variant="outline-dark">حذف
+                            فیلتر</Button>
 
                         <Button style={{width: '45%'}} variant="primary">اعمال</Button>
                     </Confirm>

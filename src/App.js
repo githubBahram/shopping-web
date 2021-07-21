@@ -28,7 +28,7 @@ const App = () => (
                     <Route path="/about">
                         <About/>
                     </Route>
-                    <Route path="/brands">
+                    <Route exact path="/brands">
                         <Brand/>
                     </Route>
                     <Route exact path="/categories/:categoryId">

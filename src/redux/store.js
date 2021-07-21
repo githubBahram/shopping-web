@@ -5,6 +5,7 @@ import orderSlice from "./feature/orderSlice";
 import productSlice from "./feature/productSlice";
 import userSlice from "./feature/userSlice";
 import drawPanelSlice from "./feature/drawPanelSlice";
+import companySlice from "./feature/companySlice";
 
 export default configureStore({
     reducer: {
@@ -13,6 +14,7 @@ export default configureStore({
         orders: orderSlice,
         products: productSlice,
         user: userSlice,
-        drawPanel:drawPanelSlice
+        drawPanel:drawPanelSlice,
+        currentCompany:companySlice
     },
 });

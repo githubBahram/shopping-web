@@ -9,3 +9,10 @@ export const addBrand = async (brand) => {
 
     return data
 }
+
+export const getBrandsByCategoryAndCompany = async (categoryId,companyId) => {
+    let url = "/brandManager/brands/categories/"
+    url = url.concat(categoryId, "/companies/", companyId)
+    const {data} = await instance.get(url)
+    return data
+}
