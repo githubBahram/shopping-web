@@ -28,9 +28,7 @@ const ProductListPage = (props) => {
                     </Breakpoint>
                     <Footer/>
                 </Route>
-                <Route path={`${path}/productFilter`}>
-                    <CategoryFilter/>
-                </Route>
+
             </Switch>
         </>
     )

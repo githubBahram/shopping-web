@@ -3,46 +3,65 @@ import styled from 'styled-components'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import {useParams} from 'react-router-dom';
+import {useHistory, useLocation} from 'react-router-dom';
 import HeaderFixed from "../../component/HeaderFixed";
 import Navigator from "../../component/Navigator";
 import SortProduct from "../SortProduct";
 import Card from "../card/Card";
 import ScrollContainer from "react-indiana-drag-scroll";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {addProducts} from "../../redux/feature/productSlice";
 import Pagination from "react-bootstrap/Pagination";
-import Form from "react-bootstrap/Form";
-import Accordion from "react-bootstrap/Accordion";
 import CategoryFilter from "./CategoryFilter";
 import {getProducts} from "../../api/productApi";
+import {useQuery} from "../../helper/helper";
+
 
 const ProductListPage_D = (props) => {
 
     const {categoryId} = props
+    let location = useLocation();
+    const history = useHistory();
 
+
+    const [filterBrands, setFilterBrands] = useState([])
+    const [sortFiltering, setSortFiltering] = useState('')
+
+    let query = useQuery();
+    let brandQuery = ''
+    if (query.get("brands")) {
+        brandQuery = query.get("brands").slice(-1).includes(",") ? query.get("brands").slice(0, -1) : query.get("brands")
+    }
+
+    let brandsParam = ''
+    if (brandQuery && brandQuery !== "" && brandQuery.length > 0) {
+        brandsParam = brandQuery.split(",")
+    }
+
+    const [activePage, setActivePage] = useState(1)
 
     let productFilter = {
-        brandId: '',
+        brands: brandsParam,
         categoryId: categoryId,
         companyId: 1,
-        pageNumber: 1,
+        pageNumber: activePage,
         pageSize: 12,
         isRootCategory: false
     }
-
     const [products, setProducts] = useState([])
+
     const isEndPage = false
 
     let bottomBoundaryRef = useRef(null);
     const [visible, setVisible] = useState(false)
     const dispatch = useDispatch();
 
-    let active = 2;
     let items = [];
     for (let number = 1; number <= 5; number++) {
         items.push(
-            <Pagination.Item key={number} active={number === active}>
+            <Pagination.Item key={number} onClick={() => {
+                setActivePage(number)
+            }} active={number === activePage}>
                 {number}
             </Pagination.Item>,
         );
@@ -64,11 +83,9 @@ const ProductListPage_D = (props) => {
                     if (en.intersectionRatio > 0) {
                         setVisible(true)
                         dispatch(addProducts())
-                        console.log('is end page in scrolling')
-                        console.log(isEndPage)
 
                         if (isEndPage) {
-                            console.log("is end page")
+
                         }
                     }
                 });
@@ -95,6 +112,34 @@ const ProductListPage_D = (props) => {
 
     useEffect(() => {
 
+        console.log("use Effect call ...")
+
+        let url = location.pathname
+        let brands = ''
+
+        if (filterBrands.length > 0) {
+            filterBrands.map((item, index) => (
+                brands = brands.concat(item, ",")
+            ))
+
+            if (location.pathname.indexOf("?") > -1) {
+                url = url.concat("&brands=", brands.slice(0, -1))
+            } else {
+                url = url.concat("?", "brands=", brands.slice(0, -1))
+            }
+        }
+
+        if (sortFiltering.length > 0) {
+            if (url.indexOf("?") > -1) {
+                url = url.concat("&sort=", sortFiltering)
+            } else {
+                url = url.concat("?", "sort=", sortFiltering)
+            }
+        }
+
+        history.replace(url)
+
+        productFilter.brands = filterBrands
         let result = getProducts(productFilter)
         result.then((respnse) => {
             setProducts(respnse.data.content)
@@ -104,7 +149,7 @@ const ProductListPage_D = (props) => {
             scrollObserver(bottomBoundaryRef.current);
         }
 
-    }, [   bottomBoundaryRef, scrollObserver, isEndPage])
+    }, [filterBrands, activePage,sortFiltering])
 
     return (
         <>
@@ -113,7 +158,7 @@ const ProductListPage_D = (props) => {
                 <Row>
                     <Col>
                         <Filtering>
-                            <CategoryFilter categoryId={categoryId}/>
+                            <CategoryFilter addFilterBrands={setFilterBrands} categoryId={categoryId}/>
                         </Filtering>
                     </Col>
                     <Col md={9}>
@@ -123,7 +168,7 @@ const ProductListPage_D = (props) => {
                         <Row>
                             <Col>
                                 <SortWrapper>
-                                    <SortProduct/>
+                                    <SortProduct setSortFiltering={setSortFiltering}/>
                                 </SortWrapper>
                             </Col>
                         </Row>

@@ -13,46 +13,37 @@ import Button from "react-bootstrap/Button";
 import {getBrandsByCategoryAndCompany} from "../../api/brandApi";
 import {selectCurrentCompany} from "../../redux/feature/companySlice";
 import {text} from "@fortawesome/fontawesome-svg-core";
+import {useQuery} from "../../helper/helper";
 
-const CategoryFilter = (props) => {
-    const {setOpenFilterPanel, categoryId} = props
+const CategoryFilter = ({setOpenFilterPanel, categoryId, addFilterBrands}) => {
+
     const history = useHistory();
-    let location = useLocation();
+    let query = useQuery();
+    console.log("query brands")
+    console.log(query.get("brands"))
+    let brandQuery = ''
+    if (query.get("brands")) {
+        brandQuery = query.get("brands").slice(-1).includes(",") ? query.get("brands").slice(0, -1) : query.get("brands")
+    }
     const removeFiltering = () => {
         setOpenFilterPanel(false)
         history.push('/productList/132?brand=132')
     }
     const [collapse, isCollapse] = useState(true)
-    const brandsFiltering = useSelector(state => state.products.filter.brands);
-    const [brandChecked, setBrandChecked] = useState([])
-    let {productId} = useParams();
+
+    const [brandChecked, setBrandChecked] = useState(brandQuery.includes(",") || brandQuery !== "" ? brandQuery.split(",") : [])
+
+    console.log("brand check initial...")
+    console.log(brandChecked)
 
     const setBrand = (id) => {
 
         let index = brandChecked.indexOf(id);
         if (index > -1) {
-            brandChecked.splice(index, 1);
+            setBrandChecked(brandChecked.filter(item => item !== id))
         } else {
             setBrandChecked([...brandChecked, id])
         }
-
-        let url = location.pathname
-        let brands = ''
-        console.log('brandChecked')
-        console.log(brandChecked)
-        brandChecked.map((item, index) => (
-            brands.concat(item, ",")
-
-        ))
-
-        if (location.pathname.indexOf("?") > -1) {
-            url = url.concat("&brands=", brands)
-        } else {
-            url = url.concat("?", "brands=", brands)
-        }
-
-
-        history.push(url)
     }
 
 
@@ -60,27 +51,27 @@ const CategoryFilter = (props) => {
 
         const [brands, setBrands] = useState([])
         const data = useSelector(selectCurrentCompany)
-        const brandsData = getBrandsByCategoryAndCompany(categoryId, data.currentCompany.id)
 
-        brandsData.then((res) => {
-            setBrands(res)
-        })
+        useEffect(() => {
+            const brandsData = getBrandsByCategoryAndCompany(categoryId, data.currentCompany.id)
+            brandsData.then((res) => {
+                setBrands(res)
+            })
+        }, [])
 
         return brands.map((item, idx) => (
-            <Form.Check defaultChecked={brandChecked.indexOf(item.id) > -1} id={idx} onClick={() => {
-                setBrand(item.id)
+            <Form.Check defaultChecked={brandChecked.indexOf(String(item.id)) > -1} id={idx} onClick={() => {
+                setBrand(String(item.id))
             }} type="checkbox"
                         label={item.name}/>
         ))
     }
 
     useEffect(() => {
-        console.log('product id')
-        console.log(productId)
-        brandsFiltering.forEach((item) => {
-            brandChecked.push(item)
-        })
-    }, [location])
+        addFilterBrands(brandChecked)
+        console.log('default brandChecked')
+        console.log(brandChecked)
+    }, [brandChecked])
     return (
         <div>
             <Accordion className="p-3" defaultActiveKey="0">

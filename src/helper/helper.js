@@ -1,3 +1,5 @@
+import {useLocation} from "react-router-dom";
+
 export function debounce(func, wait, immediate) {
     let timeout;
     return function () {
@@ -12,3 +14,7 @@ export function debounce(func, wait, immediate) {
         if (callNow) func.apply(context, args);
     };
 };
+
+export const useQuery=()=>{
+    return new URLSearchParams(useLocation().search);
+}

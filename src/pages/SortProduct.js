@@ -4,18 +4,19 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import {Link, NavLink} from "react-router-dom";
 
-const SortProduct = () => {
+const SortProduct = ({setSortFiltering}) => {
+
     return (
         <>
             <Navbar bg="white" variant="light">
                 <Navbar.Brand className="navbar-brand" as={"span"}>مرتب سازی براساس:</Navbar.Brand>
                 <Nav className="sort-product">
-                    <Nav.Link as={NavLink} to="rank"> <span>پیش فرض</span></Nav.Link>
-                    <Nav.Link as={NavLink} to="/productList/price"><span>گران ترین</span> </Nav.Link>
-                    <Nav.Link as={NavLink} to="/productList/price2"><span>ارزان ترین</span></Nav.Link>
-                    <Nav.Link as={NavLink} to="/productList/price3"><span>بیشترین مبلغ تخفیف</span></Nav.Link>
-                    <Nav.Link as={NavLink}  to="/productList/price4"><span>بیشترین درصد تخفیف</span></Nav.Link>
-                    <Nav.Link  as={NavLink} to="/productList/price5"><span>پرفروش ترین</span></Nav.Link>
+                    <Nav.Link onClick={() => setSortFiltering("assumption")}> <span>پیش فرض</span></Nav.Link>
+                    <Nav.Link><span>گران ترین</span> </Nav.Link>
+                    <Nav.Link><span>ارزان ترین</span></Nav.Link>
+                    <Nav.Link><span>بیشترین مبلغ تخفیف</span></Nav.Link>
+                    <Nav.Link><span>بیشترین درصد تخفیف</span></Nav.Link>
+                    <Nav.Link><span>پرفروش ترین</span></Nav.Link>
                 </Nav>
             </Navbar>
         </>

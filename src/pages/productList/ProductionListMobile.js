@@ -20,7 +20,7 @@ const ProductListMobile = (props) => {
     let {path, url} = useRouteMatch();
     const [openFilterPanel, setOpenFilterPanel] = useState(false);
     let query = useQuery();
-
+    const [filterBrands, setFilterBrands] = useState([])
     function useQuery() {
         return new URLSearchParams(useLocation().search);
     }
@@ -84,7 +84,7 @@ const ProductListMobile = (props) => {
                         <FontAwesomeIcon icon={faTimes} onClick={() => setOpenFilterPanel(false)}/>
                     </CategoryFilterPanelHeader>
                 </CategoryFilterPanelHeaderWrapper>
-                <CategoryFilter setOpenFilterPanel={setOpenFilterPanel}/>
+                <CategoryFilter addFilterBrands={setFilterBrands} setOpenFilterPanel={setOpenFilterPanel}/>
             </CategoryFilterPanel>
             <Container opacityApply={openFilterPanel}>
 
