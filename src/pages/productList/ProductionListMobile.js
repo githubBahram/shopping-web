@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import styled from 'styled-components'
-import {Link, useRouteMatch, useLocation} from "react-router-dom";
+import {Link, useRouteMatch, useLocation, useHistory} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowRight, faSort, faFilter, faTimes} from "@fortawesome/free-solid-svg-icons";
 import Col from "react-bootstrap/Col";
@@ -9,18 +9,74 @@ import {useDispatch, useSelector} from "react-redux";
 import {addProducts} from "../../redux/feature/productSlice";
 import CardMobile from "../card/CardMobile";
 import CategoryFilter from "./CategoryFilter";
+import {getProducts} from "../../api/productApi";
 
-const ProductListMobile = (props) => {
+import {useQuery} from "../../helper/helper";
 
-    const products = useSelector(state => state.products.productList);
+const ProductListMobile = ({categoryId}) => {
+
+
     const isEndPage = useSelector(state => state.products.isEndPage)
     let bottomBoundaryRef = useRef(null);
     const [visible, setVisible] = useState(false)
     const dispatch = useDispatch();
-    let {path, url} = useRouteMatch();
+
     const [openFilterPanel, setOpenFilterPanel] = useState(false);
     let query = useQuery();
     const [filterBrands, setFilterBrands] = useState([])
+    const [pageNumber, setPageNumber] = useState(1)
+    const [pageSize, setPageSize] = useState(12)
+    const [products, setProducts] = useState([])
+    let location = useLocation();
+    const history = useHistory()
+    let brandQuery = ''
+    if (query.get("brands")) {
+        brandQuery = query.get("brands").slice(-1).includes(",") ? query.get("brands").slice(0, -1) : query.get("brands")
+    }
+
+    let brandsParam = ''
+    if (brandQuery && brandQuery !== "" && brandQuery.length > 0) {
+        brandsParam = brandQuery.split(",")
+    }
+
+    let productFilter = {
+        brands: brandsParam,
+        categoryId: categoryId,
+        companyId: 1,
+        pageNumber: pageNumber,
+        pageSize: pageSize,
+        isRootCategory: false
+    }
+
+    const applyFilter = () => {
+        let url = location.pathname
+        let brands = ''
+
+        if (filterBrands.length > 0) {
+            filterBrands.map((item, index) => (
+                brands = brands.concat(item, ",")
+            ))
+
+            if (location.pathname.indexOf("?") > -1) {
+                url = url.concat("&brands=", brands.slice(0, -1))
+            } else {
+                url = url.concat("?", "brands=", brands.slice(0, -1))
+            }
+        }
+        console.log("apply filter url")
+        console.log(url)
+
+        history.replace(url)
+
+        productFilter.brands = filterBrands
+        let result = getProducts(productFilter)
+        result.then((respnse) => {
+            setProducts(respnse.data.content)
+        })
+        setOpenFilterPanel(false)
+
+    }
+
     function useQuery() {
         return new URLSearchParams(useLocation().search);
     }
@@ -31,9 +87,29 @@ const ProductListMobile = (props) => {
                 entries.forEach(en => {
                     if (en.intersectionRatio > 0) {
                         setVisible(true)
-                        dispatch(addProducts())
+                        setPageNumber(pageNumber + 1)
+                        setPageSize(pageSize + 12)
+
+                        console.log('page number is:')
+                        console.log(pageNumber)
+                        let productFilter = {
+                            brandId: '',
+                            categoryId: categoryId,
+                            companyId: 1,
+                            pageNumber: pageNumber,
+                            pageSize: pageSize,
+                            isRootCategory: false
+                        }
+
+                        let result = getProducts(productFilter)
+                        console.log("result paging ....")
+                        console.log(result)
                         console.log('is end page in scrolling')
                         console.log(isEndPage)
+
+                        result.then((respnse) => {
+                            setProducts(respnse.data.content)
+                        })
 
                         if (isEndPage) {
                             console.log("is end page")
@@ -48,12 +124,13 @@ const ProductListMobile = (props) => {
         return (
             <CardContainer>
                 {
-                    products.map((item) => (
+                    products.map((card) => (
                         <Col xs={4} className="border">
-                            <CardMobile id={item.id}
-                                        title={item.title}
-                                        discountPercent={item.discountPercent}
-                                        mainAmount={item.mainAmount} finalAmount={item.finalAmount} image={item.image}
+                            <CardMobile id={card.id}
+                                        title={card.name}
+                                        discountPercent={card.discountValue}
+                                        mainAmount={card.price} finalAmount={card.price} image={card.imageLocation}
+                            />
                             />
 
                         </Col>
@@ -67,12 +144,11 @@ const ProductListMobile = (props) => {
         if (bottomBoundaryRef.current) {
             console.log('visible:')
             console.log(visible)
+            setPageNumber(pageNumber + 1)
+            setPageSize(pageSize + 12)
             scrollObserver(bottomBoundaryRef.current);
         }
-
-
     }, [bottomBoundaryRef, scrollObserver, isEndPage, openFilterPanel])
-
 
 
     return (
@@ -84,7 +160,8 @@ const ProductListMobile = (props) => {
                         <FontAwesomeIcon icon={faTimes} onClick={() => setOpenFilterPanel(false)}/>
                     </CategoryFilterPanelHeader>
                 </CategoryFilterPanelHeaderWrapper>
-                <CategoryFilter addFilterBrands={setFilterBrands} setOpenFilterPanel={setOpenFilterPanel}/>
+                <CategoryFilter categoryId={categoryId} addFilterBrands={setFilterBrands}
+                                setOpenFilterPanel={setOpenFilterPanel} applyFilter={applyFilter}/>
             </CategoryFilterPanel>
             <Container opacityApply={openFilterPanel}>
 

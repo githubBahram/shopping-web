@@ -3,37 +3,29 @@ import styled from 'styled-components'
 import ScrollContainer from "react-indiana-drag-scroll";
 import {Link} from "react-router-dom";
 
-const SubCategoryFilterMobile = () => {
+const SubCategoryFilterMobile = ({categories}) => {
+
+    const CategoriesFilterItems = ({categories}) => {
+        return (
+            <>
+                {
+                    categories.map((category) => (
+                        <FilterItemWrapper>
+                            <FilterItem to={`/categories/${category.id}`}><span> {category.name}</span>
+                            </FilterItem>
+                        </FilterItemWrapper>
+                    ))
+                }
+            </>
+        )
+    }
+
     return (
         <>
             <Container>
                 <ScrollContainer>
                     <FilterWrapper>
-                        <FilterItemWrapper>
-                            <FilterItem to="/productList/1245"><span> مصحولات آرایشی</span>
-                            </FilterItem>
-                        </FilterItemWrapper>
-                        <FilterItemWrapper>
-                            <FilterItem to="/productList"><span> مصحولات آرایشی</span>
-                            </FilterItem>
-                        </FilterItemWrapper>
-                          <FilterItemWrapper>
-                            <FilterItem to="/productList"><span> مصحولات آرایشی</span>
-                            </FilterItem>
-                        </FilterItemWrapper>
-                          <FilterItemWrapper>
-                            <FilterItem to="/productList"><span> مصحولات آرایشی</span>
-                            </FilterItem>
-                        </FilterItemWrapper>
-                          <FilterItemWrapper>
-                            <FilterItem to="/productList"><span> مصحولات آرایشی</span>
-                            </FilterItem>
-                        </FilterItemWrapper>
-                          <FilterItemWrapper>
-                            <FilterItem to="/productList"><span> مصحولات آرایشی</span>
-                            </FilterItem>
-                        </FilterItemWrapper>
-
+                        <CategoriesFilterItems categories={categories}/>
                     </FilterWrapper>
                 </ScrollContainer>
             </Container>
@@ -45,13 +37,13 @@ const Container = styled.div`
   padding: 10px;
   border-bottom: #a3a3a3 solid;
   border-width: 1px;
-  
+
 `
 const FilterWrapper = styled.div`
   display: flex;
   flex-direction: row;
   padding: 10px;
-   
+
 
 `
 const FilterItemWrapper = styled.div`

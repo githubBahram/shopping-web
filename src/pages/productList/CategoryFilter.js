@@ -15,7 +15,7 @@ import {selectCurrentCompany} from "../../redux/feature/companySlice";
 import {text} from "@fortawesome/fontawesome-svg-core";
 import {useQuery} from "../../helper/helper";
 
-const CategoryFilter = ({setOpenFilterPanel, categoryId, addFilterBrands}) => {
+const CategoryFilter = ({setOpenFilterPanel, categoryId, addFilterBrands,applyFilter}) => {
 
     const history = useHistory();
     let query = useQuery();
@@ -27,7 +27,12 @@ const CategoryFilter = ({setOpenFilterPanel, categoryId, addFilterBrands}) => {
     }
     const removeFiltering = () => {
         setOpenFilterPanel(false)
-        history.push('/productList/132?brand=132')
+        let url = '/categories/'
+        url = url.concat( categoryId)
+        console.log("url after remove is :")
+        console.log(url)
+        setBrandChecked([])
+        history.replace(url)
     }
     const [collapse, isCollapse] = useState(true)
 
@@ -114,7 +119,7 @@ const CategoryFilter = ({setOpenFilterPanel, categoryId, addFilterBrands}) => {
                         <Button onClick={removeFiltering} style={{width: '45%'}} variant="outline-dark">حذف
                             فیلتر</Button>
 
-                        <Button style={{width: '45%'}} variant="primary">اعمال</Button>
+                        <Button onClick={applyFilter} style={{width: '45%'}} variant="primary">اعمال</Button>
                     </Confirm>
                 </ConfirmContainer>
             </Breakpoint>

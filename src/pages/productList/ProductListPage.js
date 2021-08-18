@@ -24,7 +24,7 @@ const ProductListPage = (props) => {
                     </Breakpoint>
 
                     <Breakpoint at="xs">
-                        <ProductionListMobile/>
+                        <ProductionListMobile categoryId={categoryId}/>
                     </Breakpoint>
                     <Footer/>
                 </Route>
