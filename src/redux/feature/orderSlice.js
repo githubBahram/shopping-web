@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
-const initialState = [];
+const initialState = JSON.parse(localStorage.getItem("orders"));
 const ordersSlice = createSlice({
     name: 'orders',
     initialState,
@@ -16,6 +16,9 @@ const ordersSlice = createSlice({
             } else {
                 state.push(action.payload);
             }
+            localStorage.setItem("orders", JSON.stringify(state))
+            console.log("state order....")
+            console.log(JSON.parse(localStorage.getItem("orders")))
         },
         orderRemoved(state, action) {
             const {id, count} = action.payload;
@@ -32,7 +35,10 @@ const ordersSlice = createSlice({
                     existOrderRemove.count = count - 1;
                 }
             }
+            localStorage.setItem("orders", JSON.stringify(state))
 
+            console.log("remove state order....")
+            console.log(JSON.parse(localStorage.getItem("orders")))
         },
         orderRemovedAll(state) {
             console.log('removeAll')

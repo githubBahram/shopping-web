@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -8,16 +8,55 @@ import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import SubCategoryFilterMobile from "./SubCategoryFilterMobile";
 import CardMobile from "../card/CardMobile";
 import ScrollContainer from "react-indiana-drag-scroll";
-import categories from "../../data/categories";
+import {getProducts} from "../../api/productApi";
 
-
-const SubCategoryMobile = () => {
-
-    const CardRender = (card, idx) => {
+const SubCategoryMobile = (props) => {
+    const {categories} = props
+    const CardRender = () => {
         return (
             < >
                 {
-                    categories.map((card) => (
+                    categories.map((category) => (
+                        <ScrollContainer>
+                            <CardContainer>
+                                <CategoryTitleWrapper>
+                                    <span>{category.name}</span>
+                                    <Link>بیشتر</Link>
+                                </CategoryTitleWrapper>
+                                <CategoryBody vertical={false}>
+                                    <ProductComponent categoryId={category.id}/>
+                                </CategoryBody>
+                            </CardContainer>
+                            <div style={{borderBottom: " rgb(238, 238, 238) solid 1px",}}/>
+                        </ScrollContainer>
+                    ))}
+            </>
+        )
+    }
+
+    const ProductComponent = ({categoryId}) => {
+        let productFilter = {
+            brandId: '',
+            categoryId: categoryId,
+            companyId: 1,
+            pageNumber: 1,
+            pageSize: 6,
+            isRootCategory: false
+        }
+
+        const [products, setProducts] = useState([])
+
+        useEffect(() => {
+            let result = getProducts(productFilter)
+            result.then((respnse) => {
+                setProducts(respnse.data.content)
+            })
+        }, [])
+
+        return (
+            < >
+                {
+                    products.map((card) => (
                         <div style={{
                             flex: "0 0 auto",
                             width: "calc(40%)",
@@ -27,9 +66,9 @@ const SubCategoryMobile = () => {
 
                         }}>
                             <CardMobile id={card.id}
-                                        title={card.title}
-                                        discountPercent={card.discountPercent}
-                                        mainAmount={card.mainAmount} finalAmount={card.finalAmount} image={card.image}
+                                        title={card.name}
+                                        discountPercent={card.discountValue}
+                                        mainAmount={card.price} finalAmount={card.price} image={card.imageLocation}
                             />
                         </div>
                     ))}
@@ -53,41 +92,10 @@ const SubCategoryMobile = () => {
                             </Col>
                         </Row>
                     </Header>
-                    <SubCategoryFilterMobile/>
+                    <SubCategoryFilterMobile categories={categories}/>
                 </div>
                 <div style={{marginTop: "7rem"}}></div>
-                <ScrollContainer>
-                    <CardContainer>
-                        <CategoryTitleWrapper>
-                            <span>شیر</span>
-                            <Link>بیشتر</Link>
-                        </CategoryTitleWrapper>
-                        <CategoryBody vertical={false}>
-                            <CardRender/>
-                        </CategoryBody>
-                    </CardContainer>
-                    <div style={{borderBottom: " rgb(238, 238, 238) solid 1px",}}/>
-                    <CardContainer>
-                        <CategoryTitleWrapper>
-                            <span>ماست</span>
-                            <Link>بیشتر</Link>
-                        </CategoryTitleWrapper>
-                        <CategoryBody vertical={false}>
-                            <CardRender/>
-                        </CategoryBody>
-                    </CardContainer>
-                    <div style={{borderBottom: " rgb(238, 238, 238) solid 1px", marginTop: "5px"}}/>
-                    <CardContainer>
-                        <CategoryTitleWrapper>
-                            <span>ماست</span>
-                            <Link>بیشتر</Link>
-                        </CategoryTitleWrapper>
-                        <CategoryBody vertical={false}>
-                            <CardRender/>
-                        </CategoryBody>
-                    </CardContainer>
-                    <div style={{borderBottom: " rgb(238, 238, 238) solid 1px",}}/>
-                </ScrollContainer>
+                <CardRender/>
             </Container>
         </>
     )
