@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react'
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import styled from 'styled-components'
 import {Link, useRouteMatch, useLocation, useHistory} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -9,48 +9,37 @@ import {useDispatch, useSelector} from "react-redux";
 import {addProducts} from "../../redux/feature/productSlice";
 import CardMobile from "../card/CardMobile";
 import CategoryFilter from "./CategoryFilter";
-import {getProducts} from "../../api/productApi";
+
 
 import {useQuery} from "../../helper/helper";
+import useFetch from "./useFetch";
 
 const ProductListMobile = ({categoryId}) => {
 
-
-    const isEndPage = useSelector(state => state.products.isEndPage)
     let bottomBoundaryRef = useRef(null);
-    const [visible, setVisible] = useState(false)
-    const dispatch = useDispatch();
 
     const [openFilterPanel, setOpenFilterPanel] = useState(false);
-    let query = useQuery();
+
     const [filterBrands, setFilterBrands] = useState([])
-    const [pageNumber, setPageNumber] = useState(1)
-    const [pageSize, setPageSize] = useState(12)
-    const [products, setProducts] = useState([])
+    const [brandParam, setBrandParam] = useState([])
+
+    const [page, setPage] = useState(1);
+    const [reset,setReset]=useState(false)
+    const {loading, error, list} = useFetch(categoryId, brandParam, page,reset);
+
+
+
     let location = useLocation();
     const history = useHistory()
-    let brandQuery = ''
-    if (query.get("brands")) {
-        brandQuery = query.get("brands").slice(-1).includes(",") ? query.get("brands").slice(0, -1) : query.get("brands")
-    }
-
-    let brandsParam = ''
-    if (brandQuery && brandQuery !== "" && brandQuery.length > 0) {
-        brandsParam = brandQuery.split(",")
-    }
-
-    let productFilter = {
-        brands: brandsParam,
-        categoryId: categoryId,
-        companyId: 1,
-        pageNumber: pageNumber,
-        pageSize: pageSize,
-        isRootCategory: false
-    }
 
     const applyFilter = () => {
+
+        console.log("called method: apply filter")
         let url = location.pathname
         let brands = ''
+
+        console.log("apply filter brand:")
+        console.log(filterBrands)
 
         if (filterBrands.length > 0) {
             filterBrands.map((item, index) => (
@@ -63,68 +52,28 @@ const ProductListMobile = ({categoryId}) => {
                 url = url.concat("?", "brands=", brands.slice(0, -1))
             }
         }
-        console.log("apply filter url")
-        console.log(url)
 
-        history.replace(url)
-
-        productFilter.brands = filterBrands
-        let result = getProducts(productFilter)
-        result.then((respnse) => {
-            setProducts(respnse.data.content)
-        })
+        setBrandParam(filterBrands)
         setOpenFilterPanel(false)
-
+        setReset(true)
+        setPage(1)
+        window.scrollTo(0, 0);
+        history.replace(url)
     }
+    const handleObserver = useCallback((entries) => {
+        const target = entries[0];
+        if (target.isIntersecting) {
+            setPage((prev) => prev + 1);
+            setReset(false)
+        }
+    }, []);
 
-    function useQuery() {
-        return new URLSearchParams(useLocation().search);
-    }
-
-    const scrollObserver = useCallback(
-        node => {
-            const into = new IntersectionObserver(entries => {
-                entries.forEach(en => {
-                    if (en.intersectionRatio > 0) {
-                        setVisible(true)
-                        setPageNumber(pageNumber + 1)
-                        setPageSize(pageSize + 12)
-
-                        console.log('page number is:')
-                        console.log(pageNumber)
-                        let productFilter = {
-                            brandId: '',
-                            categoryId: categoryId,
-                            companyId: 1,
-                            pageNumber: pageNumber,
-                            pageSize: pageSize,
-                            isRootCategory: false
-                        }
-
-                        let result = getProducts(productFilter)
-                        console.log("result paging ....")
-                        console.log(result)
-                        console.log('is end page in scrolling')
-                        console.log(isEndPage)
-
-                        result.then((respnse) => {
-                            setProducts(respnse.data.content)
-                        })
-
-                        if (isEndPage) {
-                            console.log("is end page")
-                        }
-                    }
-                });
-            }).observe(node);
-
-        }, [dispatch])
 
     const CardRender = () => {
         return (
             <CardContainer>
                 {
-                    products.map((card) => (
+                    list.map((card) => (
                         <Col xs={4} className="border">
                             <CardMobile id={card.id}
                                         title={card.name}
@@ -140,19 +89,23 @@ const ProductListMobile = ({categoryId}) => {
         )
     }
     useEffect(() => {
+            const option = {
+                root: null,
+                rootMargin: "20px",
+                threshold: 0
+            };
+            const observer = new IntersectionObserver(handleObserver, option);
 
-        if (bottomBoundaryRef.current) {
-            console.log('visible:')
-            console.log(visible)
-            setPageNumber(pageNumber + 1)
-            setPageSize(pageSize + 12)
-            scrollObserver(bottomBoundaryRef.current);
+            if (bottomBoundaryRef.current) {
+                observer.observe(bottomBoundaryRef.current);
+            }
         }
-    }, [bottomBoundaryRef, scrollObserver, isEndPage, openFilterPanel])
+        , [handleObserver])
 
 
     return (
         <>
+            {openFilterPanel &&
             <CategoryFilterPanel show={openFilterPanel}>
                 <CategoryFilterPanelHeaderWrapper>
                     <CategoryFilterPanelHeader>
@@ -163,6 +116,9 @@ const ProductListMobile = ({categoryId}) => {
                 <CategoryFilter categoryId={categoryId} addFilterBrands={setFilterBrands}
                                 setOpenFilterPanel={setOpenFilterPanel} applyFilter={applyFilter}/>
             </CategoryFilterPanel>
+
+            }
+
             <Container opacityApply={openFilterPanel}>
 
                 <Header>
@@ -199,10 +155,13 @@ const ProductListMobile = ({categoryId}) => {
                 </Header>
                 <Body>
                     <CardRender/>
-                    <div ref={bottomBoundaryRef}>
+                    {loading && <p>Loading...</p>}
+                    {error && <p>Error!</p>}
 
-                    </div>
+                    <div ref={bottomBoundaryRef}/>
+
                 </Body>
+
             </Container>
         </>
     )
@@ -210,7 +169,8 @@ const ProductListMobile = ({categoryId}) => {
 
 
 const Container = styled.div`
-  opacity: ${(props) => props.opacityApply ? '.1' : 'none'};
+  opacity: $ {(props)= > props . opacityApply ? '.1': 'none'
+  };
 `
 const Header = styled.div`
   position: fixed;
@@ -257,7 +217,8 @@ const Body = styled.div`
 
 const CategoryFilterPanel = styled.div`
   position: fixed;
-  bottom: ${(props) => props.show ? '0px' : '-85%'};
+  bottom: $ {(props)= > props . show ? '0px': '-85%'
+  };
   width: 100%;
   height: 85%;
   background: #fafafa;

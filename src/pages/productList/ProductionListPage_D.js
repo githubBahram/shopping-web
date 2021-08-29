@@ -138,7 +138,7 @@ const ProductListPage_D = (props) => {
         }
 
         history.replace(url)
-
+        console.log("after replace url...")
         productFilter.brands = filterBrands
         let result = getProducts(productFilter)
         result.then((respnse) => {
@@ -149,7 +149,7 @@ const ProductListPage_D = (props) => {
             scrollObserver(bottomBoundaryRef.current);
         }
 
-    }, [filterBrands, activePage,sortFiltering])
+    }, [filterBrands, activePage, sortFiltering])
 
     return (
         <>

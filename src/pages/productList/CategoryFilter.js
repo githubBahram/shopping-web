@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
@@ -14,11 +14,13 @@ import {getBrandsByCategoryAndCompany} from "../../api/brandApi";
 import {selectCurrentCompany} from "../../redux/feature/companySlice";
 import {text} from "@fortawesome/fontawesome-svg-core";
 import {useQuery} from "../../helper/helper";
+import BrandItemList from "./BrandItemList";
 
-const CategoryFilter = ({setOpenFilterPanel, categoryId, addFilterBrands,applyFilter}) => {
+const CategoryFilter = ({setOpenFilterPanel, categoryId, addFilterBrands, applyFilter}) => {
 
     const history = useHistory();
     let query = useQuery();
+
     console.log("query brands")
     console.log(query.get("brands"))
     let brandQuery = ''
@@ -28,7 +30,7 @@ const CategoryFilter = ({setOpenFilterPanel, categoryId, addFilterBrands,applyFi
     const removeFiltering = () => {
         setOpenFilterPanel(false)
         let url = '/categories/'
-        url = url.concat( categoryId)
+        url = url.concat(categoryId)
         console.log("url after remove is :")
         console.log(url)
         setBrandChecked([])
@@ -37,9 +39,6 @@ const CategoryFilter = ({setOpenFilterPanel, categoryId, addFilterBrands,applyFi
     const [collapse, isCollapse] = useState(true)
 
     const [brandChecked, setBrandChecked] = useState(brandQuery.includes(",") || brandQuery !== "" ? brandQuery.split(",") : [])
-
-    console.log("brand check initial...")
-    console.log(brandChecked)
 
     const setBrand = (id) => {
 
@@ -51,31 +50,8 @@ const CategoryFilter = ({setOpenFilterPanel, categoryId, addFilterBrands,applyFi
         }
     }
 
-
-    const BrandItemList = (props) => {
-
-        const [brands, setBrands] = useState([])
-        const data = useSelector(selectCurrentCompany)
-
-        useEffect(() => {
-            const brandsData = getBrandsByCategoryAndCompany(categoryId, data.currentCompany.id)
-            brandsData.then((res) => {
-                setBrands(res)
-            })
-        }, [])
-
-        return brands.map((item, idx) => (
-            <Form.Check defaultChecked={brandChecked.indexOf(String(item.id)) > -1} id={idx} onClick={() => {
-                setBrand(String(item.id))
-            }} type="checkbox"
-                        label={item.name}/>
-        ))
-    }
-
     useEffect(() => {
         addFilterBrands(brandChecked)
-        console.log('default brandChecked')
-        console.log(brandChecked)
     }, [brandChecked])
     return (
         <div>
@@ -102,7 +78,8 @@ const CategoryFilter = ({setOpenFilterPanel, categoryId, addFilterBrands,applyFi
                             <Form>
                                 <div style={{marginRight: "10px", fontFamily: "IRANSansWeb", color: "#8a8a8a"}}>
                                     <Form.Group controlId="formBasicCheckbox">
-                                        <BrandItemList brandsFilter={brandChecked}/>
+                                        <BrandItemList categoryId={categoryId} brandChecked={brandChecked}
+                                                       setBrand={setBrand}/>
                                     </Form.Group>
                                 </div>
                             </Form>

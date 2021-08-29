@@ -13,6 +13,7 @@ import CategoryFilter from "./pages/productList/CategoryFilter";
 import LoginMobile from "./pages/login/LoginMobile";
 import ConfirmSendCode from "./pages/login/ConfirmSendCode";
 import DrawerLeftPanel from "./component/DrawerLeftPanel";
+import TestCalback from "./pages/TestCalback";
 
 
 const About = () => <span>About</span>;
@@ -20,7 +21,7 @@ const About = () => <span>About</span>;
 const App = () => (
     <Provider store={store}>
         <BrowserRouter>
-            <div dir="rtl" style={{backgroundColor: '#fafafa',height:"100%"}}>
+            <div dir="rtl" style={{backgroundColor: '#fafafa', height: "100%"}}>
                 <DrawerLeftPanel>
                     <ShoppingCartPage/>
                 </DrawerLeftPanel>
@@ -53,9 +54,13 @@ const App = () => (
                     <Route exact path="/shoppingCart">
                         <ShoppingCartPage/>
                     </Route>
+                    <Route exact path="/callBack">
+                        <TestCalback/>
+                    </Route>
                     <Route path="/">
                         <Home/>
                     </Route>
+
                 </Switch>
             </div>
         </BrowserRouter>

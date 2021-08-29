@@ -1,6 +1,7 @@
 import instance from "../config/axiosConfig";
 
 export const getProducts = async (productFilter) => {
+    console.log("called method: get product")
     let params = ''
     let apiUrl = "/productManager/products/companies"
 
